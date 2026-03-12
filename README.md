@@ -1,6 +1,8 @@
 # Legacy Texture Converter
 
-**Java / Bedrock エディションのテクスチャパックを Minecraft Legacy Console Edition (LCE) 向けに変換・編集するブラウザツールです。**  
+**[🌐 Live Demo → https://ignseed.github.io/Legacy-Texture-Converter/](https://ignseed.github.io/Legacy-Texture-Converter/)**
+
+Java / Bedrock エディションのテクスチャパックを Minecraft Legacy Console Edition (LCE) 向けに変換・編集するブラウザツールです。  
 A browser-based tool to convert Java/Bedrock texture packs for Minecraft Legacy Console Edition (LCE).
 
 ![thumbnail](images/thumbnail.png)
