@@ -192,6 +192,7 @@ hr.divider{border:none;border-top:1px solid var(--border);margin:0.75rem 0;}
   font-size:0.62rem;color:var(--text2);cursor:pointer;user-select:none;white-space:nowrap;}
 .gui-swap-label input{accent-color:var(--green);}
 
+
 /* ═══ RESPONSIVE ═══════════════════════════════════════════════════════════ */
 
 /* Medium screens: tighten header */

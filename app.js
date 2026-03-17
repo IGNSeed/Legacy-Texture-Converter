@@ -53,6 +53,7 @@ const I18N = {
     'gui.notice':     '💡 Minecraft Legacy Console Edition の <code>.arc</code> ファイルを読み込み、内部の <code>.fui</code> ファイルの画像を閲覧・置き換えできます。',
     'gui.treeHeader': 'ファイル一覧',
     'gui.colorSwap':  '色補正 R↔B',
+    'gui.invertDisplay': '色反転補正 (表示のみ)',
     'gui.btnReplace': '↩ 置き換え',
     'gui.btnSaveImg': '⬇ 画像を保存',
     'gui.btnTxtSave': '💾 変更を適用',
@@ -156,6 +157,7 @@ const I18N = {
     'gui.notice':     '💡 Load a Minecraft Legacy Console Edition <code>.arc</code> file to browse and replace images inside <code>.fui</code> files.',
     'gui.treeHeader': 'File List',
     'gui.colorSwap':  'Color fix R↔B',
+    'gui.invertDisplay': 'Invert colors (display only)',
     'gui.btnReplace': '↩ Replace',
     'gui.btnSaveImg': '⬇ Save Image',
     'gui.btnTxtSave': '💾 Apply Changes',
@@ -1054,6 +1056,39 @@ let guiFuiState = null;
 let guiTxtPath = null;
 let guiSelectedImgs = new Set();
 
+// ── R↔B display toggle (display-only, saved data unchanged) ──
+function guiApplyInvertDisplayToImg(imgEl) {
+  // Store original src the first time
+  if (!imgEl.dataset.origSrc) imgEl.dataset.origSrc = imgEl.src;
+  const orig = new Image();
+  orig.crossOrigin = 'anonymous';
+  orig.onload = () => {
+    const c = document.createElement('canvas');
+    c.width = orig.naturalWidth; c.height = orig.naturalHeight;
+    const ctx = c.getContext('2d');
+    ctx.drawImage(orig, 0, 0);
+    const id = ctx.getImageData(0, 0, c.width, c.height);
+    const d = id.data;
+    for (let i = 0; i < d.length; i += 4) { const r = d[i]; d[i] = d[i+2]; d[i+2] = r; }
+    ctx.putImageData(id, 0, 0);
+    imgEl.src = c.toDataURL('image/png');
+  };
+  orig.src = imgEl.dataset.origSrc;
+}
+
+function guiRestoreInvertDisplayImg(imgEl) {
+  if (imgEl.dataset.origSrc) imgEl.src = imgEl.dataset.origSrc;
+}
+
+document.getElementById('chkGuiInvertDisplay').addEventListener('change', function () {
+  const imgs = document.querySelectorAll('#guiImageGrid img');
+  if (this.checked) {
+    imgs.forEach(guiApplyInvertDisplayToImg);
+  } else {
+    imgs.forEach(guiRestoreInvertDisplayImg);
+  }
+});
+
 // ── Low-level helpers ──
 function guiView(bytes) {
   return new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
@@ -1503,6 +1538,11 @@ function guiRenderFuiImages() {
   if (prevSel.size > 0) {
     prevSel.forEach(i => { if (i < guiFuiState.images.length) guiSelectedImgs.add(i); });
     guiUpdateSelectionUI();
+  }
+
+  // If invert display is already checked, apply to newly rendered images
+  if (document.getElementById('chkGuiInvertDisplay').checked) {
+    grid.querySelectorAll('img').forEach(guiApplyInvertDisplayToImg);
   }
 }
 
