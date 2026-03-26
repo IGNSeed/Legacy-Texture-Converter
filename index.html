@@ -36,8 +36,7 @@
   </div>
   <div class="header-right">
     <div class="mode-tabs">
-      <button class="mode-tab active" id="tabItems" onclick="switchMode('items')" data-i18n="tab.items">🗡 Items</button>
-      <button class="mode-tab" id="tabTerrain" onclick="switchMode('terrain')" data-i18n="tab.terrain">🧱 Terrain</button>
+      <button class="mode-tab active" id="tabPack" onclick="switchMode('pack')" data-i18n="tab.pack">📦 Pack</button>
       <button class="mode-tab" id="tabGui" onclick="switchMode('gui')" data-i18n="tab.gui">🎨 GUI</button>
     </div>
     <button class="btn btn-dark btn-lang" id="btnLang" onclick="toggleLang()">EN</button>
@@ -47,64 +46,82 @@
 
 <main>
 
-  <!-- ═══════ ITEMS MODE ═══════ -->
-  <div class="mode-panel active" id="panelItems">
+  <!-- ═══════ PACK MODE ═══════ -->
+  <div class="mode-panel active" id="panelPack">
 
     <div class="card">
       <div class="card-header">
         <div class="step-num">1</div>
-        <h2 data-i18n="items.card1">テクスチャ &amp; 設定</h2>
-        <span class="badge badge-dark ml-auto" style="font-family:var(--mono);font-size:0.6rem;">Java / Bedrock → items.png</span>
+        <h2 data-i18n="pack.card1">リソースパック</h2>
+        <span class="badge badge-dark ml-auto" style="font-family:var(--mono);font-size:0.6rem;">.zip / .mcpack → items.png + terrain.png</span>
       </div>
       <div class="card-body" style="display:flex;flex-direction:column;gap:1rem;">
-        <div class="res-section">
-          <span class="res-label" data-i18n="resLabel">出力解像度 (1タイル)</span>
-          <div class="res-grid" id="itemsResGrid"></div>
-          <span class="res-info" id="itemsResInfo"></span>
+        <div class="drop-zone" id="dropPack">
+          <input type="file" id="filePack" accept=".zip,.mcpack">
+          <div class="drop-icon">📦</div>
+          <div class="drop-label" data-i18n="dropLabel">ドロップ または クリックして選択</div>
+          <div class="drop-sub" data-i18n="pack.dropSub">.zip または .mcpack をドロップ</div>
+          <div class="file-hint" id="hintPack"></div>
         </div>
-        <hr class="divider">
-        <div class="upload-grid">
-          <div>
-            <div class="col-label"><span data-i18n="items.colItems">アイテム PNG</span> <span class="tag req" data-i18n="tagReq">必須</span></div>
-            <div class="drop-zone" id="dropItems">
-              <input type="file" id="fileItems" accept="image/png" multiple>
-              <div class="drop-icon">🗂️</div>
-              <div class="drop-label" data-i18n="dropLabel">ドロップ または クリックして選択</div>
-              <div class="drop-sub" data-i18n="items.dropSubItems">複数可 — apple.png, diamond_sword.png …</div>
-              <div class="file-hint" id="hintItems"></div>
-            </div>
-          </div>
-          <div>
-            <div class="col-label"><span data-i18n="items.colBase">ベース items.png</span> <span class="tag opt" data-i18n="tagOpt">任意</span></div>
-            <div class="drop-zone tmpl" id="dropItemsBase">
-              <input type="file" id="fileItemsBase" accept="image/png">
-              <div class="drop-icon">🖼️</div>
-              <div class="drop-label" id="itemsBaseLbl" data-i18n="items.baseDefault">デフォルト: images/items.png</div>
-              <div class="drop-sub" data-i18n="dropOverride">上書きする場合はここにドロップ</div>
-              <div class="file-hint" id="hintItemsBase"></div>
-            </div>
-          </div>
+        <div id="packSettingsRow" style="display:none;">
+          <button class="btn btn-dark" id="btnPackSettings" data-i18n="modal.openBtn">⚙ 設定を変更</button>
         </div>
-        <div class="notice blue" data-i18n-html="items.notice">
-          💡 ベース未選択時は <code>images/items.png</code> を自動使用します。解像度が異なる画像は自動リサイズ。マッチスロットは新テクスチャで完全上書きします。
+        <div class="notice blue" data-i18n-html="pack.notice">
+          💡 リソースパック (.zip / .mcpack) をドロップすると、items.png と terrain.png を一括生成します。
         </div>
       </div>
     </div>
 
-    <div class="card" id="itemsMappingCard" style="display:none;">
+    <div class="card" id="packItemsMappingCard" style="display:none;">
       <div class="card-header">
         <div class="step-num">2</div>
-        <h2 data-i18n="mappingCard">マッピング確認</h2>
-        <span class="badge badge-dark ml-auto" id="itemsMatchBadge">0 / 0</span>
+        <h2>🗡 Items — <span data-i18n="mappingCard">マッピング確認</span></h2>
+        <span class="badge badge-dark ml-auto" id="packItemsMatchBadge">0 / 0</span>
       </div>
       <div class="card-body" style="display:flex;flex-direction:column;gap:0.75rem;">
-        <div class="stats" id="itemsStatsBar"></div>
+        <div class="stats" id="packItemsStatsBar"></div>
         <div class="table-wrap">
           <table class="ft">
             <thead><tr><th data-i18n="thStatus">状態</th><th data-i18n="thFile">ファイル名</th><th data-i18n="thPos">配置先 (x, y)</th><th data-i18n="thNote">備考</th></tr></thead>
-            <tbody id="itemsMapBody"></tbody>
+            <tbody id="packItemsMapBody"></tbody>
           </table>
         </div>
+      </div>
+    </div>
+
+    <div class="card" id="packTerrainMappingCard" style="display:none;">
+      <div class="card-header">
+        <div class="step-num">2</div>
+        <h2>🧱 Terrain — <span data-i18n="mappingCard">マッピング確認</span></h2>
+        <span class="badge badge-dark ml-auto" id="packTerrainMatchBadge">0 / 0</span>
+      </div>
+      <div class="card-body" style="display:flex;flex-direction:column;gap:0.75rem;">
+        <div class="stats" id="packTerrainStatsBar"></div>
+        <div class="table-wrap">
+          <table class="ft">
+            <thead><tr><th data-i18n="thStatus">状態</th><th data-i18n="thFile">ファイル名</th><th data-i18n="thPos">配置先 (x, y)</th><th data-i18n="thNote">備考</th></tr></thead>
+            <tbody id="packTerrainMapBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card" id="packGuiCard" style="display:none;">
+      <div class="card-header">
+        <div class="step-num" style="background:var(--blue);font-size:0.6rem;">GUI</div>
+        <h2 data-i18n="pack.guiCard">🎨 GUI コンバート</h2>
+        <span class="badge badge-dark ml-auto" style="font-family:var(--mono);font-size:0.6rem;" data-i18n="pack.guiBadge">icons.png / widgets.png → .fui</span>
+      </div>
+      <div class="card-body" style="display:flex;flex-direction:column;gap:1rem;">
+        <div id="packGuiCropsGrid" class="pack-gui-crops-grid"></div>
+        <div class="action-row">
+          <button class="btn btn-dark" id="btnPackGuiConvert" disabled data-i18n="pack.guiBtnConvert">⚙ GUI コンバート</button>
+          <a class="btn btn-dark" id="btnPackGuiCropsDl" style="display:none;" data-i18n="pack.guiBtnCropsDl">⬇ 切り抜きを保存 (.zip)</a>
+        </div>
+        <div class="notice blue" data-i18n-html="pack.guiNotice">
+          💡 パック内の gui/icons.png / widgets.png / gui.png を切り抜いて HUD 画像を保存します。
+        </div>
+        <div class="log-box" id="packGuiLogBox" style="display:none;"></div>
       </div>
     </div>
 
@@ -115,122 +132,32 @@
       </div>
       <div class="card-body" style="display:flex;flex-direction:column;gap:1rem;">
         <div class="action-row">
-          <button class="btn btn-dark" id="btnItemsConvert" disabled data-i18n="btnConvert">⚙ 変換する</button>
-          <a class="btn btn-green" id="btnItemsDownload" download="items.png" style="display:none;" data-i18n="items.dlBtn">⬇ items.png</a>
+          <button class="btn btn-dark" id="btnPackConvert" disabled data-i18n="btnConvert">⚙ 変換する</button>
+          <div class="dl-group" id="packDlGroup" style="display:none;">
+            <button class="btn btn-green" id="btnPackZipDl" data-i18n="pack.dlZip">⬇ まとめてダウンロード (.zip)</button>
+          </div>
         </div>
-        <div class="prog-wrap" id="itemsProgWrap"><div class="prog-bar" id="itemsProgBar"></div></div>
-        <div class="log-box" id="itemsLogBox"></div>
+        <div class="dl-group" id="packIndivDlGroup" style="display:none;">
+          <a class="btn btn-dark" id="btnPackItemsDl" download="items.png" data-i18n="items.dlBtn">⬇ items.png</a>
+          <a class="btn btn-dark" id="btnPackTerrainDl1" download="terrain.png" data-i18n="terrain.dl1">⬇ terrain.png</a>
+          <a class="btn btn-dark" id="btnPackTerrainDl2" download="terrainMipMapLevel2.png" data-i18n="terrain.dl2">⬇ MipMap L2</a>
+          <a class="btn btn-dark" id="btnPackTerrainDl3" download="terrainMipMapLevel3.png" data-i18n="terrain.dl3">⬇ MipMap L3</a>
+        </div>
+        <div class="prog-wrap" id="packProgWrap"><div class="prog-bar" id="packProgBar"></div></div>
+        <div class="log-box" id="packLogBox"></div>
       </div>
     </div>
 
     <div class="card">
       <div class="card-header"><div class="step-num" style="background:var(--bg4);">?</div><h2 data-i18n="howToUse">使い方</h2></div>
       <div class="card-body">
-        <p class="help-text" data-i18n-html="items.help">
-          📂 <strong>Java</strong>: <code>assets/minecraft/textures/item/</code> 内の PNG を複数選択<br>
-          📂 <strong>Bedrock</strong>: <code>textures/items/</code> 内の PNG を選択<br>
-          🖼️ ベース未選択時は <code>images/items.png</code> を自動ベースとして使用<br>
-          🔲 選択解像度と異なるサイズの画像は自動リサイズ
+        <p class="help-text" data-i18n-html="pack.help">
+          📦 <strong>.zip / .mcpack</strong>: リソースパックファイルをドロップ
         </p>
       </div>
     </div>
 
-  </div><!-- /panelItems -->
-
-  <!-- ═══════ TERRAIN MODE ═══════ -->
-  <div class="mode-panel" id="panelTerrain">
-
-    <div class="card">
-      <div class="card-header">
-        <div class="step-num">1</div>
-        <h2 data-i18n="terrain.card1">テクスチャ &amp; 設定</h2>
-        <span class="badge badge-dark ml-auto" style="font-family:var(--mono);font-size:0.6rem;">Java / Bedrock → terrain.png × 3</span>
-      </div>
-      <div class="card-body" style="display:flex;flex-direction:column;gap:1rem;">
-        <div class="res-section">
-          <span class="res-label" data-i18n="resLabel">出力解像度 (1タイル)</span>
-          <div class="res-grid" id="terrainResGrid"></div>
-          <span class="res-info" id="terrainResInfo"></span>
-        </div>
-        <hr class="divider">
-        <div class="upload-grid">
-          <div>
-            <div class="col-label"><span data-i18n="terrain.colBlocks">ブロック PNG</span> <span class="tag req" data-i18n="tagReq">必須</span></div>
-            <div class="drop-zone" id="dropTerrain">
-              <input type="file" id="fileTerrain" accept="image/png" multiple>
-              <div class="drop-icon">🧱</div>
-              <div class="drop-label" data-i18n="dropLabel">ドロップ または クリックして選択</div>
-              <div class="drop-sub" data-i18n="terrain.dropSubBlocks">複数可 — grass_block_top.png, stone.png …</div>
-              <div class="file-hint" id="hintTerrain"></div>
-            </div>
-          </div>
-          <div>
-            <div class="col-label"><span data-i18n="terrain.colBase">ベース terrain.png</span> <span class="tag opt" data-i18n="tagOpt">任意</span></div>
-            <div class="drop-zone tmpl" id="dropTerrainBase">
-              <input type="file" id="fileTerrainBase" accept="image/png">
-              <div class="drop-icon">🖼️</div>
-              <div class="drop-label" id="terrainBaseLbl" data-i18n="terrain.baseDefault">デフォルト: images/terrain_16x.png</div>
-              <div class="drop-sub" data-i18n="dropOverride">上書きする場合はここにドロップ</div>
-              <div class="file-hint" id="hintTerrainBase"></div>
-            </div>
-          </div>
-        </div>
-        <div class="notice blue" data-i18n-html="terrain.notice">
-          💡 ベース未選択時は解像度に応じて <code>images/terrain_16x.png</code> または <code>images/terrain_32x.png</code> を自動使用。変換後に <code>terrain.png</code>・<code>terrainMipMapLevel2.png</code>・<code>terrainMipMapLevel3.png</code> の3ファイルを出力します。解像度が異なる画像は自動リサイズ。
-        </div>
-      </div>
-    </div>
-
-    <div class="card" id="terrainMappingCard" style="display:none;">
-      <div class="card-header">
-        <div class="step-num">2</div>
-        <h2 data-i18n="mappingCard">マッピング確認</h2>
-        <span class="badge badge-dark ml-auto" id="terrainMatchBadge">0 / 0</span>
-      </div>
-      <div class="card-body" style="display:flex;flex-direction:column;gap:0.75rem;">
-        <div class="stats" id="terrainStatsBar"></div>
-        <div class="table-wrap">
-          <table class="ft">
-            <thead><tr><th data-i18n="thStatus">状態</th><th data-i18n="thFile">ファイル名</th><th data-i18n="thPos">配置先 (x, y)</th><th data-i18n="thNote">備考</th></tr></thead>
-            <tbody id="terrainMapBody"></tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header">
-        <div class="step-num">3</div>
-        <h2 data-i18n="convertCard">変換 &amp; ダウンロード</h2>
-      </div>
-      <div class="card-body" style="display:flex;flex-direction:column;gap:1rem;">
-        <div class="action-row">
-          <button class="btn btn-dark" id="btnTerrainConvert" disabled data-i18n="btnConvert">⚙ 変換する</button>
-          <div class="dl-group" id="terrainDlGroup" style="display:none;">
-            <a class="btn btn-green" id="btnTerrainDl1" download="terrain.png" data-i18n="terrain.dl1">⬇ terrain.png</a>
-            <a class="btn btn-green" id="btnTerrainDl2" download="terrainMipMapLevel2.png" data-i18n="terrain.dl2">⬇ MipMap L2</a>
-            <a class="btn btn-green" id="btnTerrainDl3" download="terrainMipMapLevel3.png" data-i18n="terrain.dl3">⬇ MipMap L3</a>
-          </div>
-        </div>
-        <div class="prog-wrap" id="terrainProgWrap"><div class="prog-bar" id="terrainProgBar"></div></div>
-        <div class="log-box" id="terrainLogBox"></div>
-      </div>
-    </div>
-
-    <div class="card">
-      <div class="card-header"><div class="step-num" style="background:var(--bg4);">?</div><h2 data-i18n="howToUse">使い方</h2></div>
-      <div class="card-body">
-        <p class="help-text" data-i18n-html="terrain.help">
-          📂 <strong>Java</strong>: <code>assets/minecraft/textures/block/</code> 内の PNG を複数選択<br>
-          📂 <strong>Bedrock</strong>: <code>textures/blocks/</code> 内の PNG を選択<br>
-          🖼️ ベース未選択時は <code>images/terrain_16x.png</code> / <code>images/terrain_32x.png</code> を自動ベースとして使用<br>
-          🔲 解像度は <strong>16×16</strong> または <strong>32×32</strong> のみ<br>
-          📦 変換後に <code>terrain.png</code>・<code>terrainMipMapLevel2.png</code>・<code>terrainMipMapLevel3.png</code> の3ファイルが生成されます
-        </p>
-      </div>
-    </div>
-
-  </div><!-- /panelTerrain -->
+  </div><!-- /panelPack -->
 
   <!-- ═══════ GUI CONVERTER MODE ═══════ -->
   <div class="mode-panel" id="panelGui">
@@ -272,7 +199,6 @@
             <div id="guiFileTree" class="gui-tree-scroll"></div>
           </div>
           <div class="gui-right-panel">
-            <!-- FUI image viewer -->
             <div class="gui-fui-panel" id="guiFuiPanel" style="display:none;">
               <div class="gui-panel-header" id="guiFuiTitle"></div>
               <div id="guiImageGrid" class="fui-image-grid"></div>
@@ -284,7 +210,6 @@
                 <button class="btn btn-dark" id="btnGuiSaveImg" disabled data-i18n="gui.btnSaveImg">⬇ 画像を保存</button>
               </div>
             </div>
-            <!-- TXT editor -->
             <div class="gui-txt-panel" id="guiTxtPanel" style="display:none;">
               <div class="gui-panel-header" id="guiTxtTitle"></div>
               <textarea id="guiTxtEditor" class="gui-txt-editor" spellcheck="false"></textarea>
@@ -314,10 +239,7 @@
       <div class="card-header"><div class="step-num" style="background:var(--bg4);">?</div><h2 data-i18n="howToUse">使い方</h2></div>
       <div class="card-body">
         <p class="help-text" data-i18n-html="gui.help">
-          📦 <strong>ARC ファイル</strong>: Minecraft Legacy Console Edition の <code>.arc</code> ファイルを選択<br>
-          🎨 <strong>FUI ファイル</strong>: ツリーで <code>.fui</code> をクリックすると内部の画像一覧が表示されます<br>
-          ↩ <strong>置き換え</strong>: 画像サムネイルを選択して PNG / JPEG で上書きできます<br>
-          ⬇ <strong>保存</strong>: 変更を含む <code>.arc</code> ファイルをダウンロードします
+          📦 <strong>ARC ファイル</strong>: .arc ファイルを選択
         </p>
       </div>
     </div>
@@ -326,6 +248,69 @@
 
 </main>
 
+<!-- ═══════ PACK SETTINGS MODAL ═══════ -->
+<div class="modal-overlay" id="packModal">
+  <div class="modal-card">
+    <div class="modal-hdr">
+      <span class="modal-title" data-i18n="modal.title">⚙ 変換設定</span>
+      <button class="modal-close-btn" id="btnModalClose">×</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-pack-name" id="modalPackName"></div>
+      <div class="modal-stats" id="modalStats"></div>
+
+      <div class="modal-sep"></div>
+
+      <div class="modal-sec-lbl" data-i18n="modal.itemsRes">🗡 Items 解像度</div>
+      <div class="res-section" style="flex-direction:column;align-items:flex-start;gap:0.35rem;">
+        <div class="res-grid" id="modalItemsResGrid"></div>
+        <span class="res-info" id="modalItemsResInfo"></span>
+        <span class="modal-det-res" id="modalItemsDetRes"></span>
+      </div>
+
+      <div class="modal-sep"></div>
+
+      <div class="modal-sec-lbl" data-i18n="modal.terrainRes">🧱 Terrain 解像度</div>
+      <div class="res-section" style="flex-direction:column;align-items:flex-start;gap:0.35rem;">
+        <div class="res-grid" id="modalTerrainResGrid"></div>
+        <span class="res-info" id="modalTerrainResInfo"></span>
+        <span class="modal-det-res" id="modalTerrainDetRes"></span>
+      </div>
+
+      <div class="modal-sep"></div>
+
+      <div class="modal-sec-lbl" data-i18n="modal.baseImages">🖼️ ベース画像 <span class="tag opt" style="margin-left:4px;" data-i18n="tagOpt">任意</span></div>
+      <div class="upload-grid">
+        <div>
+          <div class="col-label"><span data-i18n="items.colBase">ベース items.png</span></div>
+          <div class="drop-zone tmpl" id="dropModalItemsBase">
+            <input type="file" id="fileModalItemsBase" accept="image/png">
+            <div class="drop-icon">🖼️</div>
+            <div class="drop-label" id="modalItemsBaseLbl" data-i18n="items.baseDefault">デフォルト: images/items.png</div>
+            <div class="drop-sub" data-i18n="dropOverride">上書きする場合はここにドロップ</div>
+            <div class="file-hint" id="hintModalItemsBase"></div>
+          </div>
+        </div>
+        <div>
+          <div class="col-label"><span data-i18n="terrain.colBase">ベース terrain.png</span></div>
+          <div class="drop-zone tmpl" id="dropModalTerrainBase">
+            <input type="file" id="fileModalTerrainBase" accept="image/png">
+            <div class="drop-icon">🖼️</div>
+            <div class="drop-label" id="modalTerrainBaseLbl" data-i18n="terrain.baseDefault">デフォルト: images/terrain_16x.png</div>
+            <div class="drop-sub" data-i18n="dropOverride">上書きする場合はここにドロップ</div>
+            <div class="file-hint" id="hintModalTerrainBase"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="modal-ftr">
+      <button class="btn btn-dark" id="btnModalCancel" data-i18n="modal.cancel">キャンセル</button>
+      <button class="btn btn-green" id="btnModalConvert" data-i18n="btnConvert">⚙ 変換する</button>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 <script src="app.js"></script>
 </body>
 </html>

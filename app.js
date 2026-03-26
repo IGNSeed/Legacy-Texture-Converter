@@ -27,19 +27,19 @@ const I18N = {
     'items.card1':       'テクスチャ & 設定',
     'items.colItems':    'アイテム PNG',
     'items.colBase':     'ベース items.png',
-    'items.dropSubItems':'複数可 — apple.png, diamond_sword.png …',
+    'items.dropSubItems':'PNG / .zip / .mcpack — apple.png, diamond_sword.png …',
     'items.baseDefault': 'デフォルト: images/items.png',
     'items.notice':      '💡 ベース未選択時は <code>images/items.png</code> を自動使用します。解像度が異なる画像は自動リサイズ。マッチスロットは新テクスチャで完全上書きします。',
-    'items.help':        '📂 <strong>Java</strong>: <code>assets/minecraft/textures/item/</code> 内の PNG を複数選択<br>📂 <strong>Bedrock</strong>: <code>textures/items/</code> 内の PNG を選択<br>🖼️ ベース未選択時は <code>images/items.png</code> を自動ベースとして使用<br>🔲 選択解像度と異なるサイズの画像は自動リサイズ',
+    'items.help':        '📦 <strong>.zip / .mcpack</strong>: リソースパックを丸ごとドロップすると <code>textures/items/</code> 内の PNG を自動抽出<br>📂 <strong>Java</strong>: <code>assets/minecraft/textures/item/</code> 内の PNG を複数選択<br>📂 <strong>Bedrock</strong>: <code>textures/items/</code> 内の PNG を選択<br>🖼️ ベース未選択時は <code>images/items.png</code> を自動ベースとして使用<br>🔲 選択解像度と異なるサイズの画像は自動リサイズ',
     'items.dlBtn':       '⬇ items.png',
     /* terrain */
     'terrain.card1':        'テクスチャ & 設定',
     'terrain.colBlocks':    'ブロック PNG',
     'terrain.colBase':      'ベース terrain.png',
-    'terrain.dropSubBlocks':'複数可 — grass_block_top.png, stone.png …',
+    'terrain.dropSubBlocks':'PNG / .zip / .mcpack — grass_block_top.png, stone.png …',
     'terrain.baseDefault':  'デフォルト: images/terrain_16x.png',
     'terrain.notice':       '💡 ベース未選択時は解像度に応じて <code>images/terrain_16x.png</code> または <code>images/terrain_32x.png</code> を自動使用。変換後に <code>terrain.png</code>・<code>terrainMipMapLevel2.png</code>・<code>terrainMipMapLevel3.png</code> の3ファイルを出力します。解像度が異なる画像は自動リサイズ。',
-    'terrain.help':         '📂 <strong>Java</strong>: <code>assets/minecraft/textures/block/</code> 内の PNG を複数選択<br>📂 <strong>Bedrock</strong>: <code>textures/blocks/</code> 内の PNG を選択<br>🖼️ ベース未選択時は <code>images/terrain_16x.png</code> / <code>images/terrain_32x.png</code> を自動ベースとして使用<br>🔲 解像度は <strong>16×16</strong> または <strong>32×32</strong> のみ<br>📦 変換後に <code>terrain.png</code>・<code>terrainMipMapLevel2.png</code>・<code>terrainMipMapLevel3.png</code> の3ファイルが生成されます',
+    'terrain.help':         '📦 <strong>.zip / .mcpack</strong>: リソースパックを丸ごとドロップすると <code>textures/blocks/</code> 内の PNG を自動抽出<br>📂 <strong>Java</strong>: <code>assets/minecraft/textures/block/</code> 内の PNG を複数選択<br>📂 <strong>Bedrock</strong>: <code>textures/blocks/</code> 内の PNG を選択<br>🖼️ ベース未選択時は <code>images/terrain_16x.png</code> / <code>images/terrain_32x.png</code> を自動ベースとして使用<br>🔲 解像度は <strong>16×16</strong> または <strong>32×32</strong> のみ<br>📦 変換後に <code>terrain.png</code>・<code>terrainMipMapLevel2.png</code>・<code>terrainMipMapLevel3.png</code> の3ファイルが生成されます',
     'terrain.dl1':          '⬇ terrain.png',
     'terrain.dl2':          '⬇ MipMap L2',
     'terrain.dl3':          '⬇ MipMap L3',
@@ -69,6 +69,10 @@ const I18N = {
     'log.mipGen':             '⚙ MipMapLevel2 / Level3 を生成中…',
     'log.mipInfo':            (a,b,c,d) => `✓ terrain: ${a}×${b}  MipL2: ${c}×${c}  MipL3: ${d}×${d}`,
     'log.readFail':           (n) => `✗ 読み込み失敗: ${n}`,
+    'log.zipExtracting':      (n) => `⚙ ${n} を解析中…`,
+    'log.zipExtracted':       (n, name) => `✓ ${name} から ${n} ファイルを抽出しました`,
+    'log.zipNoFiles':         '⚠ ZIP 内に対応するテクスチャが見つかりませんでした',
+    'log.zipError':           (m) => `✗ ZIP 読み込みエラー: ${m}`,
     'log.guiExpanded':        (n,c) => `✓ ${n} を展開しました (${c} ファイル)`,
     'log.guiParseErr':        (m) => `✗ 解析エラー: ${m}`,
     'log.guiFuiOpened':       (n,c) => `✓ ${n} を開きました (${c} 画像)`,
@@ -98,6 +102,31 @@ const I18N = {
     /* hint */
     'hint.files':       (n) => `${n} ファイル読み込み済み`,
     'hint.customBase':  'カスタムベース選択済み',
+    /* pack mode */
+    'tab.pack':         '📦 Pack',
+    'pack.card1':       'リソースパック',
+    'pack.dropSub':     '.zip または .mcpack をドロップ',
+    'pack.notice':      '💡 リソースパック (.zip / .mcpack) をドロップすると <code>items.png</code> と <code>terrain.png</code> を一括生成します。ポップアップで解像度やベース画像を設定してください。',
+    'pack.help':        '📦 <strong>.zip / .mcpack</strong>: リソースパックファイルを丸ごとドロップ<br>⚙ ポップアップで <strong>Items 解像度</strong>・<strong>Terrain 解像度</strong>・<strong>ベース画像</strong>を設定<br>🖼️ ベース未選択時は <code>images/items.png</code> / <code>images/terrain_16x.png</code> を自動使用<br>📄 <code>items.png</code>・<code>terrain.png</code>・<code>terrainMipMapLevel2.png</code>・<code>terrainMipMapLevel3.png</code> の4ファイルを出力',
+    /* modal */
+    'modal.title':      '⚙ 変換設定',
+    'modal.openBtn':    '⚙ 設定を変更',
+    'modal.itemsRes':   '🗡 Items 解像度',
+    'modal.terrainRes': '🧱 Terrain 解像度',
+    'modal.baseImages': '🖼️ ベース画像',
+    'modal.apply':      '確定',
+    'modal.cancel':     'キャンセル',
+    'modal.iStats':     (n, m) => `🗡 ${n} ファイル検出 / 一致: <strong>${m}</strong>`,
+    'modal.tStats':     (n, m) => `🧱 ${n} ファイル検出 / 一致: <strong>${m}</strong>`,
+    'modal.detectedRes':  (r) => `🔍 検出解像度: ${r}×${r}`,
+    'modal.detectedNone': '🔍 検出解像度: —',
+    'modal.resMismatch':  (det, sel) => `テクスチャの検出解像度 (${det}×${det}) と選択した出力解像度 (${sel}×${sel}) が異なります。\nリサイズして変換しますか？`,
+    /* pack convert */
+    'pack.noItems':     '⚠ Items テクスチャが見つかりません — スキップ',
+    'pack.noTerrain':   '⚠ Terrain テクスチャが見つかりません — スキップ',
+    'pack.allDone':     (i, t) => `✓ 完了 — Items: ${i} / Terrain: ${t}`,
+    'pack.dlZip':       '⬇ まとめてダウンロード (.zip)',
+    'pack.dlZipBuilding': '⚙ ZIP を生成中…',
     /* res info */
     'resInfo.items':    (w,h) => `→ 出力: ${w} × ${h} px`,
     'resInfo.terrain':  (w,h,hw,hh,qw,qh) => `→ ${w}×${h} / MipL2: ${hw}×${hh} / MipL3: ${qw}×${qh} px`,
@@ -105,6 +134,29 @@ const I18N = {
     'gui.selectImg':    '画像を選択してください',
     'gui.nSelected':    (n) => `${n} 枚選択中`,
     'gui.fuiTitle':     (n,c) => `${n}  (${c} 画像)  Ctrl+クリックで複数選択`,
+    /* pack gui */
+    'pack.guiCard':        '🎨 GUI コンバート',
+    'pack.guiBadge':       'icons.png / widgets.png → .fui',
+    'pack.guiArcLabel':    'ARC ファイル',
+    'pack.guiArcSub':      '.arc ファイルをドロップ (省略可)',
+    'pack.guiNotice':      '💡 パック内の <code>gui/icons.png</code> / <code>gui/widgets.png</code> / <code>gui/gui.png</code> から HUD 要素を切り抜いて ZIP で保存します。',
+    'pack.guiBtnConvert':  '⚙ GUI コンバート',
+    'pack.guiBtnCropsDl':  '⬇ 切り抜きを保存 (.zip)',
+    'pack.guiBtnArcDl':    '⬇ ARC をダウンロード',
+    'pack.guiConvDone':    (n) => `✓ ${n} 個の切り抜きを生成`,
+    'pack.guiArcDone':     (b) => `✓ ARC 生成完了 (${b} bytes)`,
+    'pack.guiArcLoaded':   (n) => `✓ ARC 読み込み: ${n} ファイル`,
+    'pack.guiArcFetching': '⏳ MediaARC/MediaWiiU.arc を読み込み中...',
+    'pack.guiArcFail':     (m) => `✗ ARC 読み込み失敗: ${m}`,
+    'pack.guiFuiNotFound': (n) => `⚠ ${n} が ARC 内に見つかりません`,
+    'pack.guiFuiErr':      (n,m) => `✗ FUI 処理エラー (${n}): ${m}`,
+    'pack.guiImgReplaced': (n,i) => `✓ ${n} #${i} を置き換え`,
+    'pack.guiIdxOob':      (n,i,c) => `⚠ ${n} #${i} はインデックス範囲外 (${c} 画像)`,
+    'pack.guiCrop':        (lbl,w,h) => `✓ 切り抜き: ${lbl} (${w}×${h})`,
+    'pack.guiNoGui':       '⚠ GUI テクスチャが見つかりませんでした (icons.png / widgets.png)',
+    'pack.guiIcons':       '✓ icons.png 検出',
+    'pack.guiWidgets':     '✓ widgets.png 検出',
+    'pack.guiGui':         '✓ gui.png 検出',
   },
 
   en: {
@@ -131,19 +183,19 @@ const I18N = {
     'items.card1':       'Texture & Settings',
     'items.colItems':    'Item PNGs',
     'items.colBase':     'Base items.png',
-    'items.dropSubItems':'Multiple files — apple.png, diamond_sword.png …',
+    'items.dropSubItems':'PNG / .zip / .mcpack — apple.png, diamond_sword.png …',
     'items.baseDefault': 'Default: images/items.png',
     'items.notice':      '💡 If no base is selected, <code>images/items.png</code> is used automatically. Images with a different resolution are auto-resized. Matched slots are fully overwritten with the new texture.',
-    'items.help':        '📂 <strong>Java</strong>: Select PNGs from <code>assets/minecraft/textures/item/</code><br>📂 <strong>Bedrock</strong>: Select PNGs from <code>textures/items/</code><br>🖼️ Without a base file, <code>images/items.png</code> is used automatically<br>🔲 Images with a different resolution than selected are auto-resized',
+    'items.help':        '📦 <strong>.zip / .mcpack</strong>: Drop the whole resource pack to auto-extract PNGs from <code>textures/items/</code><br>📂 <strong>Java</strong>: Select PNGs from <code>assets/minecraft/textures/item/</code><br>📂 <strong>Bedrock</strong>: Select PNGs from <code>textures/items/</code><br>🖼️ Without a base file, <code>images/items.png</code> is used automatically<br>🔲 Images with a different resolution than selected are auto-resized',
     'items.dlBtn':       '⬇ items.png',
     /* terrain */
     'terrain.card1':        'Texture & Settings',
     'terrain.colBlocks':    'Block PNGs',
     'terrain.colBase':      'Base terrain.png',
-    'terrain.dropSubBlocks':'Multiple files — grass_block_top.png, stone.png …',
+    'terrain.dropSubBlocks':'PNG / .zip / .mcpack — grass_block_top.png, stone.png …',
     'terrain.baseDefault':  'Default: images/terrain_16x.png',
     'terrain.notice':       '💡 Without a base, <code>images/terrain_16x.png</code> or <code>images/terrain_32x.png</code> is chosen automatically based on resolution. Outputs three files: <code>terrain.png</code>, <code>terrainMipMapLevel2.png</code>, and <code>terrainMipMapLevel3.png</code>. Images with a different resolution are auto-resized.',
-    'terrain.help':         '📂 <strong>Java</strong>: Select PNGs from <code>assets/minecraft/textures/block/</code><br>📂 <strong>Bedrock</strong>: Select PNGs from <code>textures/blocks/</code><br>🖼️ Without a base, <code>images/terrain_16x.png</code> / <code>images/terrain_32x.png</code> is used automatically<br>🔲 Only <strong>16×16</strong> or <strong>32×32</strong> tile resolution<br>📦 Three files are generated: <code>terrain.png</code>, <code>terrainMipMapLevel2.png</code>, <code>terrainMipMapLevel3.png</code>',
+    'terrain.help':         '📦 <strong>.zip / .mcpack</strong>: Drop the whole resource pack to auto-extract PNGs from <code>textures/blocks/</code><br>📂 <strong>Java</strong>: Select PNGs from <code>assets/minecraft/textures/block/</code><br>📂 <strong>Bedrock</strong>: Select PNGs from <code>textures/blocks/</code><br>🖼️ Without a base, <code>images/terrain_16x.png</code> / <code>images/terrain_32x.png</code> is used automatically<br>🔲 Only <strong>16×16</strong> or <strong>32×32</strong> tile resolution<br>📦 Three files are generated: <code>terrain.png</code>, <code>terrainMipMapLevel2.png</code>, <code>terrainMipMapLevel3.png</code>',
     'terrain.dl1':          '⬇ terrain.png',
     'terrain.dl2':          '⬇ MipMap L2',
     'terrain.dl3':          '⬇ MipMap L3',
@@ -173,6 +225,10 @@ const I18N = {
     'log.mipGen':             '⚙ Generating MipMapLevel2 / Level3…',
     'log.mipInfo':            (a,b,c,d) => `✓ terrain: ${a}×${b}  MipL2: ${c}×${c}  MipL3: ${d}×${d}`,
     'log.readFail':           (n) => `✗ Failed to load: ${n}`,
+    'log.zipExtracting':      (n) => `⚙ Reading ${n}…`,
+    'log.zipExtracted':       (n, name) => `✓ Extracted ${n} file(s) from ${name}`,
+    'log.zipNoFiles':         '⚠ No matching textures found in the ZIP',
+    'log.zipError':           (m) => `✗ ZIP read error: ${m}`,
     'log.guiExpanded':        (n,c) => `✓ Extracted ${n} (${c} files)`,
     'log.guiParseErr':        (m) => `✗ Parse error: ${m}`,
     'log.guiFuiOpened':       (n,c) => `✓ Opened ${n} (${c} images)`,
@@ -202,6 +258,31 @@ const I18N = {
     /* hint */
     'hint.files':       (n) => `${n} file(s) loaded`,
     'hint.customBase':  'Custom base selected',
+    /* pack mode */
+    'tab.pack':         '📦 Pack',
+    'pack.card1':       'Resource Pack',
+    'pack.dropSub':     'Drop a .zip or .mcpack file',
+    'pack.notice':      '💡 Drop a resource pack (.zip / .mcpack) to generate <code>items.png</code> and <code>terrain.png</code> at once. Configure resolution and base images in the popup.',
+    'pack.help':        '📦 <strong>.zip / .mcpack</strong>: Drop the whole resource pack file<br>⚙ Set <strong>Items resolution</strong>, <strong>Terrain resolution</strong>, and <strong>base images</strong> in the popup<br>🖼️ Without a base file, <code>images/items.png</code> / <code>images/terrain_16x.png</code> are used automatically<br>📄 Outputs <code>items.png</code>, <code>terrain.png</code>, <code>terrainMipMapLevel2.png</code>, <code>terrainMipMapLevel3.png</code>',
+    /* modal */
+    'modal.title':      '⚙ Convert Settings',
+    'modal.openBtn':    '⚙ Change Settings',
+    'modal.itemsRes':   '🗡 Items Resolution',
+    'modal.terrainRes': '🧱 Terrain Resolution',
+    'modal.baseImages': '🖼️ Base Images',
+    'modal.apply':      'Apply',
+    'modal.cancel':     'Cancel',
+    'modal.iStats':     (n, m) => `🗡 ${n} files found / matched: <strong>${m}</strong>`,
+    'modal.tStats':     (n, m) => `🧱 ${n} files found / matched: <strong>${m}</strong>`,
+    'modal.detectedRes':  (r) => `🔍 Detected resolution: ${r}×${r}`,
+    'modal.detectedNone': '🔍 Detected resolution: —',
+    'modal.resMismatch':  (det, sel) => `Detected texture resolution (${det}×${det}) differs from selected output resolution (${sel}×${sel}).\nProceed with resizing?`,
+    /* pack convert */
+    'pack.noItems':     '⚠ No Items textures found — skipping',
+    'pack.noTerrain':   '⚠ No Terrain textures found — skipping',
+    'pack.allDone':     (i, t) => `✓ Done — Items: ${i} / Terrain: ${t}`,
+    'pack.dlZip':       '⬇ Download All (.zip)',
+    'pack.dlZipBuilding': '⚙ Building ZIP…',
     /* res info */
     'resInfo.items':    (w,h) => `→ Output: ${w} × ${h} px`,
     'resInfo.terrain':  (w,h,hw,hh,qw,qh) => `→ ${w}×${h} / MipL2: ${hw}×${hh} / MipL3: ${qw}×${qh} px`,
@@ -209,6 +290,29 @@ const I18N = {
     'gui.selectImg':    'Select an image',
     'gui.nSelected':    (n) => `${n} selected`,
     'gui.fuiTitle':     (n,c) => `${n}  (${c} images)  Ctrl+click to multi-select`,
+    /* pack gui */
+    'pack.guiCard':        '🎨 GUI Convert',
+    'pack.guiBadge':       'icons.png / widgets.png → .fui',
+    'pack.guiArcLabel':    'ARC File',
+    'pack.guiArcSub':      'Drop .arc file here (optional)',
+    'pack.guiNotice':      '💡 Crops HUD elements from <code>gui/icons.png</code> / <code>gui/widgets.png</code> / <code>gui/gui.png</code> found in the pack and saves them as a ZIP.',
+    'pack.guiBtnConvert':  '⚙ Convert GUI',
+    'pack.guiBtnCropsDl':  '⬇ Save Crops (.zip)',
+    'pack.guiBtnArcDl':    '⬇ Download ARC',
+    'pack.guiConvDone':    (n) => `✓ Generated ${n} crop(s)`,
+    'pack.guiArcDone':     (b) => `✓ ARC built (${b} bytes)`,
+    'pack.guiArcLoaded':   (n) => `✓ ARC loaded: ${n} files`,
+    'pack.guiArcFetching': '⏳ Loading MediaARC/MediaWiiU.arc...',
+    'pack.guiArcFail':     (m) => `✗ ARC load failed: ${m}`,
+    'pack.guiFuiNotFound': (n) => `⚠ ${n} not found in ARC`,
+    'pack.guiFuiErr':      (n,m) => `✗ FUI error (${n}): ${m}`,
+    'pack.guiImgReplaced': (n,i) => `✓ Replaced ${n} #${i}`,
+    'pack.guiIdxOob':      (n,i,c) => `⚠ ${n} #${i} out of range (${c} images)`,
+    'pack.guiCrop':        (lbl,w,h) => `✓ Crop: ${lbl} (${w}×${h})`,
+    'pack.guiNoGui':       '⚠ No GUI textures found (icons.png / widgets.png)',
+    'pack.guiIcons':       '✓ icons.png detected',
+    'pack.guiWidgets':     '✓ widgets.png detected',
+    'pack.guiGui':         '✓ gui.png detected',
   }
 };
 
@@ -241,24 +345,24 @@ function applyI18n() {
 
   // update dynamic labels that may have already been set
   if (!iBaseFile) {
-    document.getElementById('itemsBaseLbl').textContent = t('items.baseDefault');
+    document.getElementById('modalItemsBaseLbl').textContent = t('items.baseDefault');
   }
   if (!tBaseFile) {
-    document.getElementById('terrainBaseLbl').textContent = t('terrain.baseDefault');
+    document.getElementById('modalTerrainBaseLbl').textContent = t('terrain.baseDefault');
   }
-  // update hint counts
-  const ic = Object.keys(iFiles).length;
-  if (ic > 0) document.getElementById('hintItems').textContent = t('hint.files', ic);
-  const tc = Object.keys(tFiles).length;
-  if (tc > 0) document.getElementById('hintTerrain').textContent = t('hint.files', tc);
+  // update hint
+  const ic = Object.keys(iFiles).length, tc2 = Object.keys(tFiles).length;
+  if (ic > 0 || tc2 > 0) {
+    document.getElementById('hintPack').textContent = `🗡 ${ic}  🧱 ${tc2}`;
+  }
 
   // re-render mapping tables (to update status text)
-  if (Object.keys(iFiles).length > 0) updateItemsMapping();
-  if (Object.keys(tFiles).length > 0) updateTerrainMapping();
+  if (ic > 0) updateItemsMapping();
+  if (tc2 > 0) updateTerrainMapping();
 
   // update res info labels
-  document.getElementById('itemsResInfo').textContent = itemsInfoFn(iTS);
-  document.getElementById('terrainResInfo').textContent = terrainInfoFn(tTS);
+  document.getElementById('modalItemsResInfo').textContent = itemsInfoFn(iTS);
+  document.getElementById('modalTerrainResInfo').textContent = terrainInfoFn(tTS);
 }
 
 function toggleLang() {
@@ -669,14 +773,17 @@ const ITEMS_TEMPLATE = 'images/items.png';
 function TERRAIN_TEMPLATE(ts) { return ts === 32 ? 'images/terrain_32x.png' : 'images/terrain_16x.png'; }
 
 // ─── State ────────────────────────────────────────────────────────────────────
-let curMode = 'items';
+let curMode = 'pack';
 let iTS = 16, iFiles = {}, iBaseFile = null, iMapped = [];
 let tTS = 16, tFiles = {}, tBaseFile = null, tMapped = [];
+let currentPackName = '';
+let detectedItemsRes = null;   // number | null  (dominant tile px)
+let detectedTerrainRes = null; // number | null
 
 // ─── Mode switch ──────────────────────────────────────────────────────────────
 function switchMode(m) {
   curMode = m;
-  ['items', 'terrain', 'gui'].forEach(x => {
+  ['pack', 'gui'].forEach(x => {
     document.getElementById('panel' + x.charAt(0).toUpperCase() + x.slice(1)).classList.toggle('active', x === m);
     document.getElementById('tab' + x.charAt(0).toUpperCase() + x.slice(1)).classList.toggle('active', x === m);
   });
@@ -695,7 +802,7 @@ function buildResGrid(gridId, infoId, resArr, curVal, setter, infoFn) {
       setter(r);
       g.querySelectorAll('.res-btn').forEach(x => x.classList.toggle('active', parseInt(x.dataset.res) === r));
       document.getElementById(infoId).textContent = infoFn(r);
-      if (gridId === 'itemsResGrid') updateItemsMapping(); else updateTerrainMapping();
+      if (gridId === 'modalItemsResGrid') updateItemsMapping(); else updateTerrainMapping();
     });
     g.appendChild(b);
   });
@@ -748,6 +855,49 @@ function cropAtlas(img) {
 function norm(fn) { return fn.replace(/\.png$/i, '').toLowerCase().trim(); }
 function toPx(c, s) { const sc = s / 16; return [Math.round(c[0] * sc), Math.round(c[1] * sc)]; }
 
+// ─── ZIP / MCPack extraction ──────────────────────────────────────────────────
+// mode: 'items' → textures/items?/ , 'terrain' → textures/blocks?/
+async function extractFromZip(file, mode) {
+  if (!window.JSZip) throw new Error('JSZip not loaded');
+  const pattern = mode === 'items'
+    ? /(?:^|\/)textures\/items?\/([^/]+\.png)$/i
+    : /(?:^|\/)textures\/blocks?\/([^/]+\.png)$/i;
+  const zip = await window.JSZip.loadAsync(file);
+  const results = [];
+  const tasks = [];
+  zip.forEach((path, entry) => {
+    if (entry.dir) return;
+    const m = path.match(pattern);
+    if (!m) return;
+    const filename = m[1];
+    tasks.push(entry.async('blob').then(blob => {
+      results.push(new File([blob], filename, { type: 'image/png' }));
+    }));
+  });
+  await Promise.all(tasks);
+  return results;
+}
+
+// ─── Resolution detection ─────────────────────────────────────────────────────
+// Returns the most common tile width (pixels) from a sample of files, or null.
+async function detectPackResolution(files, sampleCount = 24) {
+  const samples = Object.values(files).slice(0, sampleCount);
+  if (!samples.length) return null;
+  const counts = {};
+  await Promise.all(samples.map(async f => {
+    try {
+      const img = await loadFile(f);
+      const w = img.naturalWidth;
+      counts[w] = (counts[w] || 0) + 1;
+    } catch {}
+  }));
+  let best = null, bestN = 0;
+  for (const [s, n] of Object.entries(counts)) {
+    if (n > bestN) { bestN = n; best = parseInt(s); }
+  }
+  return best;
+}
+
 // ─── Drop zones ───────────────────────────────────────────────────────────────
 function setupDrop(zoneId, inputId, cb) {
   const z = document.getElementById(zoneId), inp = document.getElementById(inputId);
@@ -759,37 +909,73 @@ function setupDrop(zoneId, inputId, cb) {
   inp.addEventListener('change', () => cb(inp.files));
 }
 
-setupDrop('dropItems', 'fileItems', fs => {
-  let a = 0;
-  for (const f of fs) { if (!f.name.toLowerCase().endsWith('.png')) continue; iFiles[norm(f.name)] = f; a++; }
-  if (!a) return;
-  document.getElementById('dropItems').classList.add('has-file');
-  document.getElementById('hintItems').textContent = t('hint.files', Object.keys(iFiles).length);
-  updateItemsMapping();
+// ─── Pack drop ────────────────────────────────────────────────────────────────
+setupDrop('dropPack', 'filePack', async fs => {
+  const f = fs[0]; if (!f) return;
+  const lo = f.name.toLowerCase();
+  if (!lo.endsWith('.zip') && !lo.endsWith('.mcpack')) return;
+  const hintEl = document.getElementById('hintPack');
+  hintEl.textContent = t('log.zipExtracting', f.name);
+  try {
+    const [iEx, tEx, guiEx] = await Promise.all([
+      extractFromZip(f, 'items'),
+      extractFromZip(f, 'terrain'),
+      extractPackGuiImages(f).catch(() => ({ iconsImg: null, widgetsImg: null, guiImg: null })),
+    ]);
+    iFiles = {}; tFiles = {};
+    for (const p of iEx) iFiles[norm(p.name)] = p;
+    for (const p of tEx) tFiles[norm(p.name)] = p;
+    const ic = Object.keys(iFiles).length, tc = Object.keys(tFiles).length;
+    if (!ic && !tc) { hintEl.textContent = t('log.zipNoFiles'); return; }
+    hintEl.textContent = `🗡 ${ic}  🧱 ${tc}`;
+    currentPackName = f.name;
+    document.getElementById('dropPack').classList.add('has-file');
+    updateItemsMapping();
+    updateTerrainMapping();
+    updatePackConvertBtn();
+    document.getElementById('packSettingsRow').style.display = '';
+
+    // GUI textures
+    packGuiIcons   = guiEx.iconsImg;
+    packGuiWidgets = guiEx.widgetsImg;
+    packGuiGui     = guiEx.guiImg;
+    const hasGui = !!(packGuiIcons || packGuiWidgets || packGuiGui);
+    document.getElementById('packGuiCard').style.display = hasGui ? '' : 'none';
+    if (hasGui) {
+      document.getElementById('btnPackGuiConvert').disabled = false;
+      renderPackGuiCrops();
+      document.getElementById('packGuiLogBox').innerHTML = '';
+      document.getElementById('packGuiLogBox').style.display = 'none';
+      if (packGuiIcons)   log('packGuiLogBox', t('pack.guiIcons'),   'ok');
+      if (packGuiWidgets) log('packGuiLogBox', t('pack.guiWidgets'), 'ok');
+      if (packGuiGui)     log('packGuiLogBox', t('pack.guiGui'),     'ok');
+    }
+
+    // Detect dominant tile resolution from sampled images
+    [detectedItemsRes, detectedTerrainRes] = await Promise.all([
+      detectPackResolution(iFiles),
+      detectPackResolution(tFiles)
+    ]);
+    openPackModal(f.name);
+  } catch(e) { hintEl.textContent = t('log.zipError', e.message); }
 });
-setupDrop('dropItemsBase', 'fileItemsBase', fs => {
+
+// ─── Modal base image drops ───────────────────────────────────────────────────
+setupDrop('dropModalItemsBase', 'fileModalItemsBase', fs => {
   const f = fs[0]; if (!f || !f.name.toLowerCase().endsWith('.png')) return;
   iBaseFile = f;
-  const z = document.getElementById('dropItemsBase');
+  const z = document.getElementById('dropModalItemsBase');
   z.classList.remove('tmpl'); z.classList.add('has-file');
-  document.getElementById('itemsBaseLbl').textContent = t('hint.customBase');
-  document.getElementById('hintItemsBase').textContent = f.name;
+  document.getElementById('modalItemsBaseLbl').textContent = t('hint.customBase');
+  document.getElementById('hintModalItemsBase').textContent = f.name;
 });
-setupDrop('dropTerrain', 'fileTerrain', fs => {
-  let a = 0;
-  for (const f of fs) { if (!f.name.toLowerCase().endsWith('.png')) continue; tFiles[norm(f.name)] = f; a++; }
-  if (!a) return;
-  document.getElementById('dropTerrain').classList.add('has-file');
-  document.getElementById('hintTerrain').textContent = t('hint.files', Object.keys(tFiles).length);
-  updateTerrainMapping();
-});
-setupDrop('dropTerrainBase', 'fileTerrainBase', fs => {
+setupDrop('dropModalTerrainBase', 'fileModalTerrainBase', fs => {
   const f = fs[0]; if (!f || !f.name.toLowerCase().endsWith('.png')) return;
   tBaseFile = f;
-  const z = document.getElementById('dropTerrainBase');
+  const z = document.getElementById('dropModalTerrainBase');
   z.classList.remove('tmpl'); z.classList.add('has-file');
-  document.getElementById('terrainBaseLbl').textContent = t('hint.customBase');
-  document.getElementById('hintTerrainBase').textContent = f.name;
+  document.getElementById('modalTerrainBaseLbl').textContent = t('hint.customBase');
+  document.getElementById('hintModalTerrainBase').textContent = f.name;
 });
 
 // ─── Mapping ──────────────────────────────────────────────────────────────────
@@ -821,15 +1007,24 @@ function buildMapping(files, tileMap, ts, cardId, badgeId, statsId, bodyId, btnI
     `<span style="color:var(--border2)">|</span>` +
     `<span>${t('stats.skip')}: <strong>${total - match}</strong></span>`;
   document.getElementById(cardId).style.display = total > 0 ? '' : 'none';
-  document.getElementById(btnId).disabled = match === 0;
+  if (btnId) document.getElementById(btnId).disabled = match === 0;
   return mapped;
 }
 
+function updatePackConvertBtn() {
+  const iMatch = iMapped.filter(m => m.matched).length;
+  const tMatch = tMapped.filter(m => m.matched).length;
+  const dis = iMatch === 0 && tMatch === 0;
+  document.getElementById('btnPackConvert').disabled = dis;
+  document.getElementById('btnModalConvert').disabled = dis;
+}
 function updateItemsMapping() {
-  iMapped = buildMapping(iFiles, ITEMS_MAP, iTS, 'itemsMappingCard', 'itemsMatchBadge', 'itemsStatsBar', 'itemsMapBody', 'btnItemsConvert');
+  iMapped = buildMapping(iFiles, ITEMS_MAP, iTS, 'packItemsMappingCard', 'packItemsMatchBadge', 'packItemsStatsBar', 'packItemsMapBody', null);
+  updatePackConvertBtn();
 }
 function updateTerrainMapping() {
-  tMapped = buildMapping(tFiles, TERRAIN_MAP, tTS, 'terrainMappingCard', 'terrainMatchBadge', 'terrainStatsBar', 'terrainMapBody', 'btnTerrainConvert');
+  tMapped = buildMapping(tFiles, TERRAIN_MAP, tTS, 'packTerrainMappingCard', 'packTerrainMatchBadge', 'packTerrainStatsBar', 'packTerrainMapBody', null);
+  updatePackConvertBtn();
 }
 
 // ─── Log ──────────────────────────────────────────────────────────────────────
@@ -843,180 +1038,234 @@ function log(boxId, msg, type = 'info') {
   box.scrollTop = box.scrollHeight;
 }
 
-// ─── Items convert ────────────────────────────────────────────────────────────
-document.getElementById('btnItemsConvert').addEventListener('click', async () => {
-  const S = iTS, W = ITEMS_COLS * S, H = ITEMS_ROWS * S, L = (m, tp) => log('itemsLogBox', m, tp);
-  document.getElementById('itemsLogBox').innerHTML = '';
-  document.getElementById('itemsLogBox').style.display = 'block';
-  document.getElementById('itemsProgWrap').style.display = 'block';
-  document.getElementById('itemsProgBar').style.width = '0%';
-  document.getElementById('btnItemsDownload').style.display = 'none';
-  document.getElementById('btnItemsConvert').disabled = true;
-
-  const cv = document.createElement('canvas');
-  cv.width = W; cv.height = H;
-  const ctx = cv.getContext('2d');
-  ctx.clearRect(0, 0, W, H);
-
-  let baseOk = false;
-  if (iBaseFile) {
-    try {
-      const i = await loadFile(iBaseFile);
-      ctx.imageSmoothingEnabled = false;
-      ctx.drawImage(i, 0, 0, W, H);
-      L(t('log.customBaseLoaded'), 'info');
-      baseOk = true;
-    } catch { L(t('log.customBaseFail'), 'warn'); }
+// ─── Modal open / close ───────────────────────────────────────────────────────
+function refreshModalDetectedRes() {
+  const iEl = document.getElementById('modalItemsDetRes');
+  const tEl = document.getElementById('modalTerrainDetRes');
+  if (iEl) {
+    iEl.textContent = detectedItemsRes ? t('modal.detectedRes', detectedItemsRes) : t('modal.detectedNone');
+    iEl.classList.toggle('mismatch', !!detectedItemsRes && detectedItemsRes !== iTS);
   }
-  if (!baseOk) {
-    try {
-      const i = await loadURL(ITEMS_TEMPLATE);
-      ctx.imageSmoothingEnabled = false;
-      ctx.drawImage(i, 0, 0, W, H);
-      L(t('log.tplLoaded', ITEMS_TEMPLATE), 'info');
-    } catch { L(t('log.tplFail'), 'warn'); }
+  if (tEl) {
+    tEl.textContent = detectedTerrainRes ? t('modal.detectedRes', detectedTerrainRes) : t('modal.detectedNone');
+    tEl.classList.toggle('mismatch', !!detectedTerrainRes && detectedTerrainRes !== tTS);
+  }
+}
+function openPackModal(packName) {
+  const ic = Object.keys(iFiles).length, tc = Object.keys(tFiles).length;
+  const im = iMapped.filter(x => x.matched).length, tm = tMapped.filter(x => x.matched).length;
+  document.getElementById('modalPackName').textContent = '📦 ' + packName;
+  document.getElementById('modalStats').innerHTML =
+    `<div class="modal-stat-row">${t('modal.iStats', ic, im)}</div>` +
+    `<div class="modal-stat-row">${t('modal.tStats', tc, tm)}</div>`;
+  buildResGrid('modalItemsResGrid', 'modalItemsResInfo', ITEMS_RESOLUTIONS, iTS, v => {
+    iTS = v; updateItemsMapping(); refreshModalDetectedRes();
+  }, itemsInfoFn);
+  buildResGrid('modalTerrainResGrid', 'modalTerrainResInfo', TERRAIN_RESOLUTIONS, tTS, v => {
+    tTS = v; updateTerrainMapping(); refreshModalDetectedRes();
+  }, terrainInfoFn);
+  refreshModalDetectedRes();
+  document.getElementById('packModal').classList.add('open');
+}
+function closePackModal() {
+  document.getElementById('packModal').classList.remove('open');
+}
+document.getElementById('btnModalClose').addEventListener('click', closePackModal);
+document.getElementById('btnModalCancel').addEventListener('click', closePackModal);
+document.getElementById('packModal').addEventListener('click', e => { if (e.target === e.currentTarget) closePackModal(); });
+document.getElementById('btnPackSettings').addEventListener('click', () => openPackModal(currentPackName));
+document.getElementById('btnModalConvert').addEventListener('click', () => { closePackModal(); doPackConvert(); });
+document.getElementById('btnPackConvert').addEventListener('click', doPackConvert);
+
+// ─── Pack convert ─────────────────────────────────────────────────────────────
+async function doPackConvert() {
+  // Resolution mismatch warning
+  const iMismatch = detectedItemsRes && detectedItemsRes !== iTS;
+  const tMismatch = detectedTerrainRes && detectedTerrainRes !== tTS;
+  if (iMismatch || tMismatch) {
+    const det = iMismatch ? detectedItemsRes : detectedTerrainRes;
+    const sel = iMismatch ? iTS : tTS;
+    if (!confirm(t('modal.resMismatch', det, sel))) return;
+  }
+  const L = (m, tp) => log('packLogBox', m, tp);
+  document.getElementById('packLogBox').innerHTML = '';
+  document.getElementById('packLogBox').style.display = 'block';
+  document.getElementById('packProgWrap').style.display = 'block';
+  document.getElementById('packProgBar').style.width = '0%';
+  document.getElementById('packDlGroup').style.display = 'none';
+  document.getElementById('packIndivDlGroup').style.display = 'none';
+  document.getElementById('btnPackConvert').disabled = true;
+
+  // ── Items ──────────────────────────────────────────────────────────────────
+  const iS = iTS, iW = ITEMS_COLS * iS, iH = ITEMS_ROWS * iS;
+  const iCv = document.createElement('canvas');
+  iCv.width = iW; iCv.height = iH;
+  const iCtx = iCv.getContext('2d');
+  iCtx.clearRect(0, 0, iW, iH);
+  const iMatched = iMapped.filter(m => m.matched);
+  if (!iMatched.length) {
+    L(t('pack.noItems'), 'warn');
+  } else {
+    let iBaseOk = false;
+    if (iBaseFile) {
+      try { const i = await loadFile(iBaseFile); iCtx.imageSmoothingEnabled = false; iCtx.drawImage(i, 0, 0, iW, iH); L(t('log.customBaseLoaded'), 'info'); iBaseOk = true; }
+      catch { L(t('log.customBaseFail'), 'warn'); }
+    }
+    if (!iBaseOk) {
+      try { const i = await loadURL(ITEMS_TEMPLATE); iCtx.imageSmoothingEnabled = false; iCtx.drawImage(i, 0, 0, iW, iH); L(t('log.tplLoaded', ITEMS_TEMPLATE), 'info'); }
+      catch { L(t('log.tplFail'), 'warn'); }
+    }
+    let iDone = 0, iResized = 0;
+    for (const item of iMatched) {
+      try {
+        const img = await loadFile(item.file);
+        const sw = img.naturalWidth, sh = img.naturalHeight;
+        const isAtlas = sh > sw;
+        const cropped = isAtlas ? cropAtlas(img) : img;
+        const nr = (isAtlas ? sw : sw) !== iS || (isAtlas ? sw : sh) !== iS; if (nr) iResized++;
+        const tile = scaled(cropped, iS, iS);
+        iCtx.clearRect(item.x, item.y, iS, iS);
+        iCtx.drawImage(tile, item.x, item.y);
+        const aN = isAtlas ? ` [atlas ✂ ${sw}×${sw}]` : '';
+        const rN = nr && !isAtlas ? ` [${sw}×${sh}→${iS}×${iS}]` : (nr ? ` [✂${sw}×${sw}→${iS}×${iS}]` : '');
+        L('✓ ' + item.file.name + aN + rN + `  →  (${item.x}, ${item.y})`, 'ok');
+      } catch { L(t('log.readFail', item.file.name), 'warn'); }
+      iDone++;
+      document.getElementById('packProgBar').style.width = Math.round(iDone / iMatched.length * 45) + '%';
+      await new Promise(r => setTimeout(r, 3));
+    }
+    L(t('log.itemsDone', iDone, iResized), 'info');
   }
 
-  const matched = iMapped.filter(m => m.matched);
-  let done = 0, resized = 0;
-  for (const item of matched) {
-    try {
-      const img = await loadFile(item.file);
-      const sw = img.naturalWidth, sh = img.naturalHeight;
-      const isAtlas = sh > sw;
-      const cropped = isAtlas ? cropAtlas(img) : img;
-      const ew = isAtlas ? sw : sw, eh = isAtlas ? sw : sh;
-      const nr = ew !== S || eh !== S; if (nr) resized++;
-      const tile = scaled(cropped, S, S);
-      ctx.clearRect(item.x, item.y, S, S);
-      ctx.drawImage(tile, item.x, item.y);
-      const atlasNote = isAtlas ? ` [atlas ✂ ${sw}×${sw}]` : '';
-      const resNote = (nr && !isAtlas) ? ` [${sw}×${sh}→${S}×${S}]` : (nr ? ` [✂${sw}×${sw}→${S}×${S}]` : '');
-      L('✓ ' + item.file.name + atlasNote + resNote + `  →  (${item.x}, ${item.y})`, 'ok');
-    } catch { L(t('log.readFail', item.file.name), 'warn'); }
-    done++;
-    document.getElementById('itemsProgBar').style.width = Math.round(done / matched.length * 100) + '%';
-    await new Promise(r => setTimeout(r, 3));
-  }
-  document.getElementById('itemsProgBar').style.width = '100%';
-  L(t('log.itemsDone', done, resized), 'info');
-  document.getElementById('btnItemsConvert').disabled = false;
-  const dl = document.getElementById('btnItemsDownload');
-  dl.href = cv.toDataURL('image/png');
-  dl.style.display = 'inline-flex';
-});
-
-// ─── Terrain convert ──────────────────────────────────────────────────────────
-document.getElementById('btnTerrainConvert').addEventListener('click', async () => {
-  const S = tTS, sc = S / 16, W = TERRAIN_BASE_W * sc, H = TERRAIN_BASE_H * sc, L = (m, tp) => log('terrainLogBox', m, tp);
-  document.getElementById('terrainLogBox').innerHTML = '';
-  document.getElementById('terrainLogBox').style.display = 'block';
-  document.getElementById('terrainProgWrap').style.display = 'block';
-  document.getElementById('terrainProgBar').style.width = '0%';
-  document.getElementById('terrainDlGroup').style.display = 'none';
-  document.getElementById('btnTerrainConvert').disabled = true;
-
-  const cv = document.createElement('canvas');
-  cv.width = W; cv.height = H;
-  const ctx = cv.getContext('2d');
-  ctx.clearRect(0, 0, W, H);
-
-  let baseOk = false;
-  const tmplPath = TERRAIN_TEMPLATE(S);
-  if (tBaseFile) {
-    try {
-      const i = await loadFile(tBaseFile);
-      ctx.imageSmoothingEnabled = false;
-      ctx.drawImage(i, 0, 0, W, H);
-      L(t('log.customBaseLoaded'), 'info');
-      baseOk = true;
-    } catch { L(t('log.customBaseFail'), 'warn'); }
-  }
-  if (!baseOk) {
-    try {
-      const i = await loadURL(tmplPath);
-      ctx.imageSmoothingEnabled = false;
-      ctx.drawImage(i, 0, 0, W, H);
-      L(t('log.tplLoaded', tmplPath), 'info');
-    } catch { L(t('log.tplFail'), 'warn'); }
+  // ── Terrain ────────────────────────────────────────────────────────────────
+  const tS = tTS, tSc = tS / 16, tW = TERRAIN_BASE_W * tSc, tH = TERRAIN_BASE_H * tSc;
+  const tCv = document.createElement('canvas');
+  tCv.width = tW; tCv.height = tH;
+  const tCtx = tCv.getContext('2d');
+  tCtx.clearRect(0, 0, tW, tH);
+  const tMatched = tMapped.filter(m => m.matched);
+  let mip2, mip3;
+  if (!tMatched.length) {
+    L(t('pack.noTerrain'), 'warn');
+    mip2 = tCv; mip3 = tCv;
+  } else {
+    let tBaseOk = false;
+    const tmplPath = TERRAIN_TEMPLATE(tS);
+    if (tBaseFile) {
+      try { const i = await loadFile(tBaseFile); tCtx.imageSmoothingEnabled = false; tCtx.drawImage(i, 0, 0, tW, tH); L(t('log.customBaseLoaded'), 'info'); tBaseOk = true; }
+      catch { L(t('log.customBaseFail'), 'warn'); }
+    }
+    if (!tBaseOk) {
+      try { const i = await loadURL(tmplPath); tCtx.imageSmoothingEnabled = false; tCtx.drawImage(i, 0, 0, tW, tH); L(t('log.tplLoaded', tmplPath), 'info'); }
+      catch { L(t('log.tplFail'), 'warn'); }
+    }
+    let tDone = 0, tResized = 0;
+    for (const item of tMatched) {
+      try {
+        const img = await loadFile(item.file);
+        const sw = img.naturalWidth, sh = img.naturalHeight;
+        const isAtlas = sh > sw;
+        const cropped = isAtlas ? cropAtlas(img) : img;
+        const nr = (isAtlas ? sw : sw) !== tS || (isAtlas ? sw : sh) !== tS; if (nr) tResized++;
+        const tile = scaled(cropped, tS, tS);
+        tCtx.clearRect(item.x, item.y, tS, tS);
+        tCtx.drawImage(tile, item.x, item.y);
+        const aN = isAtlas ? ` [atlas ✂ ${sw}×${sw}]` : '';
+        const rN = nr && !isAtlas ? ` [${sw}×${sh}→${tS}×${tS}]` : (nr ? ` [✂${sw}×${sw}→${tS}×${tS}]` : '');
+        L('✓ ' + item.file.name + aN + rN + `  →  (${item.x}, ${item.y})`, 'ok');
+      } catch { L(t('log.readFail', item.file.name), 'warn'); }
+      tDone++;
+      document.getElementById('packProgBar').style.width = Math.round(45 + tDone / tMatched.length * 45) + '%';
+      await new Promise(r => setTimeout(r, 3));
+    }
+    L(t('log.mipGen'), 'info');
+    mip2 = half(tCv); mip3 = half(mip2);
+    L(t('log.terrainDone', tDone, tResized), 'info');
+    L(t('log.mipInfo', tW, tH, mip2.width, mip3.width), 'info');
   }
 
-  const matched = tMapped.filter(m => m.matched);
-  let done = 0, resized = 0;
-  for (const item of matched) {
-    try {
-      const img = await loadFile(item.file);
-      const sw = img.naturalWidth, sh = img.naturalHeight;
-      const isAtlas = sh > sw;
-      const cropped = isAtlas ? cropAtlas(img) : img;
-      const ew = isAtlas ? sw : sw, eh = isAtlas ? sw : sh;
-      const nr = ew !== S || eh !== S; if (nr) resized++;
-      const tile = scaled(cropped, S, S);
-      ctx.clearRect(item.x, item.y, S, S);
-      ctx.drawImage(tile, item.x, item.y);
-      const atlasNote = isAtlas ? ` [atlas ✂ ${sw}×${sw}]` : '';
-      const resNote = (nr && !isAtlas) ? ` [${sw}×${sh}→${S}×${S}]` : (nr ? ` [✂${sw}×${sw}→${S}×${S}]` : '');
-      L('✓ ' + item.file.name + atlasNote + resNote + `  →  (${item.x}, ${item.y})`, 'ok');
-    } catch { L(t('log.readFail', item.file.name), 'warn'); }
-    done++;
-    document.getElementById('terrainProgBar').style.width = Math.round(done / matched.length * 66) + '%';
-    await new Promise(r => setTimeout(r, 3));
+  document.getElementById('packProgBar').style.width = '100%';
+  document.getElementById('btnPackItemsDl').href = iCv.toDataURL('image/png');
+  document.getElementById('btnPackTerrainDl1').href = tCv.toDataURL('image/png');
+  document.getElementById('btnPackTerrainDl2').href = (mip2 || tCv).toDataURL('image/png');
+  document.getElementById('btnPackTerrainDl3').href = (mip3 || tCv).toDataURL('image/png');
+  document.getElementById('packDlGroup').style.display = 'flex';
+  document.getElementById('packIndivDlGroup').style.display = 'flex';
+  document.getElementById('btnPackConvert').disabled = false;
+}
+
+// ─── ZIP bulk download ────────────────────────────────────────────────────────
+document.getElementById('btnPackZipDl').addEventListener('click', async () => {
+  const btn = document.getElementById('btnPackZipDl');
+  btn.disabled = true;
+  btn.textContent = t('pack.dlZipBuilding');
+  try {
+    const zip = new window.JSZip();
+    const entries = [
+      ['items.png',                 'btnPackItemsDl'],
+      ['terrain.png',               'btnPackTerrainDl1'],
+      ['terrainMipMapLevel2.png',   'btnPackTerrainDl2'],
+      ['terrainMipMapLevel3.png',   'btnPackTerrainDl3'],
+    ];
+    for (const [name, id] of entries) {
+      const href = document.getElementById(id).href;
+      if (href && href.startsWith('data:')) {
+        const blob = await fetch(href).then(r => r.blob());
+        zip.file(name, blob);
+      }
+    }
+    const blob = await zip.generateAsync({ type: 'blob', compression: 'STORE' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = (currentPackName.replace(/\.(zip|mcpack)$/i, '') || 'textures') + '_converted.zip';
+    document.body.appendChild(a); a.click(); document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } finally {
+    btn.disabled = false;
+    btn.textContent = t('pack.dlZip');
   }
-  L(t('log.mipGen'), 'info');
-  const mip2 = half(cv), mip3 = half(mip2);
-  document.getElementById('terrainProgBar').style.width = '100%';
-  L(t('log.terrainDone', done, resized), 'info');
-  L(t('log.mipInfo', W, H, mip2.width, mip3.width), 'info');
-  document.getElementById('btnTerrainConvert').disabled = false;
-  document.getElementById('btnTerrainDl1').href = cv.toDataURL('image/png');
-  document.getElementById('btnTerrainDl2').href = mip2.toDataURL('image/png');
-  document.getElementById('btnTerrainDl3').href = mip3.toDataURL('image/png');
-  document.getElementById('terrainDlGroup').style.display = 'flex';
 });
 
 // ─── Reset ────────────────────────────────────────────────────────────────────
 document.getElementById('btnReset').addEventListener('click', () => {
   if (!confirm(t('confirm.reset'))) return;
 
-  // Items
+  // Pack
   iFiles = {}; iBaseFile = null; iMapped = []; iTS = 16;
-  ['fileItems', 'fileItemsBase'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('dropItems').classList.remove('has-file', 'over');
-  document.getElementById('hintItems').textContent = '';
-  const dib = document.getElementById('dropItemsBase');
-  dib.classList.remove('has-file', 'over'); dib.classList.add('tmpl');
-  document.getElementById('itemsBaseLbl').textContent = t('items.baseDefault');
-  document.getElementById('hintItemsBase').textContent = '';
-  document.getElementById('itemsMappingCard').style.display = 'none';
-  document.getElementById('itemsMapBody').innerHTML = '';
-  document.getElementById('itemsMatchBadge').textContent = '0 / 0';
-  document.getElementById('itemsStatsBar').innerHTML = '';
-  document.getElementById('btnItemsConvert').disabled = true;
-  document.getElementById('btnItemsDownload').style.display = 'none';
-  document.getElementById('itemsProgWrap').style.display = 'none';
-  document.getElementById('itemsProgBar').style.width = '0%';
-  document.getElementById('itemsLogBox').innerHTML = '';
-  document.getElementById('itemsLogBox').style.display = 'none';
-
-  // Terrain
   tFiles = {}; tBaseFile = null; tMapped = []; tTS = 16;
-  ['fileTerrain', 'fileTerrainBase'].forEach(id => document.getElementById(id).value = '');
-  document.getElementById('dropTerrain').classList.remove('has-file', 'over');
-  document.getElementById('hintTerrain').textContent = '';
-  const dtb = document.getElementById('dropTerrainBase');
-  dtb.classList.remove('has-file', 'over'); dtb.classList.add('tmpl');
-  document.getElementById('terrainBaseLbl').textContent = t('terrain.baseDefault');
-  document.getElementById('hintTerrainBase').textContent = '';
-  document.getElementById('terrainMappingCard').style.display = 'none';
-  document.getElementById('terrainMapBody').innerHTML = '';
-  document.getElementById('terrainMatchBadge').textContent = '0 / 0';
-  document.getElementById('terrainStatsBar').innerHTML = '';
-  document.getElementById('btnTerrainConvert').disabled = true;
-  document.getElementById('terrainDlGroup').style.display = 'none';
-  document.getElementById('terrainProgWrap').style.display = 'none';
-  document.getElementById('terrainProgBar').style.width = '0%';
-  document.getElementById('terrainLogBox').innerHTML = '';
-  document.getElementById('terrainLogBox').style.display = 'none';
+  currentPackName = '';
+  detectedItemsRes = null; detectedTerrainRes = null;
+  document.getElementById('filePack').value = '';
+  document.getElementById('dropPack').classList.remove('has-file', 'over');
+  document.getElementById('hintPack').textContent = '';
+  document.getElementById('packSettingsRow').style.display = 'none';
+  document.getElementById('packItemsMappingCard').style.display = 'none';
+  document.getElementById('packItemsMapBody').innerHTML = '';
+  document.getElementById('packItemsMatchBadge').textContent = '0 / 0';
+  document.getElementById('packItemsStatsBar').innerHTML = '';
+  document.getElementById('packTerrainMappingCard').style.display = 'none';
+  document.getElementById('packTerrainMapBody').innerHTML = '';
+  document.getElementById('packTerrainMatchBadge').textContent = '0 / 0';
+  document.getElementById('packTerrainStatsBar').innerHTML = '';
+  document.getElementById('btnPackConvert').disabled = true;
+  document.getElementById('packDlGroup').style.display = 'none';
+  document.getElementById('packIndivDlGroup').style.display = 'none';
+  document.getElementById('packProgWrap').style.display = 'none';
+  document.getElementById('packProgBar').style.width = '0%';
+  document.getElementById('packLogBox').innerHTML = '';
+  document.getElementById('packLogBox').style.display = 'none';
+  // Reset modal base images
+  ['fileModalItemsBase', 'fileModalTerrainBase'].forEach(id => document.getElementById(id).value = '');
+  const dmib = document.getElementById('dropModalItemsBase');
+  dmib.classList.remove('has-file', 'over'); dmib.classList.add('tmpl');
+  document.getElementById('modalItemsBaseLbl').textContent = t('items.baseDefault');
+  document.getElementById('hintModalItemsBase').textContent = '';
+  const dmtb = document.getElementById('dropModalTerrainBase');
+  dmtb.classList.remove('has-file', 'over'); dmtb.classList.add('tmpl');
+  document.getElementById('modalTerrainBaseLbl').textContent = t('terrain.baseDefault');
+  document.getElementById('hintModalTerrainBase').textContent = '';
+  closePackModal();
 
   // GUI Converter
   guiArcFileName = ''; guiArcFiles = {}; guiArcFormat = null;
@@ -1030,22 +1279,224 @@ document.getElementById('btnReset').addEventListener('click', () => {
   document.getElementById('guiLogBox').style.display = 'none';
   guiResetViewer();
 
+  // Pack GUI
+  packGuiIcons = null; packGuiWidgets = null; packGuiGui = null;
+  document.getElementById('btnPackGuiConvert').disabled = true;
+  document.getElementById('btnPackGuiCropsDl').style.display = 'none';
+  document.getElementById('packGuiCropsGrid').innerHTML = '';
+  document.getElementById('packGuiLogBox').innerHTML = '';
+  document.getElementById('packGuiLogBox').style.display = 'none';
+  document.getElementById('packGuiCard').style.display = 'none';
+
   // Rebuild grids
-  buildResGrid('itemsResGrid', 'itemsResInfo', ITEMS_RESOLUTIONS, 16, v => iTS = v, itemsInfoFn);
-  buildResGrid('terrainResGrid', 'terrainResInfo', TERRAIN_RESOLUTIONS, 16, v => {
-    tTS = v;
-    if (!tBaseFile) document.getElementById('terrainBaseLbl').textContent = t('terrain.baseDefault');
-  }, terrainInfoFn);
+  buildResGrid('modalItemsResGrid', 'modalItemsResInfo', ITEMS_RESOLUTIONS, 16, v => { iTS = v; updateItemsMapping(); }, itemsInfoFn);
+  buildResGrid('modalTerrainResGrid', 'modalTerrainResInfo', TERRAIN_RESOLUTIONS, 16, v => { tTS = v; updateTerrainMapping(); }, terrainInfoFn);
 });
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
-buildResGrid('itemsResGrid', 'itemsResInfo', ITEMS_RESOLUTIONS, 16, v => iTS = v, itemsInfoFn);
-buildResGrid('terrainResGrid', 'terrainResInfo', TERRAIN_RESOLUTIONS, 16, v => {
-  tTS = v;
-  if (!tBaseFile) document.getElementById('terrainBaseLbl').textContent = t('terrain.baseDefault');
-}, terrainInfoFn);
+buildResGrid('modalItemsResGrid', 'modalItemsResInfo', ITEMS_RESOLUTIONS, 16, v => { iTS = v; updateItemsMapping(); }, itemsInfoFn);
+buildResGrid('modalTerrainResGrid', 'modalTerrainResInfo', TERRAIN_RESOLUTIONS, 16, v => { tTS = v; updateTerrainMapping(); }, terrainInfoFn);
 
-// ─── GUI CONVERTER ────────────────────────────────────────────────────────────
+// ─── PACK GUI CONVERTER ───────────────────────────────────────────────────────
+
+// ── State ──
+let packGuiIcons   = null;  // HTMLImageElement (icons.png)
+let packGuiWidgets = null;  // HTMLImageElement (widgets.png)
+let packGuiGui     = null;  // HTMLImageElement (gui.png)
+
+// ── Mapping table ──
+// Crop coordinates are for a base 256×256 atlas and will be scaled for HiRes packs.
+// src: 'icons' = icons.png  'widgets' = widgets.png  'gui' = gui.png
+//
+// icons.png top row (y=0) layout (left → right):
+//   [0]  crosshair (15×15)
+//   [16] 空ハート  [25] 空金ハートA  [34] ウィザー空ハート  [43] 空金ハートB
+//   [52] ハート  [61] 半ハート  [70] ハート(半透明)  [79] 半ハート(半透明)
+//   [88] 毒ハート  [97] 半毒ハート  [106] 毒(半透明)  [115] 半毒(半透明)
+//   [124] ウィザーハート  [133] 半ウィザー  [142] ウィザー(半透明)  [151] 半ウィザー(半透明)
+//   [160] 金ハート  [169] 半金ハート
+const PACK_GUI_MAPPINGS = [
+  // ── icons.png — top row (all hearts at y=0, h=9) ────────────────────────
+  { id: 'crosshair',             src: 'icons',   x:  0, y:  0, w: 15, h: 15, fuiIdx: 183, label: 'Crosshair / 照準' },
+  { id: 'heart_empty',           src: 'icons',   x: 16, y:  0, w:  9, h:  9, fuiIdx: 194, label: 'Heart empty / 空ハート' },
+  { id: 'heart_gold_empty',      src: 'icons',   x: 25, y:  0, w:  9, h:  9, fuiIdx: 195, label: 'Gold heart empty / 空の金ハート' },
+  { id: 'heart_full',            src: 'icons',   x: 52, y:  0, w:  9, h:  9, fuiIdx: 190, label: 'Heart / ハート' },
+  { id: 'heart_half',            src: 'icons',   x: 61, y:  0, w:  9, h:  9, fuiIdx: 186, label: 'Half heart / 半ハート' },
+  { id: 'heart_full_dim',        src: 'icons',   x: 70, y:  0, w:  9, h:  9, fuiIdx: 193, label: 'Heart (dim) / ハート(半透明)' },
+  { id: 'heart_half_dim',        src: 'icons',   x: 79, y:  0, w:  9, h:  9, fuiIdx: 189, label: 'Half heart (dim) / 半ハート(半透明)' },
+  { id: 'heart_pois_full',       src: 'icons',   x: 88, y:  0, w:  9, h:  9, fuiIdx: 191, label: 'Poison heart / 毒ハート' },
+  { id: 'heart_pois_half',       src: 'icons',   x: 97, y:  0, w:  9, h:  9, fuiIdx: 187, label: 'Half poison heart / 半毒ハート' },
+  { id: 'heart_pois_full_dim',   src: 'icons',   x:106, y:  0, w:  9, h:  9, fuiIdx: 192, label: 'Poison heart (dim) / 毒ハート(半透明)' },
+  { id: 'heart_pois_half_dim',   src: 'icons',   x:115, y:  0, w:  9, h:  9, fuiIdx: 188, label: 'Half poison (dim) / 半毒ハート(半透明)' },
+  { id: 'heart_wither_full',     src: 'icons',   x:124, y:  0, w:  9, h:  9, fuiIdx: 181, label: 'Wither heart / ウィザーハート' },
+  { id: 'heart_wither_half',     src: 'icons',   x:133, y:  0, w:  9, h:  9, fuiIdx: 182, label: 'Half wither heart / 半ウィザーハート' },
+  { id: 'heart_wither_full_dim', src: 'icons',   x:142, y:  0, w:  9, h:  9, fuiIdx: 174, label: 'Wither heart (dim) / ウィザーハート(半透明)' },
+  { id: 'heart_wither_half_dim', src: 'icons',   x:151, y:  0, w:  9, h:  9, fuiIdx: 173, label: 'Half wither (dim) / 半ウィザーハート(半透明)' },
+  { id: 'heart_gold_full',       src: 'icons',   x:160, y:  0, w:  9, h:  9, fuiIdx: 172, label: 'Golden heart / 金ハート' },
+  { id: 'heart_gold_half',       src: 'icons',   x:169, y:  0, w:  9, h:  9, fuiIdx: 171, label: 'Half golden heart / 半金ハート' },
+  // ── icons.png — armor row (y=9) ─────────────────────────────────────────
+  { id: 'armor_empty',           src: 'icons',   x: 16, y:  9, w:  9, h:  9, fuiIdx: 211, label: 'Armor empty / 防具(空)' },
+  { id: 'armor_half',            src: 'icons',   x: 25, y:  9, w:  9, h:  9, fuiIdx: 209, label: 'Armor half / 防具(半)' },
+  { id: 'armor_full',            src: 'icons',   x: 34, y:  9, w:  9, h:  9, fuiIdx: 210, label: 'Armor full / 防具(満)' },
+  // ── icons.png — food row (y=27) ─────────────────────────────────────────
+  { id: 'food_empty',            src: 'icons',   x: 16, y: 27, w:  9, h:  9, fuiIdx: 204, label: 'Food empty / 空腹(空)' },
+  { id: 'food_full',             src: 'icons',   x: 52, y: 27, w:  9, h:  9, fuiIdx: 200, label: 'Food full / 空腹(満)' },
+  { id: 'food_half',             src: 'icons',   x: 61, y: 27, w:  9, h:  9, fuiIdx: 196, label: 'Food half / 空腹(半)' },
+  // ── hotbar selection (not wide) ─────────────────────────────────────────
+  { id: 'hotbar_sel',            src: 'widgets', x:  0, y: 22, w: 24, h: 24, fuiIdx: 184, label: 'Hotbar selection / ホットバー選択' },
+  { id: 'gui_hotbar_sel',        src: 'gui',     x:  0, y: 22, w: 24, h: 24,              label: 'Hotbar sel (gui) / ホットバー選択(gui)' },
+  // ── wide images (displayed last) ────────────────────────────────────────
+  { id: 'xpbar_empty',           src: 'icons',   x:  0, y: 64, w:182, h:  5, fuiIdx: 208, label: 'XP Bar empty / 経験値バー(空)' },
+  { id: 'xpbar_full',            src: 'icons',   x:  0, y: 69, w:182, h:  5, fuiIdx: 207, label: 'XP Bar full / 経験値バー(満)' },
+  { id: 'hotbar',                src: 'widgets', x:  0, y:  0, w:182, h: 22, fuiIdx: 185, label: 'Hotbar / ホットバー' },
+  { id: 'gui_hotbar',            src: 'gui',     x:  0, y:  0, w:182, h: 22,              label: 'Hotbar (gui) / ホットバー(gui)' },
+];
+
+// ── Extract GUI images from ZIP ──
+async function extractPackGuiImages(file) {
+  const zip = await window.JSZip.loadAsync(file);
+  const pathMap = {};
+  zip.forEach((path, entry) => {
+    if (!entry.dir) pathMap[path.replace(/\\/g, '/').toLowerCase()] = entry;
+  });
+
+  function findEntry(suffixes) {
+    for (const sfx of suffixes) {
+      for (const [k, v] of Object.entries(pathMap)) {
+        if (k.endsWith(sfx.toLowerCase())) return v;
+      }
+    }
+    return null;
+  }
+
+  async function entryToImage(entry) {
+    if (!entry) return null;
+    const blob = await entry.async('blob');
+    return new Promise((res, rej) => {
+      const img = new Image();
+      const url = URL.createObjectURL(blob);
+      img.onload  = () => { URL.revokeObjectURL(url); res(img); };
+      img.onerror = () => { URL.revokeObjectURL(url); rej(); };
+      img.src = url;
+    });
+  }
+
+  const [iconsImg, widgetsImg, guiImg] = await Promise.all([
+    entryToImage(findEntry(['textures/gui/icons.png',   'assets/minecraft/textures/gui/icons.png'])).catch(() => null),
+    entryToImage(findEntry(['textures/gui/widgets.png',  'assets/minecraft/textures/gui/widgets.png'])).catch(() => null),
+    entryToImage(findEntry(['textures/gui/gui.png',      'assets/minecraft/textures/gui/gui.png'])).catch(() => null),
+  ]);
+  return { iconsImg, widgetsImg, guiImg };
+}
+
+// ── Crop a region from a loaded image → PNG Uint8Array ──
+function packGuiCropToPng(img, x, y, w, h) {
+  const scale = img.naturalWidth / 256;
+  const sx = Math.round(x * scale), sy = Math.round(y * scale);
+  const sw = Math.max(1, Math.round(w * scale)), sh = Math.max(1, Math.round(h * scale));
+  const c = document.createElement('canvas');
+  c.width = sw; c.height = sh;
+  const ctx = c.getContext('2d');
+  ctx.imageSmoothingEnabled = false;
+  ctx.drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh);
+  return new Promise(res => c.toBlob(b => b.arrayBuffer().then(buf => res(new Uint8Array(buf))), 'image/png'));
+}
+
+// ── Resolve source image for a mapping entry ──
+function packGuiSrcImg(src) {
+  if (src === 'icons')   return packGuiIcons;
+  if (src === 'widgets') return packGuiWidgets;
+  if (src === 'gui')     return packGuiGui;
+  return null;
+}
+
+// ── Render crop preview grid ──
+function renderPackGuiCrops() {
+  const grid = document.getElementById('packGuiCropsGrid');
+  grid.innerHTML = '';
+  for (const m of PACK_GUI_MAPPINGS) {
+    const img = packGuiSrcImg(m.src);
+    if (!img) continue;
+    const scale = img.naturalWidth / 256;
+    const sx = Math.round(m.x * scale), sy = Math.round(m.y * scale);
+    const sw = Math.max(1, Math.round(m.w * scale)), sh = Math.max(1, Math.round(m.h * scale));
+    const c = document.createElement('canvas');
+    c.width = sw; c.height = sh;
+    const ctx = c.getContext('2d');
+    ctx.imageSmoothingEnabled = false;
+    ctx.drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh);
+
+    const isWide = sw > 40;
+    const item = document.createElement('div');
+    item.className = 'pack-gui-crop-item' + (isWide ? ' wide' : '');
+
+    const preview = document.createElement('div');
+    preview.className = 'pack-gui-crop-preview';
+    const imgEl = document.createElement('img');
+    imgEl.src = c.toDataURL('image/png');
+    const MAX_DISP_W = isWide ? 220 : 40, MAX_DISP_H = 40;
+    const fitScale = Math.min(MAX_DISP_W / sw, MAX_DISP_H / sh, 4);
+    imgEl.width  = Math.max(1, Math.round(sw * fitScale));
+    imgEl.height = Math.max(1, Math.round(sh * fitScale));
+    preview.appendChild(imgEl);
+
+    const lbl = document.createElement('div');
+    lbl.className = 'pack-gui-crop-label';
+    lbl.textContent = m.label;
+
+    const info = document.createElement('div');
+    info.className = 'pack-gui-crop-info';
+    info.textContent = sw + '×' + sh;
+
+    item.appendChild(preview);
+    item.appendChild(lbl);
+    item.appendChild(info);
+    grid.appendChild(item);
+  }
+}
+
+// ── GUI Convert (Pack tab) — crops only ──
+async function doPackGuiConvert() {
+  const L = (m, tp) => log('packGuiLogBox', m, tp);
+  document.getElementById('packGuiLogBox').innerHTML = '';
+  document.getElementById('packGuiLogBox').style.display = 'block';
+  document.getElementById('btnPackGuiConvert').disabled = true;
+  document.getElementById('btnPackGuiCropsDl').style.display = 'none';
+
+  try {
+    const cropsZip = new window.JSZip();
+    let cropsCount = 0;
+
+    for (const m of PACK_GUI_MAPPINGS) {
+      const img = packGuiSrcImg(m.src);
+      if (!img) continue;
+      const scale = img.naturalWidth / 256;
+      const sw = Math.max(1, Math.round(m.w * scale)), sh = Math.max(1, Math.round(m.h * scale));
+      const pngData = await packGuiCropToPng(img, m.x, m.y, m.w, m.h);
+      cropsZip.file(m.id + '.png', pngData);
+      cropsCount++;
+      L(t('pack.guiCrop', m.label, sw, sh), 'ok');
+    }
+
+    if (cropsCount > 0) {
+      const cropsBlob = await cropsZip.generateAsync({ type: 'blob', compression: 'STORE' });
+      const cropsUrl  = URL.createObjectURL(cropsBlob);
+      const cropsDl   = document.getElementById('btnPackGuiCropsDl');
+      cropsDl.href = cropsUrl;
+      cropsDl.download = (currentPackName.replace(/\.(zip|mcpack)$/i, '') || 'pack') + '_gui_crops.zip';
+      cropsDl.style.display = '';
+      L(t('pack.guiConvDone', cropsCount), 'info');
+    }
+
+  } catch(e) {
+    log('packGuiLogBox', '✗ ' + e.message, 'warn');
+    console.error(e);
+  } finally {
+    document.getElementById('btnPackGuiConvert').disabled = false;
+  }
+}
+
+// ── GUI CONVERTER ────────────────────────────────────────────────────────────
 
 // ── State ──
 let guiArcFileName = '';
@@ -1697,3 +2148,6 @@ function guiDownloadArc() {
   document.getElementById('btnGuiDownload').addEventListener('click', guiDownloadArc);
   document.getElementById('btnGuiTxtSave').addEventListener('click', guiTxtSave);
 }());
+
+// ── Pack GUI init ──
+document.getElementById('btnPackGuiConvert').addEventListener('click', doPackGuiConvert);
