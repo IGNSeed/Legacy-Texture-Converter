@@ -1395,10 +1395,10 @@ function packGuiCropToPng(img, x, y, w, h) {
   const sx = Math.round(x * scale), sy = Math.round(y * scale);
   const sw = Math.max(1, Math.round(w * scale)), sh = Math.max(1, Math.round(h * scale));
   const c = document.createElement('canvas');
-  c.width = sw; c.height = sh;
+  c.width = w; c.height = h;
   const ctx = c.getContext('2d');
-  ctx.imageSmoothingEnabled = false;
-  ctx.drawImage(img, sx, sy, sw, sh, 0, 0, sw, sh);
+  ctx.imageSmoothingEnabled = scale > 1;
+  ctx.drawImage(img, sx, sy, sw, sh, 0, 0, w, h);
   return new Promise(res => c.toBlob(b => b.arrayBuffer().then(buf => res(new Uint8Array(buf))), 'image/png'));
 }
 
@@ -1470,12 +1470,10 @@ async function doPackGuiConvert() {
     for (const m of PACK_GUI_MAPPINGS) {
       const img = packGuiSrcImg(m.src);
       if (!img) continue;
-      const scale = img.naturalWidth / 256;
-      const sw = Math.max(1, Math.round(m.w * scale)), sh = Math.max(1, Math.round(m.h * scale));
       const pngData = await packGuiCropToPng(img, m.x, m.y, m.w, m.h);
       cropsZip.file(m.id + '.png', pngData);
       cropsCount++;
-      L(t('pack.guiCrop', m.label, sw, sh), 'ok');
+      L(t('pack.guiCrop', m.label, m.w, m.h), 'ok');
     }
 
     if (cropsCount > 0) {
