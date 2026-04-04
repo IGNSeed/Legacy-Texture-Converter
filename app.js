@@ -50,7 +50,7 @@ const I18N = {
     'gui.colArc':     'ARC ファイル',
     'gui.dropSubArc': '.arc ファイルを選択',
     'gui.btnExpand':  '⚙ 展開する',
-    'gui.notice':     '💡 Minecraft Legacy Console Edition の <code>.arc</code> ファイルを読み込み、内部の <code>.fui</code> ファイルの画像を閲覧・置き換えできます。',
+    'gui.notice':     '💡 Minecraft Legacy Console Edition の <code>.arc</code> ファイルを読み込み、内部の <code>.fui</code> (1.13) / <code>.swf</code> (1.8.9) ファイルの画像を閲覧・置き換えできます。',
     'gui.treeHeader': 'ファイル一覧',
     'gui.colorSwap':  '色補正 R↔B',
     'gui.invertDisplay': '色反転補正 (表示のみ)',
@@ -58,7 +58,7 @@ const I18N = {
     'gui.btnSaveImg': '⬇ 画像を保存',
     'gui.btnTxtSave': '💾 変更を適用',
     'gui.btnDownload':'⬇ ARC をダウンロード',
-    'gui.help':       '📦 <strong>ARC ファイル</strong>: Minecraft Legacy Console Edition の <code>.arc</code> ファイルを選択<br>🎨 <strong>FUI ファイル</strong>: ツリーで <code>.fui</code> をクリックすると内部の画像一覧が表示されます<br>↩ <strong>置き換え</strong>: 画像サムネイルを選択して PNG / JPEG で上書きできます<br>⬇ <strong>保存</strong>: 変更を含む <code>.arc</code> ファイルをダウンロードします',
+    'gui.help':       '📦 <strong>ARC ファイル</strong>: Minecraft Legacy Console Edition の <code>.arc</code> ファイルを選択<br>🎨 <strong>FUI / SWF ファイル</strong>: ツリーで <code>.fui</code> (1.13) / <code>.swf</code> (1.8.9) をクリックすると内部の画像一覧が表示されます<br>↩ <strong>置き換え</strong>: 画像サムネイルを選択して PNG / JPEG で上書きできます<br>⬇ <strong>保存</strong>: 変更を含む <code>.arc</code> ファイルをダウンロードします',
     /* log messages */
     'log.customBaseLoaded':   '✓ カスタムベース items.png を読み込みました',
     'log.customBaseFail':     '✗ カスタムベース読み込み失敗',
@@ -86,6 +86,10 @@ const I18N = {
     'log.guiReplaceErr':      (m) => `✗ エラー: ${m}`,
     'log.guiFuiUpdated':      (n) => `✓ FUI を更新: ${n}`,
     'log.guiFuiWriteErr':     (m) => `✗ FUI 書き込みエラー: ${m}`,
+    'log.guiSwfOpened':       (n,c) => `✓ ${n} を開きました (${c} 画像)`,
+    'log.guiSwfErr':          (n,m) => `✗ SWF 解析エラー (${n}): ${m}`,
+    'log.guiSwfUpdated':      (n) => `✓ SWF を更新: ${n}`,
+    'log.guiSwfWriteErr':     (m) => `✗ SWF 書き込みエラー: ${m}`,
     'log.guiArcDownloaded':   (b) => `✓ ARC をダウンロード (${b} bytes)`,
     'log.guiArcWriteErr':     (m) => `✗ ARC 書き込みエラー: ${m}`,
     'log.guiFmtDetected':     (l) => `フォーマット検出: ${l}`,
@@ -206,7 +210,7 @@ const I18N = {
     'gui.colArc':     'ARC File',
     'gui.dropSubArc': 'Select an .arc file',
     'gui.btnExpand':  '⚙ Extract',
-    'gui.notice':     '💡 Load a Minecraft Legacy Console Edition <code>.arc</code> file to browse and replace images inside <code>.fui</code> files.',
+    'gui.notice':     '💡 Load a Minecraft Legacy Console Edition <code>.arc</code> file to browse and replace images inside <code>.fui</code> (1.13) / <code>.swf</code> (1.8.9) files.',
     'gui.treeHeader': 'File List',
     'gui.colorSwap':  'Color fix R↔B',
     'gui.invertDisplay': 'Invert colors (display only)',
@@ -214,7 +218,7 @@ const I18N = {
     'gui.btnSaveImg': '⬇ Save Image',
     'gui.btnTxtSave': '💾 Apply Changes',
     'gui.btnDownload':'⬇ Download ARC',
-    'gui.help':       '📦 <strong>ARC File</strong>: Select a Minecraft Legacy Console Edition <code>.arc</code> file<br>🎨 <strong>FUI File</strong>: Click a <code>.fui</code> entry in the tree to view its images<br>↩ <strong>Replace</strong>: Select a thumbnail and overwrite it with a PNG / JPEG<br>⬇ <strong>Save</strong>: Download the <code>.arc</code> file including all changes',
+    'gui.help':       '📦 <strong>ARC File</strong>: Select a Minecraft Legacy Console Edition <code>.arc</code> file<br>🎨 <strong>FUI / SWF File</strong>: Click a <code>.fui</code> (1.13) / <code>.swf</code> (1.8.9) entry in the tree to view its images<br>↩ <strong>Replace</strong>: Select a thumbnail and overwrite it with a PNG / JPEG<br>⬇ <strong>Save</strong>: Download the <code>.arc</code> file including all changes',
     /* log messages */
     'log.customBaseLoaded':   '✓ Loaded custom base items.png',
     'log.customBaseFail':     '✗ Failed to load custom base',
@@ -242,6 +246,10 @@ const I18N = {
     'log.guiReplaceErr':      (m) => `✗ Error: ${m}`,
     'log.guiFuiUpdated':      (n) => `✓ FUI updated: ${n}`,
     'log.guiFuiWriteErr':     (m) => `✗ FUI write error: ${m}`,
+    'log.guiSwfOpened':       (n,c) => `✓ Opened ${n} (${c} images)`,
+    'log.guiSwfErr':          (n,m) => `✗ SWF parse error (${n}): ${m}`,
+    'log.guiSwfUpdated':      (n) => `✓ SWF updated: ${n}`,
+    'log.guiSwfWriteErr':     (m) => `✗ SWF write error: ${m}`,
     'log.guiArcDownloaded':   (b) => `✓ ARC downloaded (${b} bytes)`,
     'log.guiArcWriteErr':     (m) => `✗ ARC write error: ${m}`,
     'log.guiFmtDetected':     (l) => `Format detected: ${l}`,
@@ -1504,6 +1512,8 @@ let guiFuiPath = null;
 let guiFuiState = null;
 let guiTxtPath = null;
 let guiSelectedImgs = new Set();
+let guiIsSwf = false;
+let guiSwfMeta = null;
 
 // ── R↔B display toggle (display-only, saved data unchanged) ──
 function guiApplyInvertDisplayToImg(imgEl) {
@@ -1759,6 +1769,333 @@ function guiBuildFui(state) {
   return result;
 }
 
+// ── SWF parser / writer ──
+
+async function guiInflate(data) {
+  // Don't await write before reading — prevents backpressure deadlock on large data
+  const ds = new DecompressionStream('deflate');
+  const writer = ds.writable.getWriter();
+  writer.write(data); writer.close();
+  return new Uint8Array(await new Response(ds.readable).arrayBuffer());
+}
+
+async function guiDeflate(data) {
+  const cs = new CompressionStream('deflate');
+  const writer = cs.writable.getWriter();
+  writer.write(data); writer.close();
+  return new Uint8Array(await new Response(cs.readable).arrayBuffer());
+}
+
+async function guiSwfDecompress(bytes) {
+  const sig = String.fromCharCode(bytes[0], bytes[1], bytes[2]);
+  if (sig === 'FWS') return { bytes, wasCompressed: false };
+  if (sig === 'ZWS') throw new Error('LZMA-compressed SWF is not supported');
+  if (sig !== 'CWS') throw new Error('Not a valid SWF file (signature: ' + sig + ')');
+  const body = await guiInflate(bytes.slice(8));
+  const result = new Uint8Array(8 + body.length);
+  result.set(bytes.slice(0, 8));
+  result[0] = 0x46; // 'F' → FWS
+  result.set(body, 8);
+  return { bytes: result, wasCompressed: true };
+}
+
+function guiSwfRectSize(bytes, off) {
+  const nbits = (bytes[off] >> 3) & 0x1f;
+  return Math.ceil((5 + nbits * 4) / 8);
+}
+
+function guiSwfParseTags(bytes) {
+  const rectSize = guiSwfRectSize(bytes, 8);
+  let pos = 8 + rectSize + 4; // skip RECT + FrameRate(2) + FrameCount(2)
+  const tags = [];
+  while (pos + 2 <= bytes.length) {
+    const rh = guiView(bytes).getUint16(pos, true);
+    const type = (rh >> 6) & 0x3ff;
+    const short = rh & 0x3f;
+    let headerLen, dataLen;
+    if (short === 0x3f) {
+      if (pos + 6 > bytes.length) break;
+      dataLen = guiView(bytes).getInt32(pos + 2, true);
+      headerLen = 6;
+    } else {
+      dataLen = short;
+      headerLen = 2;
+    }
+    tags.push({ type, offset: pos, headerLen, dataLen });
+    pos += headerLen + dataLen;
+    if (type === 0) break;
+  }
+  return tags;
+}
+
+async function guiSwfLossless2ToPng(bytes, tag) {
+  // DefineBitsLossless2 (type 36): ARGB premultiplied pixels
+  const base = tag.offset + tag.headerLen;
+  const charId = guiView(bytes).getUint16(base, true);
+  const fmt = bytes[base + 2];
+  const w = guiView(bytes).getUint16(base + 3, true);
+  const h = guiView(bytes).getUint16(base + 5, true);
+  let zlibOff = base + 7, palSize = 0;
+  if (fmt === 3) { palSize = bytes[base + 7] + 1; zlibOff = base + 8; }
+  else if (fmt !== 4 && fmt !== 5) throw new Error('Unsupported BitmapFormat: ' + fmt);
+  const raw = await guiInflate(bytes.slice(zlibOff, base + tag.dataLen));
+  const canvas = document.createElement('canvas');
+  canvas.width = w; canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  const id = ctx.createImageData(w, h);
+  const px = id.data;
+  if (fmt === 5) {
+    for (let i = 0; i < w * h; i++) {
+      const a = raw[i*4], r = raw[i*4+1], g = raw[i*4+2], b = raw[i*4+3];
+      px[i*4]   = a ? Math.round(r * 255 / a) : 0;
+      px[i*4+1] = a ? Math.round(g * 255 / a) : 0;
+      px[i*4+2] = a ? Math.round(b * 255 / a) : 0;
+      px[i*4+3] = a;
+    }
+  } else if (fmt === 4) {
+    const stride = Math.ceil(w * 2 / 4) * 4;
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const o = y * stride + x * 2, v = raw[o] | (raw[o+1] << 8);
+      const off = (y * w + x) * 4;
+      px[off]   = Math.round(((v >> 10) & 0x1f) * 255 / 31);
+      px[off+1] = Math.round(((v >>  5) & 0x1f) * 255 / 31);
+      px[off+2] = Math.round(( v        & 0x1f) * 255 / 31);
+      px[off+3] = 255;
+    }
+  } else { // fmt 3: 8-bit CLUT (DefineBitsLossless2 palette is ARGB)
+    const stride = Math.ceil(w / 4) * 4;
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const idx = raw[palSize * 4 + y * stride + x], p = idx * 4;
+      const off = (y * w + x) * 4;
+      px[off] = raw[p+1]; px[off+1] = raw[p+2]; px[off+2] = raw[p+3]; px[off+3] = raw[p];
+    }
+  }
+  ctx.putImageData(id, 0, 0);
+  const pngData = await new Promise(res =>
+    canvas.toBlob(b => b.arrayBuffer().then(buf => res(new Uint8Array(buf))), 'image/png'));
+  return { charId, width: w, height: h, data: pngData, tagType: tag.type,
+    tagOffset: tag.offset, tagHeaderLen: tag.headerLen, tagDataLen: tag.dataLen };
+}
+
+async function guiSwfLosslessToPng(bytes, tag) {
+  // DefineBitsLossless (type 20): opaque RGB pixels
+  const base = tag.offset + tag.headerLen;
+  const charId = guiView(bytes).getUint16(base, true);
+  const fmt = bytes[base + 2];
+  const w = guiView(bytes).getUint16(base + 3, true);
+  const h = guiView(bytes).getUint16(base + 5, true);
+  let zlibOff = base + 7, palSize = 0;
+  if (fmt === 3) { palSize = bytes[base + 7] + 1; zlibOff = base + 8; }
+  else if (fmt !== 4 && fmt !== 5) throw new Error('Unsupported BitmapFormat: ' + fmt);
+  const raw = await guiInflate(bytes.slice(zlibOff, base + tag.dataLen));
+  const canvas = document.createElement('canvas');
+  canvas.width = w; canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  const id = ctx.createImageData(w, h);
+  const px = id.data;
+  if (fmt === 5) {
+    for (let i = 0; i < w * h; i++) { // XRGB (alpha byte reserved)
+      px[i*4] = raw[i*4+1]; px[i*4+1] = raw[i*4+2]; px[i*4+2] = raw[i*4+3]; px[i*4+3] = 255;
+    }
+  } else if (fmt === 4) {
+    const stride = Math.ceil(w * 2 / 4) * 4;
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const o = y * stride + x * 2, v = raw[o] | (raw[o+1] << 8);
+      const off = (y * w + x) * 4;
+      px[off]   = Math.round(((v >> 10) & 0x1f) * 255 / 31);
+      px[off+1] = Math.round(((v >>  5) & 0x1f) * 255 / 31);
+      px[off+2] = Math.round(( v        & 0x1f) * 255 / 31);
+      px[off+3] = 255;
+    }
+  } else { // fmt 3: 8-bit CLUT (DefineBitsLossless palette is RGB, 3 bytes per entry)
+    const stride = Math.ceil(w / 4) * 4;
+    for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) {
+      const idx = raw[palSize * 3 + y * stride + x], p = idx * 3;
+      const off = (y * w + x) * 4;
+      px[off] = raw[p]; px[off+1] = raw[p+1]; px[off+2] = raw[p+2]; px[off+3] = 255;
+    }
+  }
+  ctx.putImageData(id, 0, 0);
+  const pngData = await new Promise(res =>
+    canvas.toBlob(b => b.arrayBuffer().then(buf => res(new Uint8Array(buf))), 'image/png'));
+  return { charId, width: w, height: h, data: pngData, tagType: tag.type,
+    tagOffset: tag.offset, tagHeaderLen: tag.headerLen, tagDataLen: tag.dataLen };
+}
+
+async function guiSwfPngToLossless2Data(pngData, charId) {
+  return new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(new Blob([pngData], { type: 'image/png' }));
+    const img = new Image();
+    img.onload = async () => {
+      URL.revokeObjectURL(url);
+      const w = img.naturalWidth, h = img.naturalHeight;
+      const c = document.createElement('canvas'); c.width = w; c.height = h;
+      const ctx = c.getContext('2d'); ctx.drawImage(img, 0, 0);
+      const { data: rgba } = ctx.getImageData(0, 0, w, h);
+      const argb = new Uint8Array(w * h * 4); // RGBA → ARGB premultiplied
+      for (let i = 0; i < w * h; i++) {
+        const r = rgba[i*4], g = rgba[i*4+1], b = rgba[i*4+2], a = rgba[i*4+3];
+        argb[i*4] = a;
+        argb[i*4+1] = Math.round(r * a / 255);
+        argb[i*4+2] = Math.round(g * a / 255);
+        argb[i*4+3] = Math.round(b * a / 255);
+      }
+      const compressed = await guiDeflate(argb);
+      const td = new Uint8Array(7 + compressed.length);
+      guiView(td).setUint16(0, charId, true);
+      td[2] = 5; // BitmapFormat 5 = 32-bit ARGB
+      guiView(td).setUint16(3, w, true);
+      guiView(td).setUint16(5, h, true);
+      td.set(compressed, 7);
+      resolve({ tagData: td, width: w, height: h });
+    };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('Image decode failed')); };
+    img.src = url;
+  });
+}
+
+function guiSwfWriteTagBytes(type, data) {
+  const len = data.length;
+  if (len >= 63) {
+    const out = new Uint8Array(6 + len);
+    guiView(out).setUint16(0, (type << 6) | 0x3f, true);
+    guiView(out).setInt32(2, len, true);
+    out.set(data, 6);
+    return out;
+  }
+  const out = new Uint8Array(2 + len);
+  guiView(out).setUint16(0, (type << 6) | len, true);
+  out.set(data, 2);
+  return out;
+}
+
+async function guiSwfJpeg3ToPng(bytes, tag) {
+  // DefineBitsJPEG3 (type 35): JPEG data + ZLIB-compressed alpha channel
+  const base = tag.offset + tag.headerLen;
+  const charId = guiView(bytes).getUint16(base, true);
+  const alphaOff = guiView(bytes).getUint32(base + 2, true);
+  let jpgData = bytes.slice(base + 6, base + 6 + alphaOff);
+  if (jpgData.length > 4 && jpgData[0] === 0xFF && jpgData[1] === 0xD9 &&
+      jpgData[2] === 0xFF && jpgData[3] === 0xD8) jpgData = jpgData.slice(4);
+  const alphaData = await guiInflate(bytes.slice(base + 6 + alphaOff, base + tag.dataLen));
+
+  const { w, h } = await new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(new Blob([jpgData], { type: 'image/jpeg' }));
+    const img = new Image();
+    img.onload = () => { URL.revokeObjectURL(url); resolve({ w: img.naturalWidth, h: img.naturalHeight }); };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('JPEG3 decode failed')); };
+    img.src = url;
+  });
+
+  const canvas = document.createElement('canvas'); canvas.width = w; canvas.height = h;
+  const ctx = canvas.getContext('2d');
+  await new Promise((resolve, reject) => {
+    const url = URL.createObjectURL(new Blob([jpgData], { type: 'image/jpeg' }));
+    const img = new Image();
+    img.onload = () => { URL.revokeObjectURL(url); ctx.drawImage(img, 0, 0); resolve(); };
+    img.onerror = () => { URL.revokeObjectURL(url); reject(new Error('JPEG3 draw failed')); };
+    img.src = url;
+  });
+  const id = ctx.getImageData(0, 0, w, h);
+  for (let i = 0; i < w * h; i++) id.data[i * 4 + 3] = alphaData[i] ?? 255;
+  ctx.putImageData(id, 0, 0);
+  const pngData = await new Promise(res =>
+    canvas.toBlob(b => b.arrayBuffer().then(buf => res(new Uint8Array(buf))), 'image/png'));
+  return { charId, width: w, height: h, data: pngData, tagType: 35,
+    tagOffset: tag.offset, tagHeaderLen: tag.headerLen, tagDataLen: tag.dataLen };
+}
+
+async function guiParseSwf(buffer) {
+  const inputBytes = new Uint8Array(buffer);
+  const { bytes, wasCompressed } = await guiSwfDecompress(inputBytes);
+  guiLog('  SWF v' + bytes[3] + (wasCompressed ? ' (CWS)' : ' (FWS)') + '  ' + bytes.length + ' bytes', 'l-info');
+  const tags = guiSwfParseTags(bytes);
+  guiLog('  ' + tags.length + ' タグ検出', 'l-info');
+  const images = [];
+  for (const tag of tags) {
+    try {
+      if (tag.type === 36) images.push(await guiSwfLossless2ToPng(bytes, tag));
+      else if (tag.type === 20) images.push(await guiSwfLosslessToPng(bytes, tag));
+      else if (tag.type === 35) images.push(await guiSwfJpeg3ToPng(bytes, tag));
+      else if (tag.type === 21) { // DefineBitsJPEG2
+        const base = tag.offset + tag.headerLen;
+        const charId = guiView(bytes).getUint16(base, true);
+        let jpgData = bytes.slice(base + 2, base + tag.dataLen);
+        if (jpgData.length > 4 && jpgData[0] === 0xFF && jpgData[1] === 0xD9 &&
+            jpgData[2] === 0xFF && jpgData[3] === 0xD8) jpgData = jpgData.slice(4);
+        const dims = await new Promise(res => {
+          const url = URL.createObjectURL(new Blob([jpgData]));
+          const img = new Image();
+          img.onload = () => { URL.revokeObjectURL(url); res({ w: img.naturalWidth, h: img.naturalHeight }); };
+          img.onerror = () => { URL.revokeObjectURL(url); res({ w: 0, h: 0 }); };
+          img.src = url;
+        });
+        images.push({ charId, data: jpgData, width: dims.w, height: dims.h, tagType: 21,
+          tagOffset: tag.offset, tagHeaderLen: tag.headerLen, tagDataLen: tag.dataLen });
+      }
+    } catch (e) {
+      guiLog('  ⚠ tag type=' + tag.type + ' skip: ' + e.message, 'l-warn');
+      console.warn('SWF image tag skip (type=' + tag.type + '):', e);
+    }
+  }
+  if (images.length === 0) {
+    const imgTypes = [...new Set(tags.filter(t => [6,20,21,35,36].includes(t.type)).map(t => t.type))];
+    guiLog('  ⚠ 画像タグなし' + (imgTypes.length ? ' (検出タイプ: ' + imgTypes.join(',') + ')' : ''), 'l-warn');
+  }
+  return {
+    bytes, wasCompressed, tags, images,
+    imageInfos: images.map(img => ({ charId: img.charId, width: img.width, height: img.height,
+      tagType: img.tagType, tagOffset: img.tagOffset,
+      tagHeaderLen: img.tagHeaderLen, tagDataLen: img.tagDataLen })),
+  };
+}
+
+async function guiBuildSwf(fuiState, swfMeta) {
+  const mods = new Map();
+  for (let i = 0; i < fuiState.images.length; i++) {
+    if (fuiState.images[i]._modified) mods.set(fuiState.imageInfos[i].tagOffset, i);
+  }
+  if (!mods.size) {
+    return swfMeta.wasCompressed ? guiSwfRecompress(swfMeta.bytes) : swfMeta.bytes;
+  }
+  const bytes = swfMeta.bytes;
+  const parts = [];
+  let pos = 0;
+  for (const tag of swfMeta.tags) {
+    if (!mods.has(tag.offset)) continue;
+    if (tag.offset > pos) parts.push(bytes.slice(pos, tag.offset));
+    const i = mods.get(tag.offset);
+    const info = fuiState.imageInfos[i];
+    const img = fuiState.images[i];
+    let newTagBytes;
+    if (info.tagType === 36 || info.tagType === 20) {
+      const { tagData } = await guiSwfPngToLossless2Data(img.data, info.charId);
+      newTagBytes = guiSwfWriteTagBytes(36, tagData); // always write as type 36 (with alpha)
+    } else if (info.tagType === 21) {
+      const td = new Uint8Array(2 + img.data.length);
+      guiView(td).setUint16(0, info.charId, true);
+      td.set(img.data, 2);
+      newTagBytes = guiSwfWriteTagBytes(21, td);
+    }
+    parts.push(newTagBytes);
+    pos = tag.offset + tag.headerLen + tag.dataLen;
+  }
+  if (pos < bytes.length) parts.push(bytes.slice(pos));
+  let result = guiConcat(parts);
+  guiView(result).setUint32(4, result.length, true);
+  return swfMeta.wasCompressed ? guiSwfRecompress(result) : result;
+}
+
+async function guiSwfRecompress(bytes) {
+  const body = await guiDeflate(bytes.slice(8));
+  const result = new Uint8Array(8 + body.length);
+  result.set(bytes.slice(0, 8));
+  result[0] = 0x43; // 'C' → CWS
+  result.set(body, 8);
+  guiView(result).setUint32(4, result.length, true);
+  return result;
+}
+
 // ── File tree ──
 function guiBuildTreeModel(paths) {
   const root = {};
@@ -1802,7 +2139,7 @@ function guiRenderTreeNode(node) {
       li.appendChild(sub);
     } else {
       const ext = name.split('.').pop().toLowerCase();
-      const icon = ext === 'fui' ? '🎨' : ext === 'png' ? '🖼️' : ext === 'loc' ? '📝' : ext === 'col' ? '🎨' : '📄';
+      const icon = ext === 'fui' ? '🎨' : ext === 'swf' ? '🎬' : ext === 'png' ? '🖼️' : ext === 'loc' ? '📝' : ext === 'col' ? '🎨' : '📄';
       const span = document.createElement('span');
       span.className = 'gui-tree-file';
       span.dataset.path = val;
@@ -1889,6 +2226,7 @@ function guiApplyColorSwap(data) {
 // ── Right-panel reset ──
 function guiResetViewer() {
   guiFuiPath = null; guiFuiState = null; guiTxtPath = null;
+  guiIsSwf = false; guiSwfMeta = null;
   guiSelectedImgs = new Set();
   document.getElementById('guiFuiPanel').style.display = 'none';
   document.getElementById('guiTxtPanel').style.display = 'none';
@@ -1906,6 +2244,7 @@ function guiSelectFile(path) {
 
   const ext = path.split('.').pop().toLowerCase();
   if (ext === 'fui') guiOpenFui(path);
+  else if (ext === 'swf') guiOpenSwf(path);
   else if (ext === 'png') guiPreviewPng(path);
   else if (ext === 'txt') guiOpenTxt(path);
   else guiResetViewer();
@@ -1957,6 +2296,37 @@ function guiOpenFui(path) {
     guiLog(t('log.guiFuiOpened', path.split('\\').pop(), guiFuiState.images.length), 'l-ok');
   } catch (err) {
     guiLog(t('log.guiFuiErr', path.split('\\').pop(), err.message), 'l-warn');
+    console.error(err);
+  }
+}
+
+// ── SWF viewer ──
+async function guiOpenSwf(path) {
+  guiResetViewer();
+  const raw = guiArcFiles[path];
+  if (!raw) return;
+
+  try {
+    const buf = raw.buffer.slice(raw.byteOffset, raw.byteOffset + raw.byteLength);
+    const swfState = await guiParseSwf(buf);
+    guiSwfMeta = { bytes: swfState.bytes, wasCompressed: swfState.wasCompressed, tags: swfState.tags };
+    guiFuiState = {
+      images: swfState.images.map(img => ({
+        data: img.data,
+        info: { width: img.width, height: img.height },
+        _modified: false,
+      })),
+      imageInfos: swfState.imageInfos,
+    };
+    guiIsSwf = true;
+    guiFuiPath = path;
+    document.getElementById('guiFuiPanel').style.display = '';
+    document.getElementById('guiFuiTitle').textContent =
+      t('gui.fuiTitle', path.split('\\').pop(), guiFuiState.images.length);
+    guiRenderFuiImages();
+    guiLog(t('log.guiSwfOpened', path.split('\\').pop(), guiFuiState.images.length), 'l-ok');
+  } catch (err) {
+    guiLog(t('log.guiSwfErr', path.split('\\').pop(), err.message), 'l-warn');
     console.error(err);
   }
 }
@@ -2050,7 +2420,7 @@ function guiTxtSave() {
 async function guiSaveImage() {
   if (guiSelectedImgs.size === 0) return;
   const doSwap = document.getElementById('chkGuiColorSwap').checked;
-  const base = guiFuiPath ? guiFuiPath.split('\\').pop().replace(/\.fui$/i, '') : 'image';
+  const base = guiFuiPath ? guiFuiPath.split('\\').pop().replace(/\.(fui|swf)$/i, '') : 'image';
 
   for (const idx of guiSelectedImgs) {
     let data;
@@ -2097,6 +2467,7 @@ function guiReplaceImage() {
           const w = tmpImg.naturalWidth, h = tmpImg.naturalHeight;
           URL.revokeObjectURL(url);
           guiFuiState.images[idx].data = newData;
+          guiFuiState.images[idx]._modified = true;
           guiFuiState.imageInfos[idx].width = w;
           guiFuiState.imageInfos[idx].height = h;
           guiFuiState.imageInfos[idx].imageSize = newData.byteLength;
@@ -2115,13 +2486,18 @@ function guiReplaceImage() {
 }
 
 // ── Download ARC ──
-function guiDownloadArc() {
+async function guiDownloadArc() {
   if (guiFuiState && guiFuiPath) {
     try {
-      guiArcFiles[guiFuiPath] = guiBuildFui(guiFuiState);
-      guiLog(t('log.guiFuiUpdated', guiFuiPath.split('\\').pop()), 'l-ok');
+      if (guiIsSwf) {
+        guiArcFiles[guiFuiPath] = await guiBuildSwf(guiFuiState, guiSwfMeta);
+        guiLog(t('log.guiSwfUpdated', guiFuiPath.split('\\').pop()), 'l-ok');
+      } else {
+        guiArcFiles[guiFuiPath] = guiBuildFui(guiFuiState);
+        guiLog(t('log.guiFuiUpdated', guiFuiPath.split('\\').pop()), 'l-ok');
+      }
     } catch (err) {
-      guiLog(t('log.guiFuiWriteErr', err.message), 'l-warn'); return;
+      guiLog(t(guiIsSwf ? 'log.guiSwfWriteErr' : 'log.guiFuiWriteErr', err.message), 'l-warn'); return;
     }
   }
   try {
