@@ -8,5 +8,6 @@ export function drawTextureSlot(
   size: number,
 ): void {
   const frameSize = Math.min(image.width, image.height);
+  context.clearRect(x, y, size, size);
   context.drawImage(image.source, 0, 0, frameSize, frameSize, x, y, size, size);
 }

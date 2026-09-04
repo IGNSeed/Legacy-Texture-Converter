@@ -33,9 +33,9 @@ export function App() {
         )}
         <BaselinePanel
           disabled={busy}
-          loadedName={converter.baseline?.name}
+          status={converter.baselineStatus}
           validation={converter.baselineValidation}
-          onFiles={converter.loadBaseline}
+          onRetry={converter.loadBaseline}
         />
         <OutputEdition />
         <div className="convert-row">

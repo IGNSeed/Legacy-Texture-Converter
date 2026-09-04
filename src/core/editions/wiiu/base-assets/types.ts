@@ -24,7 +24,7 @@ export interface WiiUBaseAssetValidation {
 
 export interface WiiUBaseAssetSet {
   target: 'wiiu';
-  provider: 'user-supplied';
+  provider: 'bundled' | 'user-supplied';
   name: string;
   files: OutputFile[];
   byPath: ReadonlyMap<string, Blob>;

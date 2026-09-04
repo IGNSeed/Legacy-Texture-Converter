@@ -31,12 +31,11 @@
   },
   "baseline": {
     "heading": "Wii U 基準アセット",
-    "description": "ご自身が正当に取得した Wii U リソース dump の BASE / UPD ZIP を同時に選ぶか、それらを含むフォルダを選択してください。ファイルは外部送信せず、ブラウザ内で統合します。",
-    "archives": "BASE + UPD ZIP を選択",
-    "folder": "Wii U フォルダを選択",
-    "loaded": "基準アセット準備完了: {{name}}",
-    "missing": "選択した基準アセットには必須ファイルが {{count}} 個不足しています。",
-    "problems": "基準リソースを使用できません。不足 {{missing}} 件、無効 {{invalid}} 件です。",
+    "description": "公開済みの Wii U 基準アセットをブラウザへ自動的に読み込みます。手動で選択またはアップロードする必要はありません。",
+    "loading": "基準アセットを読み込んでいます…",
+    "loaded": "基準アセットの準備が完了しました。",
+    "unavailable": "基準アセットを読み込めませんでした。通信状態を確認して再試行してください。",
+    "retry": "再試行",
     "validation": "基準リソース検証結果",
     "ok": "OK",
     "issueCount": "問題 {{count}} 件",
@@ -61,7 +60,7 @@
   },
   "progress": {
     "heading": "進行状況",
-    "reading": "基準アセットを読み込んでいます…",
+    "reading": "入力ファイルを読み込んでいます…",
     "analyzing": "パックを解析しています…",
     "mapping": "マッピングを解決しています…",
     "images": "画像を処理しています…",
@@ -104,14 +103,14 @@
     "empty-input": "1つ以上のファイルを選択してください。",
     "empty-pack": "対応するテクスチャがパック内に見つかりませんでした。",
     "unknown-edition": "この入力が Java Edition か Bedrock Edition かを選択してください。",
-    "baseline-incomplete": "変換前に完全な Wii U BASE + UPD 基準アセットを選択してください。",
+    "baseline-incomplete": "公開済みの Wii U 基準アセットの読込完了後に、もう一度お試しください。",
     "baseline-invalid": "Wii U 基準リソースに無効なPNGまたは想定外のvanilla atlasサイズが含まれています。",
     "unsafe-path": "アーカイブ内に危険なパスがあるため拒否しました。",
     "canvas-limit": "要求されたアトラスがブラウザで安全に扱えるサイズを超えています。",
     "generic": "パックを処理できませんでした。アーカイブと PNG が有効か確認してください。"
   },
   "footer": {
-    "note": "Wii U 出力は確認済みの BASE + UPD リソース構造から構築します。Switch 出力は未実装です。",
+    "note": "Wii U 出力は公開済みの基準アセットと、確認済みの BASE + UPD リソース構造から構築します。Switch 出力は未実装です。",
     "disclaimer": "Minecraft の公式製品ではありません。Mojang または Microsoft の承認・提携を受けていません。"
   }
 }

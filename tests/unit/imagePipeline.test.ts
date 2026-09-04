@@ -7,15 +7,17 @@ import { createConversionReport } from '../../src/core/report/createConversionRe
 interface CanvasMock {
   canvas: HTMLCanvasElement;
   context: CanvasRenderingContext2D;
+  clearRect: ReturnType<typeof vi.fn>;
   drawImage: ReturnType<typeof vi.fn>;
   getContext: ReturnType<typeof vi.fn>;
 }
 
 function canvasMock(): CanvasMock {
+  const clearRect = vi.fn();
   const drawImage = vi.fn();
   const context = {
     imageSmoothingEnabled: true,
-    clearRect: vi.fn(),
+    clearRect,
     drawImage,
   } as unknown as CanvasRenderingContext2D;
   const getContext = vi.fn(() => context);
@@ -25,7 +27,7 @@ function canvasMock(): CanvasMock {
     getContext,
     toBlob: vi.fn((callback: BlobCallback) => callback(new Blob(['png'], { type: 'image/png' }))),
   } as unknown as HTMLCanvasElement;
-  return { canvas, context, drawImage, getContext };
+  return { canvas, context, clearRect, drawImage, getContext };
 }
 
 afterEach(() => {
@@ -34,7 +36,7 @@ afterEach(() => {
 });
 
 describe('browser image pipeline', () => {
-  it('places an item in its verified atlas slot with smoothing disabled', async () => {
+  it('clears and replaces an item slot with smoothing disabled', async () => {
     const mock = canvasMock();
     vi.spyOn(document, 'createElement').mockReturnValue(mock.canvas);
     vi.stubGlobal(
@@ -78,6 +80,10 @@ describe('browser image pipeline', () => {
       64,
       16,
       16,
+    );
+    expect(mock.clearRect).toHaveBeenCalledWith(48, 64, 16, 16);
+    expect(mock.clearRect.mock.invocationCallOrder[0]).toBeLessThan(
+      mock.drawImage.mock.invocationCallOrder[1],
     );
     expect(report.converted).toBe(1);
   });

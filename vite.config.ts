@@ -8,8 +8,6 @@ export function basePathForMode(mode: string): string {
 
 export default defineConfig(({ mode }) => ({
   base: basePathForMode(mode),
-  // Game-derived baseline files are always user supplied and must never be copied into dist.
-  publicDir: false,
   plugins: [react()],
   test: {
     environment: 'jsdom',

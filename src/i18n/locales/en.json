@@ -31,12 +31,11 @@
   },
   "baseline": {
     "heading": "Wii U baseline",
-    "description": "Select BASE and UPD archives together, or a folder containing your own legally obtained Wii U resource dump. The files remain in this browser and are merged locally.",
-    "archives": "Choose BASE + UPD ZIPs",
-    "folder": "Choose Wii U folder",
-    "loaded": "Baseline ready: {{name}}",
-    "missing": "The selected baseline is missing {{count}} required files.",
-    "problems": "Baseline validation failed: {{missing}} missing, {{invalid}} invalid.",
+    "description": "The published Wii U baseline is loaded automatically in your browser. No manual selection or upload is required.",
+    "loading": "Loading the baseline assets…",
+    "loaded": "The baseline assets are ready.",
+    "unavailable": "The baseline assets could not be loaded. Check your connection and try again.",
+    "retry": "Try again",
     "validation": "Baseline validation",
     "ok": "OK",
     "issueCount": "{{count}} issue(s)",
@@ -61,7 +60,7 @@
   },
   "progress": {
     "heading": "Progress",
-    "reading": "Reading the baseline assets…",
+    "reading": "Reading the input files…",
     "analyzing": "Analyzing the pack…",
     "mapping": "Resolving texture mappings…",
     "images": "Processing images…",
@@ -104,14 +103,14 @@
     "empty-input": "Choose at least one file.",
     "empty-pack": "No supported texture files were found in this pack.",
     "unknown-edition": "Select Java Edition or Bedrock Edition for this input.",
-    "baseline-incomplete": "Select a complete Wii U BASE + UPD baseline before converting.",
+    "baseline-incomplete": "Wait for the published Wii U baseline to load, then try again.",
     "baseline-invalid": "The Wii U baseline contains an invalid PNG or unexpected vanilla atlas size.",
     "unsafe-path": "The archive contains an unsafe path and was rejected.",
     "canvas-limit": "The requested atlas is too large for a safe browser canvas.",
     "generic": "The pack could not be processed. Check that the archive and PNG files are valid."
   },
   "footer": {
-    "note": "Wii U output is built from the verified BASE + UPD resource layout. Switch output is not implemented yet.",
+    "note": "Wii U output is built from the published baseline and the verified BASE + UPD resource layout. Switch output is not implemented yet.",
     "disclaimer": "NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT."
   }
 }

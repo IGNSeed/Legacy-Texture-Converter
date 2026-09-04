@@ -8,6 +8,7 @@ Java Edition / Bedrock Edition のテクスチャパックを、Minecraft: Wii U
 - Bedrock: ZIP、MCPACK、展開済みフォルダ、個別 PNG
 - ファイル選択、フォルダ選択、ドラッグ＆ドロップ
 - Java / Bedrock の自動判定と、判定不能時の手動選択
+- 公開済み Wii U 基準アセットの自動読み込み（手動アップロード不要）
 - Wii U の `items.png` / `terrain.png` / `particles.png` atlas 生成
 - 16px / 32px block と、64px 以上から 32px への nearest-neighbor 縮小
 - 入力解像度に追従する item atlas
@@ -30,9 +31,9 @@ Common/res/TitleUpdate/res/terrainMipMapLevel3.png
 Common/res/TitleUpdate/res/particles.png
 ```
 
-変換前に、ご自身が正当に取得した Wii U リソース dump の BASE / UPD ZIP を同時に選択するか、両方を含むフォルダを選択します。アプリは必要な基準ファイルをブラウザ内で統合し、入力パックに存在しない対象をそのまま維持します。ゲームファイルはリポジトリや外部サーバーへ送信されません。
+Wii U 基準アセットは公開用 ZIP としてアプリに同梱され、ページを開くとブラウザへ自動的に読み込まれます。利用者が BASE / UPD ZIP やフォルダを選択する必要はありません。入力テクスチャパックも引き続き外部サーバーへ送信されず、変換処理はブラウザ内で完結します。
 
-基準リソースは `UserProvidedWiiUBaseAssetProvider` が読み込み、`UPD > BASE` の優先順位で統合してから、PNG形式・vanilla atlas解像度・必須カテゴリを検証した `WiiUBaseAssetSet` として変換処理へ渡します。`items.png`、`terrain.png`、`particles.png` はWii U vanilla画像を土台にし、認識したslotだけを上書きします。高解像度時も土台全体をnearest-neighborで拡大するため、未変更slotは維持されます。
+基準リソースは `BundledWiiUBaseAssetProvider` が Pages の base URL に対応したパスから読み込み、PNG 形式・vanilla atlas 解像度・必須カテゴリを検証した `WiiUBaseAssetSet` として変換処理へ渡します。`items.png`、`terrain.png`、`particles.png` は Wii U vanilla 画像を土台にしますが、認識した slot は描画前に完全消去してから入力テクスチャを配置します。これにより入力画像の透明部分から元アイコンが透けず、slot 単位で置き換わります。入力に存在しない slot は基準画像のまま維持されます。
 
 Java / Bedrock にのみ存在し、Wii U の対応先が確認できないテクスチャは、空き slot へ配置せず未対応として報告します。
 
@@ -65,7 +66,15 @@ npm run test
 npm run build
 ```
 
-`dist/` はGitHub project page用の `/Legacy-Texture-Converter/` baseで生成されます。`npm run build` はPages用URLと、ローカル専用ファイル・未審査画像が混入していないことも検査します。
+`dist/` は GitHub project page 用の `/Legacy-Texture-Converter/` base で生成されます。`npm run build` は Pages 用 URL、ローカル専用ファイルの非混入、公開基準アセット ZIP の内容が manifest と一致することも検査します。
+
+公開基準アセットを管理者が更新する場合は、ローカル専用の `LocalAssets/wiiu/default/` を確認したうえで次を実行します。
+
+```bash
+npm run assets:bundle
+```
+
+このコマンドは `data/mappings/wiiu/default-assets.json` に列挙されたファイルだけを `public/assets/wiiu/default/wiiu-base-assets.zip` へ格納します。`LocalAssets/` と `References/` 自体は公開されません。
 
 ## GitHub Pages
 
@@ -82,7 +91,7 @@ https://ignseed.github.io/Legacy-Texture-Converter/
 - `src/core/parsers/java/` — Java pack の検出・正規化
 - `src/core/parsers/bedrock/` — Bedrock pack の検出・正規化
 - `data/mappings/wiiu/` — atlas、armor、特殊画像、alias のマッピング
-- `src/core/editions/wiiu/base-assets/` — provider、BASE/UPD統合、検証、型付き基準アセット
+- `src/core/editions/wiiu/base-assets/` — 公開アセット provider、BASE/UPD 統合、検証、型付き基準アセット
 - `src/core/editions/wiiu/` — Wii U 固有の出力・変換 adapter
 - `src/core/atlas/`, `image/`, `mipmap/`, `packaging/` — 共通処理
 - `src/i18n/` — 日本語 / 英語 locale
@@ -95,6 +104,6 @@ Nintendo Switch Edition は未実装ですが、target edition adapter を追加
 - Wii U に存在しない新しい Java / Bedrock コンテンツは変換しません。
 - 複雑な Bedrock flipbook や、標準外の Java animation 定義は完全には再現できない場合があります。その場合は警告し、確認済みの Wii U 既定シーケンスを維持します。
 - 非常に大きな item atlas がブラウザの安全な canvas 上限を超える場合は、明示的なエラーで停止します。
-- 権利保護のため Wii U のゲームアセットは同梱しません。変換には利用者自身の BASE + UPD リソース dump が必要です。
-- 開発者がローカル確認用に置くゲームアセットは `LocalAssets/` または `.local-assets/` を使用できます。両方ともGit管理・production buildの対象外です。
+- 公開基準アセットには第三者のゲーム素材が含まれます。コードの GPL-3.0 ライセンスは、それらの素材に対する権利を付与しません。詳細は `THIRD_PARTY_NOTICES.md` を確認してください。
+- 基準アセットの再生成元には `LocalAssets/` または `.local-assets/` を使用できます。両方とも Git 管理・production build の対象外です。
 - 実機またはエミュレーターでの表示確認は、生成したパックごとに行ってください。

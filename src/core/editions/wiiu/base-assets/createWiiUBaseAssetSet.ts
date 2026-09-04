@@ -1,12 +1,13 @@
 import type { OutputFile } from '../../../../types/conversion';
 import { WIIU_PATHS } from '../paths';
 import { baseAssetGroup } from './manifest';
-import type { WiiUBaseAssetLoadResult } from './types';
+import type { WiiUBaseAssetLoadResult, WiiUBaseAssetSet } from './types';
 import { validateWiiUBaseAssets } from './validateWiiUBaseAssets';
 
 export async function createWiiUBaseAssetSet(
   name: string,
   files: readonly OutputFile[],
+  provider: WiiUBaseAssetSet['provider'] = 'user-supplied',
 ): Promise<WiiUBaseAssetLoadResult> {
   const validation = await validateWiiUBaseAssets(files);
   if (!validation.valid) return { validation };
@@ -21,7 +22,7 @@ export async function createWiiUBaseAssetSet(
     validation,
     assetSet: {
       target: 'wiiu',
-      provider: 'user-supplied',
+      provider,
       name,
       files: [...files],
       byPath,

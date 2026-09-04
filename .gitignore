@@ -3,8 +3,7 @@ AGENTS.md
 References/
 .codex/
 
-# Locally extracted game assets must never be published
-public/assets/wiiu/default/
+# Local source copies used to regenerate the reviewed public baseline archive
 LocalAssets/
 .local-assets/
 

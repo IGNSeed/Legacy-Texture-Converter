@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { analyzePack, type PackSummary } from '../core/analysis/analyzePack';
 import {
-  UserProvidedWiiUBaseAssetProvider,
+  BundledWiiUBaseAssetProvider,
   type WiiUBaseAssetSet,
   type WiiUBaseAssetValidation,
 } from '../core/editions/wiiu/base-assets';
@@ -17,6 +17,8 @@ import type {
   ParsedPack,
   SourceEdition,
 } from '../types/conversion';
+
+type BaselineStatus = 'loading' | 'ready' | 'error';
 
 export type AppStatus =
   'idle' | 'reading' | 'analyzing' | 'ready' | 'converting' | 'success' | 'error';
@@ -43,6 +45,15 @@ function errorCode(error: unknown): string {
   return 'generic';
 }
 
+async function loadPublishedBaseline(): Promise<{
+  assetSet: WiiUBaseAssetSet;
+  validation: WiiUBaseAssetValidation;
+}> {
+  const loaded = await new BundledWiiUBaseAssetProvider().load();
+  if (!loaded.assetSet) throw new Error('baseline-invalid');
+  return { assetSet: loaded.assetSet, validation: loaded.validation };
+}
+
 export function useTextureConverter() {
   const [status, setStatus] = useState<AppStatus>('idle');
   const [rawInput, setRawInput] = useState<RawInput>();
@@ -51,6 +62,7 @@ export function useTextureConverter() {
   const [progress, setProgress] = useState<ConversionProgress>();
   const [result, setResult] = useState<ConversionResult>();
   const [baseline, setBaseline] = useState<WiiUBaseAssetSet>();
+  const [baselineStatus, setBaselineStatus] = useState<BaselineStatus>('loading');
   const [baselineValidation, setBaselineValidation] = useState<WiiUBaseAssetValidation>();
   const [error, setError] = useState<string>();
 
@@ -137,31 +149,37 @@ export function useTextureConverter() {
     [analyze, rawInput],
   );
 
-  const loadBaseline = useCallback(
-    async (files: readonly File[]) => {
-      try {
-        setStatus('reading');
-        setProgress({ stage: 'reading', percent: 2 });
-        setError(undefined);
-        setResult(undefined);
-        const provider = new UserProvidedWiiUBaseAssetProvider(files);
-        const loaded = await provider.load();
+  const loadBaseline = useCallback(async () => {
+    setBaselineStatus('loading');
+    setBaseline(undefined);
+    setBaselineValidation(undefined);
+
+    try {
+      const loaded = await loadPublishedBaseline();
+      setBaselineValidation(loaded.validation);
+      setBaseline(loaded.assetSet);
+      setBaselineStatus('ready');
+    } catch {
+      setBaselineStatus('error');
+    }
+  }, []);
+
+  useEffect(() => {
+    let active = true;
+    void loadPublishedBaseline()
+      .then((loaded) => {
+        if (!active) return;
         setBaselineValidation(loaded.validation);
-        if (!loaded.assetSet) {
-          throw new Error(
-            loaded.validation.invalid.length > 0 ? 'baseline-invalid' : 'baseline-incomplete',
-          );
-        }
         setBaseline(loaded.assetSet);
-        setStatus(pack ? 'ready' : 'idle');
-      } catch (reason) {
-        setBaseline(undefined);
-        setError(errorCode(reason));
-        setStatus('error');
-      }
-    },
-    [pack],
-  );
+        setBaselineStatus('ready');
+      })
+      .catch(() => {
+        if (active) setBaselineStatus('error');
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   const convert = useCallback(async () => {
     if (!pack) {
@@ -195,6 +213,7 @@ export function useTextureConverter() {
     progress,
     result,
     baseline,
+    baselineStatus,
     baselineValidation,
     downloadUrl,
     error,
