@@ -98,7 +98,3 @@ Nintendo Switch Edition は未実装ですが、target edition adapter を追加
 - 権利保護のため Wii U のゲームアセットは同梱しません。変換には利用者自身の BASE + UPD リソース dump が必要です。
 - 開発者がローカル確認用に置くゲームアセットは `LocalAssets/` または `.local-assets/` を使用できます。両方ともGit管理・production buildの対象外です。
 - 実機またはエミュレーターでの表示確認は、生成したパックごとに行ってください。
-
-## ライセンス
-
-本プロジェクトは [GNU General Public License v3.0](LICENSE) で公開します。Minecraft は Microsoft / Mojang の商標であり、このプロジェクトは公式製品ではありません。ゲーム由来のアセットは配布しません。詳しくは [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) を確認してください。
