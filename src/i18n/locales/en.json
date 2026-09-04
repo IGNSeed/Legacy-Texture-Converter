@@ -35,7 +35,18 @@
     "archives": "Choose BASE + UPD ZIPs",
     "folder": "Choose Wii U folder",
     "loaded": "Baseline ready: {{name}}",
-    "missing": "The selected baseline is missing {{count}} required files."
+    "missing": "The selected baseline is missing {{count}} required files.",
+    "problems": "Baseline validation failed: {{missing}} missing, {{invalid}} invalid.",
+    "validation": "Baseline validation",
+    "ok": "OK",
+    "issueCount": "{{count}} issue(s)",
+    "groups": {
+      "items": "items.png",
+      "terrain": "terrain and mipmaps",
+      "particles": "particles.png",
+      "armor": "Armor",
+      "specialTextures": "Fire, water, lava, and glint"
+    }
   },
   "output": {
     "heading": "Output edition",
@@ -94,6 +105,7 @@
     "empty-pack": "No supported texture files were found in this pack.",
     "unknown-edition": "Select Java Edition or Bedrock Edition for this input.",
     "baseline-incomplete": "Select a complete Wii U BASE + UPD baseline before converting.",
+    "baseline-invalid": "The Wii U baseline contains an invalid PNG or unexpected vanilla atlas size.",
     "unsafe-path": "The archive contains an unsafe path and was rejected.",
     "canvas-limit": "The requested atlas is too large for a safe browser canvas.",
     "generic": "The pack could not be processed. Check that the archive and PNG files are valid."

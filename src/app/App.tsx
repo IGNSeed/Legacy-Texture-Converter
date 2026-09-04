@@ -34,7 +34,7 @@ export function App() {
         <BaselinePanel
           disabled={busy}
           loadedName={converter.baseline?.name}
-          missingCount={converter.baselineMissing.length}
+          validation={converter.baselineValidation}
           onFiles={converter.loadBaseline}
         />
         <OutputEdition />

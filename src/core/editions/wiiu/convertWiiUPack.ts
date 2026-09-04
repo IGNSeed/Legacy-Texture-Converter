@@ -30,6 +30,7 @@ import {
   resolveParticleResolution,
 } from '../../validation/resolution';
 import { WIIU_PATHS } from './paths';
+import type { WiiUBaseAssetSet } from './base-assets';
 
 function progress(
   onProgress: ProgressCallback | undefined,
@@ -37,12 +38,6 @@ function progress(
   percent: number,
 ): void {
   onProgress?.({ stage, percent });
-}
-
-function findBlob(files: readonly OutputFile[], path: string): Blob {
-  const blob = files.find((file) => file.path === path)?.blob;
-  if (!blob) throw new Error(`missing-default-asset:${path}`);
-  return blob;
 }
 
 function mappedTextures(pack: ParsedPack, category: ParsedTexture['category']): ParsedTexture[] {
@@ -65,7 +60,7 @@ function texturesFor(pack: ParsedPack, category: ParsedTexture['category']): Par
 
 export async function convertWiiUPack(
   pack: ParsedPack,
-  baseline: readonly OutputFile[],
+  baseline: WiiUBaseAssetSet,
   onProgress?: ProgressCallback,
 ): Promise<ConversionResult> {
   const report = createConversionReport(pack);
@@ -73,7 +68,7 @@ export async function convertWiiUPack(
   const overrides: OutputFile[] = [];
 
   progress(onProgress, 'reading', 5);
-  const defaults = [...baseline];
+  const defaults = [...baseline.files];
   progress(onProgress, 'mapping', 15);
 
   const items = mappedTextures(pack, 'item');
@@ -100,7 +95,7 @@ export async function convertWiiUPack(
   progress(onProgress, 'images', 28);
 
   const itemAtlas = await composeAtlas({
-    base: findBlob(defaults, WIIU_PATHS.items),
+    base: baseline.atlases.items,
     mapping: itemMappings,
     textures: items,
     targetSlotSize: itemResolution,
@@ -111,7 +106,7 @@ export async function convertWiiUPack(
   overrides.push({ path: WIIU_PATHS.items, blob: itemAtlas });
 
   const terrainAtlas = await composeAtlas({
-    base: findBlob(defaults, WIIU_PATHS.terrain),
+    base: baseline.atlases.terrain,
     mapping: terrainMappings,
     textures: terrain,
     targetSlotSize: blockResolution,
@@ -138,7 +133,7 @@ export async function convertWiiUPack(
   );
   progress(onProgress, 'mipmap', 62);
 
-  let particleBase = findBlob(defaults, WIIU_PATHS.particles);
+  let particleBase = baseline.atlases.particles;
   if (fullParticleAtlas) {
     processed.add(fullParticleAtlas.sourcePath);
     try {

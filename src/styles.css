@@ -264,6 +264,31 @@ button:disabled {
   color: #e8b993;
 }
 
+.baseline-validation {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 7px 16px;
+  padding: 0;
+  margin: 14px 0 0;
+  list-style: none;
+}
+
+.baseline-validation li {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  color: #a7acab;
+  font-size: 0.78rem;
+}
+
+.baseline-validation .is-valid strong {
+  color: #aaceb4;
+}
+
+.baseline-validation .is-invalid strong {
+  color: #e8b993;
+}
+
 .baseline-buttons {
   max-width: 250px;
 }

@@ -1,16 +1,15 @@
 import type {
   ConversionResult,
-  OutputFile,
   ParsedPack,
   ProgressCallback,
   TargetEdition,
 } from '../../../types/conversion';
 
-export interface TargetEditionAdapter {
+export interface TargetEditionAdapter<TBaseAssets> {
   id: TargetEdition;
   convert(
     pack: ParsedPack,
-    baseline: readonly OutputFile[],
+    baseline: TBaseAssets,
     onProgress?: ProgressCallback,
   ): Promise<ConversionResult>;
 }

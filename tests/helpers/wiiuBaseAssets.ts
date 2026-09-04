@@ -1,0 +1,14 @@
+import {
+  EXPECTED_WIIU_BASE_DIMENSIONS,
+  WIIU_BASE_ASSET_PATHS,
+} from '../../src/core/editions/wiiu/base-assets/manifest';
+import type { OutputFile } from '../../src/types/conversion';
+import { pngBlob } from './png';
+
+export function completeWiiUBaseFiles(marker = 'base'): OutputFile[] {
+  return WIIU_BASE_ASSET_PATHS.map((path) => {
+    if (!path.endsWith('.png')) return { path, blob: new Blob([marker], { type: 'text/plain' }) };
+    const dimensions = EXPECTED_WIIU_BASE_DIMENSIONS[path] ?? { width: 16, height: 16 };
+    return { path, blob: pngBlob(dimensions.width, dimensions.height, marker) };
+  });
+}

@@ -7,12 +7,12 @@ const STORAGE_KEY = 'legacy-texture-converter-language';
 
 function initialLanguage(): 'ja' | 'en' {
   try {
-    const stored = localStorage.getItem(STORAGE_KEY);
+    const stored = window.localStorage.getItem(STORAGE_KEY);
     if (stored === 'ja' || stored === 'en') return stored;
   } catch {
     // Storage can be unavailable in hardened or private browser contexts.
   }
-  return navigator.language.toLowerCase().startsWith('ja') ? 'ja' : 'en';
+  return window.navigator.language.toLowerCase().startsWith('ja') ? 'ja' : 'en';
 }
 
 void i18n.use(initReactI18next).init({
@@ -24,13 +24,13 @@ void i18n.use(initReactI18next).init({
 
 i18n.on('languageChanged', (language) => {
   try {
-    localStorage.setItem(STORAGE_KEY, language.startsWith('ja') ? 'ja' : 'en');
+    window.localStorage.setItem(STORAGE_KEY, language.startsWith('ja') ? 'ja' : 'en');
   } catch {
     // Language switching still works for the current page without storage.
   }
-  document.documentElement.lang = language.startsWith('ja') ? 'ja' : 'en';
+  window.document.documentElement.lang = language.startsWith('ja') ? 'ja' : 'en';
 });
 
-document.documentElement.lang = i18n.language.startsWith('ja') ? 'ja' : 'en';
+window.document.documentElement.lang = i18n.language.startsWith('ja') ? 'ja' : 'en';
 
 export default i18n;

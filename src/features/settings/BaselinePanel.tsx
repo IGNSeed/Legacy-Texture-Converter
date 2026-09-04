@@ -1,14 +1,20 @@
 import { useRef, type ChangeEvent } from 'react';
 import { useTranslation } from 'react-i18next';
+import type {
+  WiiUBaseAssetGroup,
+  WiiUBaseAssetValidation,
+} from '../../core/editions/wiiu/base-assets';
 
 interface BaselinePanelProps {
   disabled: boolean;
   loadedName?: string;
-  missingCount: number;
+  validation?: WiiUBaseAssetValidation;
   onFiles: (files: File[]) => Promise<void>;
 }
 
-export function BaselinePanel({ disabled, loadedName, missingCount, onFiles }: BaselinePanelProps) {
+const GROUPS: WiiUBaseAssetGroup[] = ['items', 'terrain', 'particles', 'armor', 'specialTextures'];
+
+export function BaselinePanel({ disabled, loadedName, validation, onFiles }: BaselinePanelProps) {
   const { t } = useTranslation();
   const archiveInput = useRef<HTMLInputElement>(null);
   const folderInput = useRef<HTMLInputElement>(null);
@@ -27,10 +33,27 @@ export function BaselinePanel({ disabled, loadedName, missingCount, onFiles }: B
         {loadedName && (
           <strong className="loaded-baseline">{t('baseline.loaded', { name: loadedName })}</strong>
         )}
-        {!loadedName && missingCount > 0 && (
+        {!loadedName && validation && !validation.valid && (
           <strong className="missing-baseline">
-            {t('baseline.missing', { count: missingCount })}
+            {t('baseline.problems', {
+              missing: validation.missing.length,
+              invalid: validation.invalid.length,
+            })}
           </strong>
+        )}
+        {validation && (
+          <ul className="baseline-validation" aria-label={t('baseline.validation')}>
+            {GROUPS.map((group) => (
+              <li className={validation.groups[group].ok ? 'is-valid' : 'is-invalid'} key={group}>
+                <span>{t(`baseline.groups.${group}`)}</span>
+                <strong>
+                  {validation.groups[group].ok
+                    ? t('baseline.ok')
+                    : t('baseline.issueCount', { count: validation.groups[group].issues.length })}
+                </strong>
+              </li>
+            ))}
+          </ul>
         )}
       </div>
       <div className="button-row baseline-buttons">

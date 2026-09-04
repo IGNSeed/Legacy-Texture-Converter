@@ -35,7 +35,18 @@
     "archives": "BASE + UPD ZIP を選択",
     "folder": "Wii U フォルダを選択",
     "loaded": "基準アセット準備完了: {{name}}",
-    "missing": "選択した基準アセットには必須ファイルが {{count}} 個不足しています。"
+    "missing": "選択した基準アセットには必須ファイルが {{count}} 個不足しています。",
+    "problems": "基準リソースを使用できません。不足 {{missing}} 件、無効 {{invalid}} 件です。",
+    "validation": "基準リソース検証結果",
+    "ok": "OK",
+    "issueCount": "問題 {{count}} 件",
+    "groups": {
+      "items": "items.png",
+      "terrain": "terrain と mipmap",
+      "particles": "particles.png",
+      "armor": "防具",
+      "specialTextures": "fire・water・lava・glint"
+    }
   },
   "output": {
     "heading": "出力エディション",
@@ -94,6 +105,7 @@
     "empty-pack": "対応するテクスチャがパック内に見つかりませんでした。",
     "unknown-edition": "この入力が Java Edition か Bedrock Edition かを選択してください。",
     "baseline-incomplete": "変換前に完全な Wii U BASE + UPD 基準アセットを選択してください。",
+    "baseline-invalid": "Wii U 基準リソースに無効なPNGまたは想定外のvanilla atlasサイズが含まれています。",
     "unsafe-path": "アーカイブ内に危険なパスがあるため拒否しました。",
     "canvas-limit": "要求されたアトラスがブラウザで安全に扱えるサイズを超えています。",
     "generic": "パックを処理できませんでした。アーカイブと PNG が有効か確認してください。"

@@ -1,17 +1,19 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { analyzePack, type PackSummary } from '../core/analysis/analyzePack';
+import {
+  UserProvidedWiiUBaseAssetProvider,
+  type WiiUBaseAssetSet,
+  type WiiUBaseAssetValidation,
+} from '../core/editions/wiiu/base-assets';
 import { wiiuAdapter } from '../core/editions/wiiu/wiiuAdapter';
-import { resolveDefaultAssets } from '../core/editions/wiiu/resolveDefaultAssets';
 import { readDroppedItems } from '../core/files/readDroppedItems';
 import { readInputFiles, type ReadInputResult } from '../core/files/readInputFiles';
-import { readWiiUBaseline } from '../core/files/readWiiUBaseline';
 import { UnsafeArchivePathError } from '../core/files/normalizeArchivePath';
 import { detectPackEdition } from '../core/parsers/detectPackEdition';
 import { parsePack } from '../core/parsers/parsePack';
 import type {
   ConversionProgress,
   ConversionResult,
-  OutputFile,
   ParsedPack,
   SourceEdition,
 } from '../types/conversion';
@@ -23,19 +25,18 @@ interface RawInput extends ReadInputResult {
   detectedEdition: SourceEdition;
 }
 
-export interface BaselineState {
-  name: string;
-  files: OutputFile[];
-}
-
 function errorCode(error: unknown): string {
   if (error instanceof UnsafeArchivePathError) return 'unsafe-path';
   if (error instanceof Error) {
     if (error.message.startsWith('canvas-limit')) return 'canvas-limit';
     if (
-      ['empty-input', 'empty-pack', 'unknown-edition', 'baseline-incomplete'].includes(
-        error.message,
-      )
+      [
+        'empty-input',
+        'empty-pack',
+        'unknown-edition',
+        'baseline-incomplete',
+        'baseline-invalid',
+      ].includes(error.message)
     )
       return error.message;
   }
@@ -49,8 +50,8 @@ export function useTextureConverter() {
   const [summary, setSummary] = useState<PackSummary>();
   const [progress, setProgress] = useState<ConversionProgress>();
   const [result, setResult] = useState<ConversionResult>();
-  const [baseline, setBaseline] = useState<BaselineState>();
-  const [baselineMissing, setBaselineMissing] = useState<string[]>([]);
+  const [baseline, setBaseline] = useState<WiiUBaseAssetSet>();
+  const [baselineValidation, setBaselineValidation] = useState<WiiUBaseAssetValidation>();
   const [error, setError] = useState<string>();
 
   const downloadUrl = useMemo(
@@ -143,11 +144,15 @@ export function useTextureConverter() {
         setProgress({ stage: 'reading', percent: 2 });
         setError(undefined);
         setResult(undefined);
-        const input = await readWiiUBaseline(files);
-        const resolved = resolveDefaultAssets(input.files);
-        setBaselineMissing(resolved.missing);
-        if (resolved.missing.length > 0) throw new Error('baseline-incomplete');
-        setBaseline({ name: input.name, files: resolved.files });
+        const provider = new UserProvidedWiiUBaseAssetProvider(files);
+        const loaded = await provider.load();
+        setBaselineValidation(loaded.validation);
+        if (!loaded.assetSet) {
+          throw new Error(
+            loaded.validation.invalid.length > 0 ? 'baseline-invalid' : 'baseline-incomplete',
+          );
+        }
+        setBaseline(loaded.assetSet);
         setStatus(pack ? 'ready' : 'idle');
       } catch (reason) {
         setBaseline(undefined);
@@ -173,7 +178,7 @@ export function useTextureConverter() {
       setError(undefined);
       setResult(undefined);
       setStatus('converting');
-      const conversion = await wiiuAdapter.convert(pack, baseline.files, setProgress);
+      const conversion = await wiiuAdapter.convert(pack, baseline, setProgress);
       setResult(conversion);
       setStatus('success');
     } catch (reason) {
@@ -190,7 +195,7 @@ export function useTextureConverter() {
     progress,
     result,
     baseline,
-    baselineMissing,
+    baselineValidation,
     downloadUrl,
     error,
     loadFiles,

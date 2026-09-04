@@ -1,8 +1,9 @@
 import JSZip from 'jszip';
 import { afterEach, describe, expect, it, vi } from 'vitest';
+import { createWiiUBaseAssetSet } from '../../src/core/editions/wiiu/base-assets';
 import { convertWiiUPack } from '../../src/core/editions/wiiu/convertWiiUPack';
-import { requiredDefaultAssetPaths } from '../../src/core/editions/wiiu/resolveDefaultAssets';
 import type { ParsedTexture } from '../../src/types/conversion';
+import { completeWiiUBaseFiles } from '../helpers/wiiuBaseAssets';
 
 function fakeCanvas(): HTMLCanvasElement {
   const context = {
@@ -48,10 +49,8 @@ describe('complete Wii U conversion pipeline', () => {
         }),
       ),
     );
-    const baseline = requiredDefaultAssetPaths().map((path) => ({
-      path,
-      blob: new Blob(['default']),
-    }));
+    const loadedBaseline = await createWiiUBaseAssetSet('test', completeWiiUBaseFiles());
+    if (!loadedBaseline.assetSet) throw new Error('test baseline was not created');
     const result = await convertWiiUPack(
       {
         name: 'Example.zip',
@@ -83,7 +82,7 @@ describe('complete Wii U conversion pipeline', () => {
           ),
         ],
       },
-      baseline,
+      loadedBaseline.assetSet,
     );
 
     expect(result.downloadName).toBe('Example_WiiU.zip');

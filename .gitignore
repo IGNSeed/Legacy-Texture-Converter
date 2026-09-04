@@ -5,6 +5,8 @@ References/
 
 # Locally extracted game assets must never be published
 public/assets/wiiu/default/
+LocalAssets/
+.local-assets/
 
 # Node
 node_modules/
