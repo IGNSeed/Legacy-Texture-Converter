@@ -1,11 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { analyzePack, type PackSummary } from '../core/analysis/analyzePack';
-import {
-  BundledWiiUBaseAssetProvider,
-  type WiiUBaseAssetSet,
-  type WiiUBaseAssetValidation,
-} from '../core/editions/wiiu/base-assets';
-import { wiiuAdapter } from '../core/editions/wiiu/wiiuAdapter';
+import type { BaseAssetValidation, ConsoleBaseAssetSet } from '../core/editions/common/baseAssets';
+import { targetEditionAdapter } from '../core/editions/targetEditions';
 import { readDroppedItems } from '../core/files/readDroppedItems';
 import { readInputFiles, type ReadInputResult } from '../core/files/readInputFiles';
 import { UnsafeArchivePathError } from '../core/files/normalizeArchivePath';
@@ -16,15 +12,29 @@ import type {
   ConversionResult,
   ParsedPack,
   SourceEdition,
+  TargetEdition,
 } from '../types/conversion';
 
-type BaselineStatus = 'loading' | 'ready' | 'error';
+export type BaselineStatus = 'loading' | 'ready' | 'error';
 
 export type AppStatus =
   'idle' | 'reading' | 'analyzing' | 'ready' | 'converting' | 'success' | 'error';
 
 interface RawInput extends ReadInputResult {
   detectedEdition: SourceEdition;
+}
+
+interface BaselineState {
+  status: BaselineStatus;
+  assetSet?: ConsoleBaseAssetSet;
+  validation?: BaseAssetValidation;
+}
+
+function initialBaselines(): Record<TargetEdition, BaselineState> {
+  return {
+    wiiu: { status: 'loading' },
+    switch: { status: 'loading' },
+  };
 }
 
 function errorCode(error: unknown): string {
@@ -38,32 +48,24 @@ function errorCode(error: unknown): string {
         'unknown-edition',
         'baseline-incomplete',
         'baseline-invalid',
+        'switch-baseline-incomplete',
       ].includes(error.message)
-    )
+    ) {
       return error.message;
+    }
   }
   return 'generic';
 }
 
-async function loadPublishedBaseline(): Promise<{
-  assetSet: WiiUBaseAssetSet;
-  validation: WiiUBaseAssetValidation;
-}> {
-  const loaded = await new BundledWiiUBaseAssetProvider().load();
-  if (!loaded.assetSet) throw new Error('baseline-invalid');
-  return { assetSet: loaded.assetSet, validation: loaded.validation };
-}
-
 export function useTextureConverter() {
   const [status, setStatus] = useState<AppStatus>('idle');
+  const [targetEdition, setTargetEdition] = useState<TargetEdition>('wiiu');
   const [rawInput, setRawInput] = useState<RawInput>();
   const [pack, setPack] = useState<ParsedPack>();
   const [summary, setSummary] = useState<PackSummary>();
   const [progress, setProgress] = useState<ConversionProgress>();
   const [result, setResult] = useState<ConversionResult>();
-  const [baseline, setBaseline] = useState<WiiUBaseAssetSet>();
-  const [baselineStatus, setBaselineStatus] = useState<BaselineStatus>('loading');
-  const [baselineValidation, setBaselineValidation] = useState<WiiUBaseAssetValidation>();
+  const [baselines, setBaselines] = useState(initialBaselines);
   const [error, setError] = useState<string>();
 
   const downloadUrl = useMemo(
@@ -75,14 +77,42 @@ export function useTextureConverter() {
     if (downloadUrl) return () => URL.revokeObjectURL(downloadUrl);
   }, [downloadUrl]);
 
+  const loadTargetBaseline = useCallback(async (target: TargetEdition) => {
+    try {
+      const loaded = await targetEditionAdapter(target).loadBaseline();
+      if (!loaded.assetSet) throw new Error('baseline-invalid');
+      setBaselines((current) => ({
+        ...current,
+        [target]: {
+          status: 'ready',
+          assetSet: loaded.assetSet,
+          validation: loaded.validation,
+        },
+      }));
+    } catch {
+      setBaselines((current) => ({
+        ...current,
+        [target]: { status: 'error' },
+      }));
+    }
+  }, []);
+
+  useEffect(() => {
+    const task = window.setTimeout(() => {
+      void loadTargetBaseline('wiiu');
+      void loadTargetBaseline('switch');
+    }, 0);
+    return () => window.clearTimeout(task);
+  }, [loadTargetBaseline]);
+
   const analyze = useCallback(
-    async (input: RawInput, edition: Exclude<SourceEdition, 'unknown'>) => {
+    async (input: RawInput, edition: Exclude<SourceEdition, 'unknown'>, target: TargetEdition) => {
       setStatus('analyzing');
       setProgress({ stage: 'analyzing', percent: 8 });
       setError(undefined);
       const parsed = await parsePack(input.name, input.files, edition);
       if (parsed.textures.length === 0) throw new Error('empty-pack');
-      const packSummary = await analyzePack(parsed);
+      const packSummary = await analyzePack(parsed, targetEditionAdapter(target).mappings);
       setPack(parsed);
       setSummary(packSummary);
       setStatus('ready');
@@ -106,9 +136,9 @@ export function useTextureConverter() {
         setStatus('ready');
         return;
       }
-      await analyze(raw, detectedEdition);
+      await analyze(raw, detectedEdition, targetEdition);
     },
-    [analyze],
+    [analyze, targetEdition],
   );
 
   const loadFiles = useCallback(
@@ -140,46 +170,43 @@ export function useTextureConverter() {
       if (!rawInput) return;
       try {
         setRawInput({ ...rawInput, detectedEdition: edition });
-        await analyze(rawInput, edition);
+        await analyze(rawInput, edition, targetEdition);
       } catch (reason) {
         setError(errorCode(reason));
         setStatus('error');
       }
     },
-    [analyze, rawInput],
+    [analyze, rawInput, targetEdition],
   );
 
-  const loadBaseline = useCallback(async () => {
-    setBaselineStatus('loading');
-    setBaseline(undefined);
-    setBaselineValidation(undefined);
+  const chooseTargetEdition = useCallback(
+    async (target: TargetEdition) => {
+      setTargetEdition(target);
+      setResult(undefined);
+      setProgress(undefined);
+      setError(undefined);
+      if (!pack) return;
+      try {
+        setStatus('analyzing');
+        setProgress({ stage: 'analyzing', percent: 8 });
+        setSummary(await analyzePack(pack, targetEditionAdapter(target).mappings));
+        setProgress(undefined);
+        setStatus('ready');
+      } catch (reason) {
+        setError(errorCode(reason));
+        setStatus('error');
+      }
+    },
+    [pack],
+  );
 
-    try {
-      const loaded = await loadPublishedBaseline();
-      setBaselineValidation(loaded.validation);
-      setBaseline(loaded.assetSet);
-      setBaselineStatus('ready');
-    } catch {
-      setBaselineStatus('error');
-    }
-  }, []);
-
-  useEffect(() => {
-    let active = true;
-    void loadPublishedBaseline()
-      .then((loaded) => {
-        if (!active) return;
-        setBaselineValidation(loaded.validation);
-        setBaseline(loaded.assetSet);
-        setBaselineStatus('ready');
-      })
-      .catch(() => {
-        if (active) setBaselineStatus('error');
-      });
-    return () => {
-      active = false;
-    };
-  }, []);
+  const loadBaseline = useCallback(() => {
+    setBaselines((current) => ({
+      ...current,
+      [targetEdition]: { status: 'loading' },
+    }));
+    return loadTargetBaseline(targetEdition);
+  }, [loadTargetBaseline, targetEdition]);
 
   const convert = useCallback(async () => {
     if (!pack) {
@@ -187,8 +214,9 @@ export function useTextureConverter() {
       setStatus('error');
       return;
     }
+    const baseline = baselines[targetEdition].assetSet;
     if (!baseline) {
-      setError('baseline-incomplete');
+      setError(targetEdition === 'switch' ? 'switch-baseline-incomplete' : 'baseline-incomplete');
       setStatus('error');
       return;
     }
@@ -196,30 +224,37 @@ export function useTextureConverter() {
       setError(undefined);
       setResult(undefined);
       setStatus('converting');
-      const conversion = await wiiuAdapter.convert(pack, baseline, setProgress);
+      const conversion = await targetEditionAdapter(targetEdition).convert(
+        pack,
+        baseline,
+        setProgress,
+      );
       setResult(conversion);
       setStatus('success');
     } catch (reason) {
       setError(errorCode(reason));
       setStatus('error');
     }
-  }, [baseline, pack]);
+  }, [baselines, pack, targetEdition]);
 
+  const selectedBaseline = baselines[targetEdition];
   return {
     status,
+    targetEdition,
     rawInput,
     pack,
     summary,
     progress,
     result,
-    baseline,
-    baselineStatus,
-    baselineValidation,
+    baseline: selectedBaseline.assetSet,
+    baselineStatus: selectedBaseline.status,
+    baselineValidation: selectedBaseline.validation,
     downloadUrl,
     error,
     loadFiles,
     loadDrop,
     chooseEdition,
+    chooseTargetEdition,
     loadBaseline,
     convert,
   };

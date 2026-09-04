@@ -1,0 +1,78 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "water",
+      "sourceNames": ["water", "water_still"],
+      "destination": "Common/res/TitleUpdate/res/textures/blocks/water.png",
+      "animationText": "Common/res/TitleUpdate/res/textures/blocks/water.txt",
+      "animationMode": "metadata",
+      "mipmapLevels": 4,
+      "mipmapMinimumWidth": 4,
+      "mipmapMinimumHeight": 128
+    },
+    {
+      "id": "water_flow",
+      "sourceNames": ["water_flow", "flowing_water"],
+      "destination": "Common/res/TitleUpdate/res/textures/blocks/water_flow.png",
+      "animationText": "Common/res/TitleUpdate/res/textures/blocks/water_flow.txt",
+      "animationMode": "metadata"
+    },
+    {
+      "id": "lava",
+      "sourceNames": ["lava", "lava_still"],
+      "destination": "Common/res/TitleUpdate/res/textures/blocks/lava.png",
+      "animationText": "Common/res/TitleUpdate/res/textures/blocks/lava.txt",
+      "animationMode": "metadata"
+    },
+    {
+      "id": "lava_flow",
+      "sourceNames": ["lava_flow", "flowing_lava"],
+      "destination": "Common/res/TitleUpdate/res/textures/blocks/lava_flow.png",
+      "animationText": "Common/res/TitleUpdate/res/textures/blocks/lava_flow.txt",
+      "animationMode": "metadata"
+    },
+    {
+      "id": "portal",
+      "sourceNames": ["portal", "nether_portal"],
+      "destination": "Common/res/TitleUpdate/res/textures/blocks/portal.png",
+      "animationMode": "fixed"
+    },
+    {
+      "id": "magma",
+      "sourceNames": ["magma", "magma_block"],
+      "destination": "Common/res/TitleUpdate/res/textures/blocks/magma.png",
+      "animationMode": "fixed"
+    },
+    {
+      "id": "prismarine_rough",
+      "sourceNames": ["prismarine_rough", "prismarine"],
+      "destination": "Common/res/TitleUpdate/res/textures/blocks/prismarine_rough.png",
+      "animationMode": "fixed"
+    },
+    {
+      "id": "sea_lantern",
+      "sourceNames": ["sea_lantern"],
+      "destination": "Common/res/TitleUpdate/res/textures/blocks/sea_lantern.png",
+      "animationMode": "fixed"
+    },
+    {
+      "id": "cauldron_water",
+      "sourceNames": ["cauldron_water"],
+      "destination": "Common/res/TitleUpdate/res/textures/blocks/cauldron_water.png",
+      "animationMode": "fixed"
+    },
+    {
+      "id": "clock",
+      "sourceNames": ["clock", "clock_item"],
+      "destination": "Common/res/TitleUpdate/res/textures/items/clock.png",
+      "animationMode": "runtime"
+    },
+    {
+      "id": "compass",
+      "sourceNames": ["compass", "compass_item"],
+      "destination": "Common/res/TitleUpdate/res/textures/items/compass.png",
+      "animationMode": "runtime"
+    }
+  ]
+}

@@ -1,7 +1,15 @@
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { composeAtlas } from '../../src/core/atlas/composeAtlas';
 import { resizePixelTexture } from '../../src/core/image/resizePixelTexture';
-import { itemMappings, terrainMappings } from '../../src/core/mappings/wiiuMappings';
+import {
+  resolveSwitchAtlasMapping,
+  switchTerrainMappings,
+} from '../../src/core/mappings/switchMappings';
+import {
+  itemMappings,
+  resolveAtlasMapping,
+  terrainMappings,
+} from '../../src/core/mappings/wiiuMappings';
 import { createConversionReport } from '../../src/core/report/createConversionReport';
 
 interface CanvasMock {
@@ -53,6 +61,7 @@ describe('browser image pipeline', () => {
     await composeAtlas({
       base: new Blob(['base']),
       mapping: itemMappings,
+      resolveMapping: resolveAtlasMapping,
       textures: [
         {
           sourcePath: 'assets/minecraft/textures/item/diamond_sword.png',
@@ -120,6 +129,7 @@ describe('browser image pipeline', () => {
     await composeAtlas({
       base: new Blob(['default-items']),
       mapping: itemMappings,
+      resolveMapping: resolveAtlasMapping,
       textures: [],
       targetSlotSize: 64,
       destination: 'Common/res/TitleUpdate/res/items.png',
@@ -151,6 +161,7 @@ describe('browser image pipeline', () => {
     await composeAtlas({
       base: new Blob(['default-terrain']),
       mapping: terrainMappings,
+      resolveMapping: resolveAtlasMapping,
       textures: [],
       targetSlotSize: 32,
       destination: 'Common/res/TitleUpdate/res/terrain.png',
@@ -163,5 +174,46 @@ describe('browser image pipeline', () => {
     expect(mock.context.imageSmoothingEnabled).toBe(false);
     expect(mock.drawImage).toHaveBeenCalledTimes(1);
     expect(mock.drawImage).toHaveBeenCalledWith(expect.anything(), 0, 0, 512, 1088);
+  });
+
+  it('places and resizes a Switch terrain slot on an alpha canvas', async () => {
+    const mock = canvasMock();
+    vi.spyOn(document, 'createElement').mockReturnValue(mock.canvas);
+    const bitmap = vi
+      .fn()
+      .mockResolvedValueOnce({ width: 256, height: 512, close: vi.fn() })
+      .mockResolvedValueOnce({ width: 64, height: 64, close: vi.fn() });
+    vi.stubGlobal('createImageBitmap', bitmap);
+    const report = createConversionReport(
+      { name: 'switch-pack', edition: 'java', files: [], textures: [] },
+      'switch',
+    );
+
+    await composeAtlas({
+      base: new Blob(['switch-terrain']),
+      mapping: switchTerrainMappings,
+      textures: [
+        {
+          sourcePath: 'assets/minecraft/textures/block/stone.png',
+          canonicalId: 'stone',
+          category: 'terrain',
+          blob: new Blob(['64px-stone']),
+        },
+      ],
+      targetSlotSize: 32,
+      destination: 'Common/res/TitleUpdate/res/terrain.png',
+      report,
+      processed: new Set(),
+      resolveMapping: resolveSwitchAtlasMapping,
+    });
+
+    expect(mock.canvas).toMatchObject({ width: 512, height: 1024 });
+    expect(mock.getContext).toHaveBeenCalledWith('2d', { alpha: true });
+    expect(mock.context.imageSmoothingEnabled).toBe(false);
+    expect(mock.clearRect).toHaveBeenCalledWith(32, 0, 32, 32);
+    expect(mock.drawImage).toHaveBeenLastCalledWith(expect.anything(), 0, 0, 64, 64, 32, 0, 32, 32);
+    expect(report.entries).toContainEqual(
+      expect.objectContaining({ canonicalId: 'stone', status: 'resized' }),
+    );
   });
 });

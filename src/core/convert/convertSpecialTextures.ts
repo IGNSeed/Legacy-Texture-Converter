@@ -1,20 +1,21 @@
 import type { ConversionReport, OutputFile, ParsedTexture } from '../../types/conversion';
 import { inspectImage } from '../image/decodeImage';
 import { generateMipmaps } from '../mipmap/generateMipmaps';
-import { resolveSpecialMapping } from '../mappings/wiiuMappings';
+import type { EditionMappings } from '../mappings/createEditionMappings';
 import { addReportEntry, addWarning } from '../report/createConversionReport';
-import { specialMipmapPath } from '../editions/wiiu/paths';
 import { createLceAnimationText } from './animationMetadata';
 
 export async function convertSpecialTextures(
   textures: readonly ParsedTexture[],
   report: ConversionReport,
   processed: Set<string>,
+  resolveMapping: EditionMappings['resolveSpecialMapping'],
+  mipmapPath: (destination: string, level: number) => string,
 ): Promise<OutputFile[]> {
   const output: OutputFile[] = [];
 
   for (const texture of textures) {
-    const mapping = resolveSpecialMapping(texture.canonicalId);
+    const mapping = resolveMapping(texture.canonicalId);
     if (!mapping) continue;
     processed.add(texture.sourcePath);
     try {
@@ -39,12 +40,25 @@ export async function convertSpecialTextures(
             path: texture.sourcePath,
           });
         }
+      } else if (texture.animationMetadata && mapping.animationMode === 'fixed') {
+        addWarning(report, {
+          code: 'fixed-animation-order',
+          messageKey: 'warnings.animationFixedOrder',
+          path: texture.sourcePath,
+        });
       }
 
       if (mapping.mipmapLevels) {
-        const mipmaps = await generateMipmaps(texture.blob, width, height, mapping.mipmapLevels);
+        const mipmaps = await generateMipmaps(
+          texture.blob,
+          width,
+          height,
+          mapping.mipmapLevels,
+          mapping.mipmapMinimumWidth,
+          mapping.mipmapMinimumHeight,
+        );
         mipmaps.forEach((blob, index) => {
-          output.push({ path: specialMipmapPath(mapping.destination, index + 1), blob });
+          output.push({ path: mipmapPath(mapping.destination, index + 1), blob });
         });
       }
 

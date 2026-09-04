@@ -45,6 +45,7 @@ export interface ConversionMessage {
 
 export interface ConversionReport {
   inputEdition: Exclude<SourceEdition, 'unknown'>;
+  outputEdition: TargetEdition;
   inputName: string;
   itemResolution?: number;
   blockResolution?: number;

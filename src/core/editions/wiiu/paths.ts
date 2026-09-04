@@ -3,6 +3,10 @@ export const WIIU_PATHS = {
   terrain: 'Common/res/TitleUpdate/res/terrain.png',
   terrainMip2: 'Common/res/TitleUpdate/res/terrainMipMapLevel2.png',
   terrainMip3: 'Common/res/TitleUpdate/res/terrainMipMapLevel3.png',
+  terrainMipmaps: [
+    'Common/res/TitleUpdate/res/terrainMipMapLevel2.png',
+    'Common/res/TitleUpdate/res/terrainMipMapLevel3.png',
+  ],
   particles: 'Common/res/TitleUpdate/res/particles.png',
 } as const;
 

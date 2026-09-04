@@ -9,6 +9,7 @@ interface ReportPanelProps {
 
 export function ReportPanel({ report, downloadUrl, downloadName }: ReportPanelProps) {
   const { t } = useTranslation();
+  const outputEdition = t(`output.${report.outputEdition}`);
   const metrics = [
     ['converted', report.converted],
     ['unsupported', report.unsupported],
@@ -25,13 +26,39 @@ export function ReportPanel({ report, downloadUrl, downloadName }: ReportPanelPr
           <span className="status-dot" aria-hidden="true" />
           <div>
             <h2 id="report-heading">{t('report.heading')}</h2>
-            <p>{t('report.success')}</p>
+            <p>
+              {report.outputEdition === 'switch'
+                ? t('report.switchReady')
+                : t('report.success', { edition: outputEdition })}
+            </p>
           </div>
         </div>
         <a className="primary-button" href={downloadUrl} download={downloadName}>
-          {t('report.download')}
+          {t('report.download', { edition: outputEdition })}
         </a>
       </div>
+      <dl className="info-grid report-info">
+        <div>
+          <dt>{t('report.inputName')}</dt>
+          <dd>{report.inputName}</dd>
+        </div>
+        <div>
+          <dt>{t('report.inputEdition')}</dt>
+          <dd>{t(`pack.${report.inputEdition}`)}</dd>
+        </div>
+        <div>
+          <dt>{t('report.outputEdition')}</dt>
+          <dd>{outputEdition}</dd>
+        </div>
+        <div>
+          <dt>{t('report.itemResolution')}</dt>
+          <dd>{report.itemResolution ? `${report.itemResolution}px` : t('pack.none')}</dd>
+        </div>
+        <div>
+          <dt>{t('report.blockResolution')}</dt>
+          <dd>{report.blockResolution ? `${report.blockResolution}px` : t('pack.none')}</dd>
+        </div>
+      </dl>
       <div className="metrics">
         {metrics.map(([key, value]) => (
           <div key={key}>

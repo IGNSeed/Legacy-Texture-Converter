@@ -4,7 +4,7 @@ import { addReportEntry, addWarning } from '../report/createConversionReport';
 import { canvasToPng, createCanvas, getCanvasContext } from '../image/canvas';
 import { decodeImage } from '../image/decodeImage';
 import { drawTextureSlot } from '../image/drawTextureSlot';
-import { resolveAtlasMapping } from '../mappings/wiiuMappings';
+import type { EditionMappings } from '../mappings/createEditionMappings';
 
 export interface ComposeAtlasOptions {
   base: Blob;
@@ -14,6 +14,7 @@ export interface ComposeAtlasOptions {
   destination: string;
   report: ConversionReport;
   processed: Set<string>;
+  resolveMapping: EditionMappings['resolveAtlasMapping'];
 }
 
 export function atlasOutputDimensions(
@@ -29,7 +30,16 @@ export function atlasOutputDimensions(
 }
 
 export async function composeAtlas(options: ComposeAtlasOptions): Promise<Blob> {
-  const { base, mapping, textures, targetSlotSize, destination, report, processed } = options;
+  const {
+    base,
+    mapping,
+    textures,
+    targetSlotSize,
+    destination,
+    report,
+    processed,
+    resolveMapping,
+  } = options;
   const output = atlasOutputDimensions(mapping, targetSlotSize);
   const canvas = createCanvas(output.width, output.height);
   const context = getCanvasContext(canvas);
@@ -42,7 +52,7 @@ export async function composeAtlas(options: ComposeAtlasOptions): Promise<Blob> 
   }
 
   for (const texture of textures) {
-    const entry = resolveAtlasMapping(mapping.category, texture.canonicalId);
+    const entry = resolveMapping(mapping.category, texture.canonicalId);
     if (!entry) continue;
     processed.add(texture.sourcePath);
 

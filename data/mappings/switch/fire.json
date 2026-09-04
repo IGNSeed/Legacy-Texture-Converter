@@ -1,0 +1,19 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "fire_0",
+      "sourceNames": ["fire_0", "fire_layer_0"],
+      "destination": "Common/res/TitleUpdate/res/textures/blocks/fire_0.png",
+      "animationText": "Common/res/TitleUpdate/res/textures/blocks/fire_0.txt",
+      "animationMode": "metadata"
+    },
+    {
+      "id": "fire_1",
+      "sourceNames": ["fire_1", "fire_layer_1"],
+      "destination": "Common/res/TitleUpdate/res/textures/blocks/fire_1.png",
+      "animationText": "Common/res/TitleUpdate/res/textures/blocks/fire_1.txt",
+      "animationMode": "metadata"
+    }
+  ]
+}

@@ -8,11 +8,10 @@ import specialJson from '../../../data/mappings/wiiu/special-textures.json';
 import terrainJson from '../../../data/mappings/wiiu/terrain.json';
 import type {
   AtlasMappingDocument,
-  AtlasMappingEntry,
   FileMappingEntry,
   SpecialTextureMapping,
 } from '../../types/mappings';
-import type { TextureCategory } from '../../types/conversion';
+import { createEditionMappings } from './createEditionMappings';
 
 export const itemMappings = itemsJson as unknown as AtlasMappingDocument;
 export const terrainMappings = terrainJson as unknown as AtlasMappingDocument;
@@ -26,53 +25,20 @@ export const specialMappings = [
 
 const aliases = (aliasesJson as { aliases: Record<string, string> }).aliases;
 
-export function aliasCandidates(id: string): string[] {
-  const candidates = new Set([id]);
-  const direct = aliases[id];
-  if (direct) candidates.add(direct);
-  for (const [alias, canonical] of Object.entries(aliases)) {
-    if (canonical === id) candidates.add(alias);
-  }
-  return [...candidates];
-}
+export const wiiuMappings = createEditionMappings({
+  aliases,
+  items: itemMappings,
+  terrain: terrainMappings,
+  particles: particleMappings,
+  armor: armorMappings,
+  glint: glintMappings,
+  special: specialMappings,
+});
 
-function matchesSourceName(id: string, names: readonly string[]): boolean {
-  return aliasCandidates(id).some((candidate) => names.includes(candidate));
-}
-
-export function atlasDocument(category: TextureCategory): AtlasMappingDocument | undefined {
-  if (category === 'item') return itemMappings;
-  if (category === 'terrain') return terrainMappings;
-  if (category === 'particles') return particleMappings;
-  return undefined;
-}
-
-export function resolveAtlasMapping(
-  category: TextureCategory,
-  id: string,
-): AtlasMappingEntry | undefined {
-  return atlasDocument(category)?.entries.find(
-    (entry) => entry.id === id || matchesSourceName(id, entry.sourceNames),
-  );
-}
-
-export function resolveArmorMapping(id: string): FileMappingEntry | undefined {
-  return armorMappings.find((entry) => matchesSourceName(id, entry.sourceNames));
-}
-
-export function resolveGlintMapping(id: string): FileMappingEntry | undefined {
-  return glintMappings.find((entry) => matchesSourceName(id, entry.sourceNames));
-}
-
-export function resolveSpecialMapping(id: string): SpecialTextureMapping | undefined {
-  return specialMappings.find((entry) => matchesSourceName(id, entry.sourceNames));
-}
-
-export function resolveWiiUCategory(id: string): TextureCategory | undefined {
-  if (resolveArmorMapping(id)) return 'armor';
-  if (resolveGlintMapping(id) || resolveSpecialMapping(id)) return 'special';
-  if (id === 'particles' || resolveAtlasMapping('particles', id)) return 'particles';
-  if (resolveAtlasMapping('item', id)) return 'item';
-  if (resolveAtlasMapping('terrain', id)) return 'terrain';
-  return undefined;
-}
+export const aliasCandidates = wiiuMappings.aliasCandidates;
+export const atlasDocument = wiiuMappings.atlasDocument;
+export const resolveAtlasMapping = wiiuMappings.resolveAtlasMapping;
+export const resolveArmorMapping = wiiuMappings.resolveArmorMapping;
+export const resolveGlintMapping = wiiuMappings.resolveGlintMapping;
+export const resolveSpecialMapping = wiiuMappings.resolveSpecialMapping;
+export const resolveWiiUCategory = wiiuMappings.resolveCategory;

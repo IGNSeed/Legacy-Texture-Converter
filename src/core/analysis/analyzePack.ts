@@ -1,11 +1,6 @@
 import type { ParsedPack, ParsedTexture } from '../../types/conversion';
-import {
-  resolveAtlasMapping,
-  resolveArmorMapping,
-  resolveGlintMapping,
-  resolveSpecialMapping,
-  resolveWiiUCategory,
-} from '../mappings/wiiuMappings';
+import type { EditionMappings } from '../mappings/createEditionMappings';
+import { wiiuMappings } from '../mappings/wiiuMappings';
 import { inspectTextures } from '../validation/resolution';
 
 export interface PackSummary {
@@ -16,19 +11,22 @@ export interface PackSummary {
   specialTextures: string[];
 }
 
-export async function analyzePack(pack: ParsedPack): Promise<PackSummary> {
+export async function analyzePack(
+  pack: ParsedPack,
+  mappings: EditionMappings = wiiuMappings,
+): Promise<PackSummary> {
   const categoryOf = (category: ParsedTexture['category'], id: string) =>
-    category === 'unknown' ? resolveWiiUCategory(id) : category;
+    category === 'unknown' ? mappings.resolveCategory(id) : category;
   const itemTextures = pack.textures.filter((texture) => {
     return (
       categoryOf(texture.category, texture.canonicalId) === 'item' &&
-      resolveAtlasMapping('item', texture.canonicalId)
+      mappings.resolveAtlasMapping('item', texture.canonicalId)
     );
   });
   const blockTextures = pack.textures.filter((texture) => {
     return (
       categoryOf(texture.category, texture.canonicalId) === 'terrain' &&
-      resolveAtlasMapping('terrain', texture.canonicalId)
+      mappings.resolveAtlasMapping('terrain', texture.canonicalId)
     );
   });
   const [items, blocks] = await Promise.all([
@@ -36,15 +34,22 @@ export async function analyzePack(pack: ParsedPack): Promise<PackSummary> {
     inspectTextures(blockTextures),
   ]);
   const recognizedCount = pack.textures.filter((texture) => {
+    if (
+      mappings.resolveSpecialMapping(texture.canonicalId) ||
+      mappings.resolveGlintMapping(texture.canonicalId)
+    ) {
+      return true;
+    }
     const category = categoryOf(texture.category, texture.canonicalId);
-    if (category === 'armor') return Boolean(resolveArmorMapping(texture.canonicalId));
+    if (category === 'armor') return Boolean(mappings.resolveArmorMapping(texture.canonicalId));
     if (category === 'special') {
       return Boolean(
-        resolveSpecialMapping(texture.canonicalId) ?? resolveGlintMapping(texture.canonicalId),
+        mappings.resolveSpecialMapping(texture.canonicalId) ??
+        mappings.resolveGlintMapping(texture.canonicalId),
       );
     }
     if (category === 'particles' && texture.canonicalId === 'particles') return true;
-    return category ? Boolean(resolveAtlasMapping(category, texture.canonicalId)) : false;
+    return category ? Boolean(mappings.resolveAtlasMapping(category, texture.canonicalId)) : false;
   }).length;
 
   return {
@@ -57,7 +62,14 @@ export async function analyzePack(pack: ParsedPack): Promise<PackSummary> {
         pack.textures
           .filter((texture) => {
             const category = categoryOf(texture.category, texture.canonicalId);
-            return category === 'special' || category === 'armor';
+            return (
+              category === 'special' ||
+              category === 'armor' ||
+              Boolean(
+                mappings.resolveSpecialMapping(texture.canonicalId) ??
+                mappings.resolveGlintMapping(texture.canonicalId),
+              )
+            );
           })
           .map((texture) => texture.canonicalId),
       ),

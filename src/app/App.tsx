@@ -31,13 +31,18 @@ export function App() {
             onChooseEdition={converter.chooseEdition}
           />
         )}
+        <OutputEdition
+          value={converter.targetEdition}
+          disabled={busy}
+          onChange={converter.chooseTargetEdition}
+        />
         <BaselinePanel
           disabled={busy}
+          target={converter.targetEdition}
           status={converter.baselineStatus}
           validation={converter.baselineValidation}
           onRetry={converter.loadBaseline}
         />
-        <OutputEdition />
         <div className="convert-row">
           <button
             className="primary-button convert-button"

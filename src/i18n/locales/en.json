@@ -1,7 +1,7 @@
 {
   "header": {
     "title": "Legacy Texture Converter",
-    "subtitle": "Convert Java and Bedrock texture packs for Minecraft: Wii U Edition. Files stay in your browser.",
+    "subtitle": "Convert Java and Bedrock texture packs for Minecraft: Wii U Edition or Nintendo Switch Edition. Files stay in your browser.",
     "language": "Language"
   },
   "upload": {
@@ -30,8 +30,8 @@
     "bedrock": "Bedrock Edition"
   },
   "baseline": {
-    "heading": "Wii U baseline",
-    "description": "The published Wii U baseline is loaded automatically in your browser. No manual selection or upload is required.",
+    "heading": "{{edition}} baseline",
+    "description": "The published {{edition}} baseline is loaded automatically in your browser. No manual selection or upload is required.",
     "loading": "Loading the baseline assets…",
     "loaded": "The baseline assets are ready.",
     "unavailable": "The baseline assets could not be loaded. Check your connection and try again.",
@@ -44,14 +44,14 @@
       "terrain": "terrain and mipmaps",
       "particles": "particles.png",
       "armor": "Armor",
-      "specialTextures": "Fire, water, lava, and glint"
+      "specialTextures": "Special and animated textures"
     }
   },
   "output": {
     "heading": "Output edition",
     "wiiu": "Wii U Edition",
     "switch": "Nintendo Switch Edition",
-    "later": "Coming later"
+    "switchVersion": "Version 1.0.17"
   },
   "convert": {
     "button": "Convert",
@@ -66,12 +66,18 @@
     "images": "Processing images…",
     "atlas": "Building atlases…",
     "mipmap": "Generating terrain mipmaps…",
-    "files": "Building the Wii U file tree…",
+    "files": "Building the output file tree…",
     "zip": "Generating the ZIP…"
   },
   "report": {
     "heading": "Conversion results",
-    "success": "Conversion complete",
+    "success": "{{edition}} conversion complete",
+    "switchReady": "Atmosphère-ready Nintendo Switch Edition ZIP created",
+    "inputName": "Input pack",
+    "inputEdition": "Input edition",
+    "outputEdition": "Output edition",
+    "itemResolution": "Item resolution",
+    "blockResolution": "Block resolution",
     "converted": "Converted",
     "unsupported": "Unsupported",
     "skipped": "Skipped",
@@ -83,7 +89,7 @@
     "destination": "Destination",
     "status": "Status",
     "empty": "No entries",
-    "download": "Download Wii U ZIP"
+    "download": "Download {{edition}} ZIP"
   },
   "status": {
     "converted": "Converted",
@@ -96,7 +102,8 @@
     "mixedBlocks": "Mixed block resolutions were normalized to a 32px terrain atlas.",
     "nonSquare": "A non-square texture could not be placed safely.",
     "invalidPng": "A PNG could not be decoded and was skipped.",
-    "animation": "Animation metadata could not be interpreted; the default Wii U sequence was kept."
+    "animation": "Animation metadata could not be interpreted; the target edition's default sequence was kept.",
+    "animationFixedOrder": "This texture uses a fixed Console Edition animation order, so source animation metadata was not copied."
   },
   "errors": {
     "heading": "Unable to continue",
@@ -104,13 +111,14 @@
     "empty-pack": "No supported texture files were found in this pack.",
     "unknown-edition": "Select Java Edition or Bedrock Edition for this input.",
     "baseline-incomplete": "Wait for the published Wii U baseline to load, then try again.",
+    "switch-baseline-incomplete": "Wait for the published Nintendo Switch Edition baseline to load, then try again.",
     "baseline-invalid": "The Wii U baseline contains an invalid PNG or unexpected vanilla atlas size.",
     "unsafe-path": "The archive contains an unsafe path and was rejected.",
     "canvas-limit": "The requested atlas is too large for a safe browser canvas.",
     "generic": "The pack could not be processed. Check that the archive and PNG files are valid."
   },
   "footer": {
-    "note": "Wii U output is built from the published baseline and the verified BASE + UPD resource layout. Switch output is not implemented yet.",
+    "note": "Wii U and Nintendo Switch Edition outputs are built in the browser from edition-specific published baselines and verified resource layouts.",
     "disclaimer": "NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT."
   }
 }

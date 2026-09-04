@@ -1,18 +1,40 @@
 import { useTranslation } from 'react-i18next';
+import type { TargetEdition } from '../../types/conversion';
 
-export function OutputEdition() {
+interface OutputEditionProps {
+  value: TargetEdition;
+  disabled: boolean;
+  onChange: (edition: TargetEdition) => Promise<void>;
+}
+
+export function OutputEdition({ value, disabled, onChange }: OutputEditionProps) {
   const { t } = useTranslation();
   return (
     <section className="section compact-section" aria-labelledby="output-heading">
       <h2 id="output-heading">{t('output.heading')}</h2>
       <div className="edition-options">
         <label>
-          <input type="radio" checked readOnly /> <span>{t('output.wiiu')}</span>
+          <input
+            type="radio"
+            name="output-edition"
+            value="wiiu"
+            checked={value === 'wiiu'}
+            disabled={disabled}
+            onChange={() => void onChange('wiiu')}
+          />{' '}
+          <span>{t('output.wiiu')}</span>
         </label>
-        <label className="disabled-option">
-          <input type="radio" disabled />{' '}
+        <label>
+          <input
+            type="radio"
+            name="output-edition"
+            value="switch"
+            checked={value === 'switch'}
+            disabled={disabled}
+            onChange={() => void onChange('switch')}
+          />{' '}
           <span>
-            {t('output.switch')} · {t('output.later')}
+            {t('output.switch')} · {t('output.switchVersion')}
           </span>
         </label>
       </div>

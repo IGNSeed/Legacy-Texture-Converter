@@ -1,6 +1,7 @@
 import JSZip from 'jszip';
 import { describe, expect, it } from 'vitest';
 import { buildWiiUFileTree } from '../../src/core/packaging/buildWiiUFileTree';
+import { buildSwitchFileTree } from '../../src/core/packaging/buildSwitchFileTree';
 import { createOutputZip } from '../../src/core/packaging/createOutputZip';
 import { readZipPack } from '../../src/core/files/readZipPack';
 
@@ -27,5 +28,19 @@ describe('Wii U ZIP packaging', () => {
     malicious.file('../escape.png', 'bad');
     const blob = await malicious.generateAsync({ type: 'blob' });
     await expect(readZipPack(blob)).rejects.toThrow('Unsafe archive path');
+  });
+});
+
+describe('Switch ZIP packaging', () => {
+  it('prefixes every file with the verified Atmosphère title layout', async () => {
+    const path = 'Common/res/TitleUpdate/res/items.png';
+    const files = buildSwitchFileTree(
+      [{ path, blob: new Blob(['default']) }],
+      [{ path, blob: new Blob(['converted']) }],
+    );
+    const archive = await JSZip.loadAsync(await createOutputZip(files));
+    const outputPath = `atmosphere/contents/01006BD001E06000/romfs/${path}`;
+    expect(await archive.file(outputPath)?.async('text')).toBe('converted');
+    expect(Object.keys(archive.files).every((entry) => entry.startsWith('atmosphere/'))).toBe(true);
   });
 });

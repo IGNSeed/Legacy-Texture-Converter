@@ -3,7 +3,11 @@ import {
   normalizeArchivePath,
   UnsafeArchivePathError,
 } from '../../src/core/files/normalizeArchivePath';
-import { createWiiUDownloadName, sanitizeFileName } from '../../src/core/files/sanitizeFileName';
+import {
+  createSwitchDownloadName,
+  createWiiUDownloadName,
+  sanitizeFileName,
+} from '../../src/core/files/sanitizeFileName';
 import { normalizeBedrockTextureId } from '../../src/core/parsers/bedrock/normalizeBedrockTextureId';
 import { normalizeJavaTextureId } from '../../src/core/parsers/java/normalizeJavaTextureId';
 
@@ -40,5 +44,6 @@ describe('path normalization', () => {
   it('creates a safe Wii U archive name', () => {
     expect(sanitizeFileName('../My:Pack?.zip')).toBe('._My_Pack_');
     expect(createWiiUDownloadName('MyPack.mcpack')).toBe('MyPack_WiiU.zip');
+    expect(createSwitchDownloadName('MyPack.mcpack')).toBe('MyPack_Switch_1.0.17.zip');
   });
 });

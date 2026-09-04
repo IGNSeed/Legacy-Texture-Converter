@@ -39,4 +39,7 @@ export interface SpecialTextureMapping {
   destination: string;
   animationText?: string;
   mipmapLevels?: number;
+  mipmapMinimumWidth?: number;
+  mipmapMinimumHeight?: number;
+  animationMode?: 'metadata' | 'fixed' | 'runtime';
 }

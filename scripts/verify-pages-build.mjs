@@ -7,12 +7,21 @@ const projectRoot = resolve(import.meta.dirname, '..');
 const outputRoot = resolve(projectRoot, 'dist');
 const pagesBase = '/Legacy-Texture-Converter/';
 const allowedImageAssets = new Set();
-const bundledBaselinePath = 'assets/wiiu/default/wiiu-base-assets.zip';
-const bundledBaselineSha256 = 'ee4ea1509613c5c7e61edfce839834e3ae691fbcbeded35ea39f613db086fbdc';
-const allowedArchiveAssets = new Set([bundledBaselinePath]);
-const baselineManifest = JSON.parse(
-  await readFile(resolve(projectRoot, 'data/mappings/wiiu/default-assets.json'), 'utf8'),
-);
+const baselines = [
+  {
+    label: 'Wii U',
+    path: 'assets/wiiu/default/wiiu-base-assets.zip',
+    sha256: 'ee4ea1509613c5c7e61edfce839834e3ae691fbcbeded35ea39f613db086fbdc',
+    manifest: 'data/mappings/wiiu/default-assets.json',
+  },
+  {
+    label: 'Nintendo Switch Edition 1.0.17',
+    path: 'assets/switch/default/switch-base-assets.zip',
+    sha256: 'dc46eea3f5b891fe63d591c49515e9d5562a21f2d3bf33b681411e8a324284aa',
+    manifest: 'data/mappings/switch/default-assets.json',
+  },
+];
+const allowedArchiveAssets = new Set(baselines.map((baseline) => baseline.path));
 
 async function listFiles(directory, prefix = '') {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -59,25 +68,32 @@ const unreviewedArchives = archiveFiles.filter((file) => !allowedArchiveAssets.h
 if (unreviewedArchives.length > 0) {
   throw new Error(`Unreviewed archives found in dist: ${unreviewedArchives.join(', ')}`);
 }
-if (!archiveFiles.includes(bundledBaselinePath)) {
-  throw new Error(`Published baseline archive is missing: ${bundledBaselinePath}`);
-}
+let reviewedBaselineFileCount = 0;
+for (const baseline of baselines) {
+  if (!archiveFiles.includes(baseline.path)) {
+    throw new Error(`Published ${baseline.label} baseline archive is missing: ${baseline.path}`);
+  }
 
-const baselineArchiveBytes = await readFile(resolve(outputRoot, bundledBaselinePath));
-const baselineArchiveHash = createHash('sha256').update(baselineArchiveBytes).digest('hex');
-if (baselineArchiveHash !== bundledBaselineSha256) {
-  throw new Error(`Published baseline archive hash is not approved: ${baselineArchiveHash}`);
-}
-const baselineArchive = await JSZip.loadAsync(baselineArchiveBytes);
-const publishedBaselineFiles = Object.values(baselineArchive.files)
-  .filter((entry) => !entry.dir)
-  .map((entry) => entry.name)
-  .sort();
-const expectedBaselineFiles = [...baselineManifest.files].sort();
-if (JSON.stringify(publishedBaselineFiles) !== JSON.stringify(expectedBaselineFiles)) {
-  throw new Error('Published baseline archive does not match default-assets.json');
+  const archiveBytes = await readFile(resolve(outputRoot, baseline.path));
+  const archiveHash = createHash('sha256').update(archiveBytes).digest('hex');
+  if (archiveHash !== baseline.sha256) {
+    throw new Error(
+      `Published ${baseline.label} baseline archive hash is not approved: ${archiveHash}`,
+    );
+  }
+  const archive = await JSZip.loadAsync(archiveBytes);
+  const publishedFiles = Object.values(archive.files)
+    .filter((entry) => !entry.dir)
+    .map((entry) => entry.name)
+    .sort();
+  const manifest = JSON.parse(await readFile(resolve(projectRoot, baseline.manifest), 'utf8'));
+  const expectedFiles = [...manifest.files].sort();
+  if (JSON.stringify(publishedFiles) !== JSON.stringify(expectedFiles)) {
+    throw new Error(`Published ${baseline.label} baseline archive does not match its manifest`);
+  }
+  reviewedBaselineFileCount += publishedFiles.length;
 }
 
 console.log(
-  `Pages build verified: ${localReferences.length} base-prefixed asset references, ${publishedBaselineFiles.length} reviewed baseline files.`,
+  `Pages build verified: ${localReferences.length} base-prefixed asset references, ${reviewedBaselineFileCount} reviewed baseline files.`,
 );

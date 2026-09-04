@@ -4,14 +4,16 @@ export function mipmapDimensions(
   width: number,
   height: number,
   level: number,
+  minimumWidth = 1,
+  minimumHeight = 1,
 ): {
   width: number;
   height: number;
 } {
   const divisor = 2 ** level;
   return {
-    width: Math.max(1, Math.floor(width / divisor)),
-    height: Math.max(1, Math.floor(height / divisor)),
+    width: Math.max(minimumWidth, Math.floor(width / divisor)),
+    height: Math.max(minimumHeight, Math.floor(height / divisor)),
   };
 }
 
@@ -20,10 +22,12 @@ export async function generateMipmaps(
   width: number,
   height: number,
   levels: number,
+  minimumWidth = 1,
+  minimumHeight = 1,
 ): Promise<Blob[]> {
   const output: Blob[] = [];
   for (let level = 1; level <= levels; level += 1) {
-    const size = mipmapDimensions(width, height, level);
+    const size = mipmapDimensions(width, height, level, minimumWidth, minimumHeight);
     output.push(await resizePixelTexture(source, size.width, size.height));
   }
   return output;

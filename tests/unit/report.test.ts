@@ -32,4 +32,18 @@ describe('unsupported handling', () => {
     expect(report.converted).toBe(1);
     expect(report.resized).toBe(1);
   });
+
+  it('records the selected output edition independently from the input edition', () => {
+    const report = createConversionReport(
+      {
+        name: 'java-pack.zip',
+        edition: 'java',
+        files: [],
+        textures: [],
+      },
+      'switch',
+    );
+    expect(report.inputEdition).toBe('java');
+    expect(report.outputEdition).toBe('switch');
+  });
 });

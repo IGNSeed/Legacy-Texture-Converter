@@ -11,10 +11,19 @@ export const BUNDLED_WIIU_BASE_ASSET_URL = bundledWiiUBaseAssetUrl(import.meta.e
 
 export class BundledWiiUBaseAssetProvider implements WiiUBaseAssetProvider {
   readonly id = 'bundled';
+  private pending?: Promise<WiiUBaseAssetLoadResult>;
 
   constructor(private readonly assetUrl = BUNDLED_WIIU_BASE_ASSET_URL) {}
 
-  async load(): Promise<WiiUBaseAssetLoadResult> {
+  load(): Promise<WiiUBaseAssetLoadResult> {
+    this.pending ??= this.loadArchive().catch((error: unknown) => {
+      this.pending = undefined;
+      throw error;
+    });
+    return this.pending;
+  }
+
+  private async loadArchive(): Promise<WiiUBaseAssetLoadResult> {
     const response = await fetch(this.assetUrl);
     if (!response.ok) throw new Error('baseline-unavailable');
 

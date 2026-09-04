@@ -1,28 +1,34 @@
 import { useTranslation } from 'react-i18next';
-import type {
-  WiiUBaseAssetGroup,
-  WiiUBaseAssetValidation,
-} from '../../core/editions/wiiu/base-assets';
+import type { BaseAssetGroup, BaseAssetValidation } from '../../core/editions/common/baseAssets';
+import type { TargetEdition } from '../../types/conversion';
 
 interface BaselinePanelProps {
   disabled: boolean;
+  target: TargetEdition;
   status: BaselineStatus;
-  validation?: WiiUBaseAssetValidation;
+  validation?: BaseAssetValidation;
   onRetry: () => Promise<void>;
 }
 
 export type BaselineStatus = 'loading' | 'ready' | 'error';
 
-const GROUPS: WiiUBaseAssetGroup[] = ['items', 'terrain', 'particles', 'armor', 'specialTextures'];
+const GROUPS: BaseAssetGroup[] = ['items', 'terrain', 'particles', 'armor', 'specialTextures'];
 
-export function BaselinePanel({ disabled, status, validation, onRetry }: BaselinePanelProps) {
+export function BaselinePanel({
+  disabled,
+  target,
+  status,
+  validation,
+  onRetry,
+}: BaselinePanelProps) {
   const { t } = useTranslation();
+  const edition = t(`output.${target}`);
 
   return (
     <section className="section baseline" aria-labelledby="baseline-heading">
       <div className="baseline-copy">
-        <h2 id="baseline-heading">{t('baseline.heading')}</h2>
-        <p>{t('baseline.description')}</p>
+        <h2 id="baseline-heading">{t('baseline.heading', { edition })}</h2>
+        <p>{t('baseline.description', { edition })}</p>
         {status === 'loading' && (
           <strong className="loaded-baseline" role="status">
             {t('baseline.loading')}

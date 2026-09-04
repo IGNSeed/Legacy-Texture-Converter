@@ -3,11 +3,16 @@ import type {
   ConversionMessage,
   ConversionReport,
   ParsedPack,
+  TargetEdition,
 } from '../../types/conversion';
 
-export function createConversionReport(pack: ParsedPack): ConversionReport {
+export function createConversionReport(
+  pack: ParsedPack,
+  outputEdition: TargetEdition = 'wiiu',
+): ConversionReport {
   return {
     inputEdition: pack.edition,
+    outputEdition,
     inputName: pack.name,
     converted: 0,
     unsupported: 0,

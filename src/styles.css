@@ -302,10 +302,6 @@ button:disabled {
   align-items: center;
   gap: 7px;
 }
-.disabled-option {
-  color: #7e8482;
-}
-
 .convert-row {
   display: flex;
   justify-content: flex-end;
@@ -351,6 +347,10 @@ progress {
 .result-heading p {
   margin: 4px 0 0;
   color: #aeb4b2;
+}
+.report-info {
+  margin-top: 22px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 .status-dot {
   width: 10px;

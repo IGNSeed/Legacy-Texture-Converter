@@ -17,3 +17,7 @@ export function sanitizeFileName(input: string): string {
 export function createWiiUDownloadName(input: string): string {
   return `${sanitizeFileName(input)}_WiiU.zip`;
 }
+
+export function createSwitchDownloadName(input: string): string {
+  return `${sanitizeFileName(input)}_Switch_1.0.17.zip`;
+}
