@@ -1,0 +1,105 @@
+{
+  "header": {
+    "title": "Legacy Texture Converter",
+    "subtitle": "Convert Java and Bedrock texture packs for Minecraft: Wii U Edition. Files stay in your browser.",
+    "language": "Language"
+  },
+  "upload": {
+    "heading": "Upload",
+    "drop": "Drop a texture pack here",
+    "or": "or",
+    "files": "Choose files",
+    "folder": "Choose folder",
+    "formats": "ZIP, MCPACK, folder, or PNG files",
+    "privacy": "Processing is performed locally. Your files are not uploaded.",
+    "dragActive": "Release to read this pack"
+  },
+  "pack": {
+    "heading": "Pack information",
+    "name": "Pack name",
+    "edition": "Input edition",
+    "textures": "Textures",
+    "recognized": "Recognized",
+    "items": "Item resolution",
+    "blocks": "Block resolution",
+    "special": "Special textures",
+    "none": "None detected",
+    "unknown": "Not detected",
+    "chooseEdition": "Select the input edition",
+    "java": "Java Edition",
+    "bedrock": "Bedrock Edition"
+  },
+  "baseline": {
+    "heading": "Wii U baseline",
+    "description": "Select BASE and UPD archives together, or a folder containing your own legally obtained Wii U resource dump. The files remain in this browser and are merged locally.",
+    "archives": "Choose BASE + UPD ZIPs",
+    "folder": "Choose Wii U folder",
+    "loaded": "Baseline ready: {{name}}",
+    "missing": "The selected baseline is missing {{count}} required files."
+  },
+  "output": {
+    "heading": "Output edition",
+    "wiiu": "Wii U Edition",
+    "switch": "Nintendo Switch Edition",
+    "later": "Coming later"
+  },
+  "convert": {
+    "button": "Convert",
+    "again": "Convert again",
+    "working": "Converting…"
+  },
+  "progress": {
+    "heading": "Progress",
+    "reading": "Reading the baseline assets…",
+    "analyzing": "Analyzing the pack…",
+    "mapping": "Resolving texture mappings…",
+    "images": "Processing images…",
+    "atlas": "Building atlases…",
+    "mipmap": "Generating terrain mipmaps…",
+    "files": "Building the Wii U file tree…",
+    "zip": "Generating the ZIP…"
+  },
+  "report": {
+    "heading": "Conversion results",
+    "success": "Conversion complete",
+    "converted": "Converted",
+    "unsupported": "Unsupported",
+    "skipped": "Skipped",
+    "resized": "Resized",
+    "warnings": "Warnings",
+    "errors": "Errors",
+    "details": "Texture details",
+    "source": "Source",
+    "destination": "Destination",
+    "status": "Status",
+    "empty": "No entries",
+    "download": "Download Wii U ZIP"
+  },
+  "status": {
+    "converted": "Converted",
+    "unsupported": "Unsupported",
+    "skipped": "Skipped",
+    "resized": "Resized"
+  },
+  "warnings": {
+    "mixedItems": "Mixed item resolutions were normalized to the largest safe power-of-two size.",
+    "mixedBlocks": "Mixed block resolutions were normalized to a 32px terrain atlas.",
+    "nonSquare": "A non-square texture could not be placed safely.",
+    "invalidPng": "A PNG could not be decoded and was skipped.",
+    "animation": "Animation metadata could not be interpreted; the default Wii U sequence was kept."
+  },
+  "errors": {
+    "heading": "Unable to continue",
+    "empty-input": "Choose at least one file.",
+    "empty-pack": "No supported texture files were found in this pack.",
+    "unknown-edition": "Select Java Edition or Bedrock Edition for this input.",
+    "baseline-incomplete": "Select a complete Wii U BASE + UPD baseline before converting.",
+    "unsafe-path": "The archive contains an unsafe path and was rejected.",
+    "canvas-limit": "The requested atlas is too large for a safe browser canvas.",
+    "generic": "The pack could not be processed. Check that the archive and PNG files are valid."
+  },
+  "footer": {
+    "note": "Wii U output is built from the verified BASE + UPD resource layout. Switch output is not implemented yet.",
+    "disclaimer": "NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT."
+  }
+}

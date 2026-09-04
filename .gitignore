@@ -1,0 +1,33 @@
+# ローカル専用
+AGENTS.md
+References/
+.codex/
+
+# Locally extracted game assets must never be published
+public/assets/wiiu/default/
+
+# Node
+node_modules/
+dist/
+coverage/
+.vite/
+
+# Environment
+.env
+.env.*
+!.env.example
+
+# IDE
+.vscode/
+.idea/
+*.user
+*.suo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs / Temporary
+*.log
+*.tmp
+*.temp

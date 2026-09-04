@@ -1,0 +1,105 @@
+{
+  "header": {
+    "title": "Legacy Texture Converter",
+    "subtitle": "Java / Bedrock のテクスチャパックを Minecraft: Wii U Edition 向けに変換します。ファイルはブラウザ内だけで処理されます。",
+    "language": "言語"
+  },
+  "upload": {
+    "heading": "アップロード",
+    "drop": "テクスチャパックをここへドロップ",
+    "or": "または",
+    "files": "ファイルを選択",
+    "folder": "フォルダを選択",
+    "formats": "ZIP、MCPACK、フォルダ、PNG に対応",
+    "privacy": "処理はローカルで完結し、ファイルは外部へ送信されません。",
+    "dragActive": "ドロップしてパックを読み込み"
+  },
+  "pack": {
+    "heading": "パック情報",
+    "name": "パック名",
+    "edition": "入力エディション",
+    "textures": "テクスチャ",
+    "recognized": "認識済み",
+    "items": "アイテム解像度",
+    "blocks": "ブロック解像度",
+    "special": "特殊テクスチャ",
+    "none": "検出なし",
+    "unknown": "未判定",
+    "chooseEdition": "入力エディションを選択",
+    "java": "Java Edition",
+    "bedrock": "Bedrock Edition"
+  },
+  "baseline": {
+    "heading": "Wii U 基準アセット",
+    "description": "ご自身が正当に取得した Wii U リソース dump の BASE / UPD ZIP を同時に選ぶか、それらを含むフォルダを選択してください。ファイルは外部送信せず、ブラウザ内で統合します。",
+    "archives": "BASE + UPD ZIP を選択",
+    "folder": "Wii U フォルダを選択",
+    "loaded": "基準アセット準備完了: {{name}}",
+    "missing": "選択した基準アセットには必須ファイルが {{count}} 個不足しています。"
+  },
+  "output": {
+    "heading": "出力エディション",
+    "wiiu": "Wii U Edition",
+    "switch": "Nintendo Switch Edition",
+    "later": "今後対応予定"
+  },
+  "convert": {
+    "button": "変換",
+    "again": "もう一度変換",
+    "working": "変換中…"
+  },
+  "progress": {
+    "heading": "進行状況",
+    "reading": "基準アセットを読み込んでいます…",
+    "analyzing": "パックを解析しています…",
+    "mapping": "マッピングを解決しています…",
+    "images": "画像を処理しています…",
+    "atlas": "アトラスを生成しています…",
+    "mipmap": "terrain mipmap を生成しています…",
+    "files": "Wii U ファイル構造を構築しています…",
+    "zip": "ZIP を生成しています…"
+  },
+  "report": {
+    "heading": "変換結果",
+    "success": "変換が完了しました",
+    "converted": "変換済み",
+    "unsupported": "未対応",
+    "skipped": "スキップ",
+    "resized": "リサイズ",
+    "warnings": "警告",
+    "errors": "エラー",
+    "details": "テクスチャ詳細",
+    "source": "入力",
+    "destination": "出力先",
+    "status": "状態",
+    "empty": "項目はありません",
+    "download": "Wii U ZIP をダウンロード"
+  },
+  "status": {
+    "converted": "変換済み",
+    "unsupported": "未対応",
+    "skipped": "スキップ",
+    "resized": "リサイズ"
+  },
+  "warnings": {
+    "mixedItems": "アイテム解像度が混在しているため、安全な最大の2の累乗サイズへ統一しました。",
+    "mixedBlocks": "ブロック解像度が混在しているため、32px terrain atlas へ統一しました。",
+    "nonSquare": "正方形でないテクスチャを安全に配置できないためスキップしました。",
+    "invalidPng": "PNG を読み込めなかったためスキップしました。",
+    "animation": "アニメーション定義を解釈できなかったため、Wii U の既定シーケンスを維持しました。"
+  },
+  "errors": {
+    "heading": "処理を続行できません",
+    "empty-input": "1つ以上のファイルを選択してください。",
+    "empty-pack": "対応するテクスチャがパック内に見つかりませんでした。",
+    "unknown-edition": "この入力が Java Edition か Bedrock Edition かを選択してください。",
+    "baseline-incomplete": "変換前に完全な Wii U BASE + UPD 基準アセットを選択してください。",
+    "unsafe-path": "アーカイブ内に危険なパスがあるため拒否しました。",
+    "canvas-limit": "要求されたアトラスがブラウザで安全に扱えるサイズを超えています。",
+    "generic": "パックを処理できませんでした。アーカイブと PNG が有効か確認してください。"
+  },
+  "footer": {
+    "note": "Wii U 出力は確認済みの BASE + UPD リソース構造から構築します。Switch 出力は未実装です。",
+    "disclaimer": "Minecraft の公式製品ではありません。Mojang または Microsoft の承認・提携を受けていません。"
+  }
+}

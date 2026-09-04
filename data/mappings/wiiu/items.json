@@ -1,0 +1,3715 @@
+{
+  "version": 1,
+  "category": "item",
+  "atlas": {
+    "width": 256,
+    "height": 272,
+    "slotSize": 16
+  },
+  "entries": [
+    {
+      "id": "acacia_boat",
+      "sourceNames": ["acacia_boat"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "acacia_door",
+      "sourceNames": ["acacia_door"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "apple",
+      "sourceNames": ["apple"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "apple_golden",
+      "sourceNames": ["apple_golden"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "armor_stand",
+      "sourceNames": ["armor_stand"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "arrow",
+      "sourceNames": ["arrow"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "baked_potato",
+      "sourceNames": ["baked_potato"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "barrier",
+      "sourceNames": ["barrier"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "beef",
+      "sourceNames": ["beef"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "beef_cooked",
+      "sourceNames": ["beef_cooked"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "beef_raw",
+      "sourceNames": ["beef_raw"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "beetroot",
+      "sourceNames": ["beetroot"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "beetroot_seeds",
+      "sourceNames": ["beetroot_seeds"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "beetroot_soup",
+      "sourceNames": ["beetroot_soup"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "bed",
+      "sourceNames": ["bed"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "birch_boat",
+      "sourceNames": ["birch_boat"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "birch_door",
+      "sourceNames": ["birch_door"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "blaze_powder",
+      "sourceNames": ["blaze_powder"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "blaze_rod",
+      "sourceNames": ["blaze_rod"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "bone",
+      "sourceNames": ["bone"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "bone_meal",
+      "sourceNames": ["bone_meal"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "book",
+      "sourceNames": ["book"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "book_enchanted",
+      "sourceNames": ["book_enchanted"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "book_normal",
+      "sourceNames": ["book_normal"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "book_writable",
+      "sourceNames": ["book_writable"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "book_written",
+      "sourceNames": ["book_written"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "bow",
+      "sourceNames": ["bow"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "bow_pulling_0",
+      "sourceNames": ["bow_pulling_0"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "bow_pulling_1",
+      "sourceNames": ["bow_pulling_1"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "bow_pulling_2",
+      "sourceNames": ["bow_pulling_2"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "bow_standby",
+      "sourceNames": ["bow_standby"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "bowl",
+      "sourceNames": ["bowl"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "bread",
+      "sourceNames": ["bread"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "brewing_stand",
+      "sourceNames": ["brewing_stand"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "brick",
+      "sourceNames": ["brick"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "broken_elytra",
+      "sourceNames": ["broken_elytra"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "bucket",
+      "sourceNames": ["bucket"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "bucket_empty",
+      "sourceNames": ["bucket_empty"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "bucket_lava",
+      "sourceNames": ["bucket_lava"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "bucket_milk",
+      "sourceNames": ["bucket_milk"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "bucket_water",
+      "sourceNames": ["bucket_water"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "cactus_green",
+      "sourceNames": ["cactus_green"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "cake",
+      "sourceNames": ["cake"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "carrot",
+      "sourceNames": ["carrot"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "carrot_golden",
+      "sourceNames": ["carrot_golden"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "carrot_on_a_stick",
+      "sourceNames": ["carrot_on_a_stick"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "cauldron",
+      "sourceNames": ["cauldron"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "chainmail_boots",
+      "sourceNames": ["chainmail_boots"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "chainmail_chestplate",
+      "sourceNames": ["chainmail_chestplate"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "chainmail_helmet",
+      "sourceNames": ["chainmail_helmet"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "chainmail_leggings",
+      "sourceNames": ["chainmail_leggings"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "charcoal",
+      "sourceNames": ["charcoal"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "chest_minecart",
+      "sourceNames": ["chest_minecart"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "chicken",
+      "sourceNames": ["chicken"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "chicken_cooked",
+      "sourceNames": ["chicken_cooked"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "chicken_raw",
+      "sourceNames": ["chicken_raw"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "chorus_fruit",
+      "sourceNames": ["chorus_fruit"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "chorus_fruit_popped",
+      "sourceNames": ["chorus_fruit_popped"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "clay_ball",
+      "sourceNames": ["clay_ball"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "coal",
+      "sourceNames": ["coal"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "cocoa_beans",
+      "sourceNames": ["cocoa_beans"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "cod",
+      "sourceNames": ["cod"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "cod_bucket",
+      "sourceNames": ["cod_bucket"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "command_block_minecart",
+      "sourceNames": ["command_block_minecart"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "comparator",
+      "sourceNames": ["comparator"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "cooked_beef",
+      "sourceNames": ["cooked_beef"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "cooked_chicken",
+      "sourceNames": ["cooked_chicken"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "cooked_cod",
+      "sourceNames": ["cooked_cod"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "cooked_mutton",
+      "sourceNames": ["cooked_mutton"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "cooked_porkchop",
+      "sourceNames": ["cooked_porkchop"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "cooked_rabbit",
+      "sourceNames": ["cooked_rabbit"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "cooked_salmon",
+      "sourceNames": ["cooked_salmon"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "cookie",
+      "sourceNames": ["cookie"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "cyan_dye",
+      "sourceNames": ["cyan_dye"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "dandelion_yellow",
+      "sourceNames": ["dandelion_yellow"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "dark_oak_boat",
+      "sourceNames": ["dark_oak_boat"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "dark_oak_door",
+      "sourceNames": ["dark_oak_door"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "diamond",
+      "sourceNames": ["diamond"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "diamond_axe",
+      "sourceNames": ["diamond_axe"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "diamond_boots",
+      "sourceNames": ["diamond_boots"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "diamond_chestplate",
+      "sourceNames": ["diamond_chestplate"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "diamond_helmet",
+      "sourceNames": ["diamond_helmet"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "diamond_hoe",
+      "sourceNames": ["diamond_hoe"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "diamond_horse_armor",
+      "sourceNames": ["diamond_horse_armor"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "diamond_leggings",
+      "sourceNames": ["diamond_leggings"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "diamond_pickaxe",
+      "sourceNames": ["diamond_pickaxe"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "diamond_shovel",
+      "sourceNames": ["diamond_shovel"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "diamond_sword",
+      "sourceNames": ["diamond_sword"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "door_acacia",
+      "sourceNames": ["door_acacia"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "door_birch",
+      "sourceNames": ["door_birch"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "door_dark_oak",
+      "sourceNames": ["door_dark_oak"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "door_iron",
+      "sourceNames": ["door_iron"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "door_jungle",
+      "sourceNames": ["door_jungle"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "door_spruce",
+      "sourceNames": ["door_spruce"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "door_wood",
+      "sourceNames": ["door_wood"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "dragon_breath",
+      "sourceNames": ["dragon_breath"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "dried_kelp",
+      "sourceNames": ["dried_kelp"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 256
+        }
+      ]
+    },
+    {
+      "id": "dye_powder_black",
+      "sourceNames": ["dye_powder_black"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "dye_powder_blue",
+      "sourceNames": ["dye_powder_blue"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "dye_powder_brown",
+      "sourceNames": ["dye_powder_brown"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "dye_powder_cyan",
+      "sourceNames": ["dye_powder_cyan"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "dye_powder_gray",
+      "sourceNames": ["dye_powder_gray"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "dye_powder_green",
+      "sourceNames": ["dye_powder_green"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "dye_powder_light_blue",
+      "sourceNames": ["dye_powder_light_blue"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "dye_powder_lime",
+      "sourceNames": ["dye_powder_lime"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "dye_powder_magenta",
+      "sourceNames": ["dye_powder_magenta"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "dye_powder_orange",
+      "sourceNames": ["dye_powder_orange"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "dye_powder_pink",
+      "sourceNames": ["dye_powder_pink"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "dye_powder_purple",
+      "sourceNames": ["dye_powder_purple"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "dye_powder_red",
+      "sourceNames": ["dye_powder_red"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "dye_powder_silver",
+      "sourceNames": ["dye_powder_silver"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "dye_powder_white",
+      "sourceNames": ["dye_powder_white"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "dye_powder_yellow",
+      "sourceNames": ["dye_powder_yellow"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "egg",
+      "sourceNames": ["egg"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "elytra",
+      "sourceNames": ["elytra"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "emerald",
+      "sourceNames": ["emerald"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "enchanted_book",
+      "sourceNames": ["enchanted_book"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "end_crystal",
+      "sourceNames": ["end_crystal"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "ender_eye",
+      "sourceNames": ["ender_eye"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "ender_pearl",
+      "sourceNames": ["ender_pearl"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "experience_bottle",
+      "sourceNames": ["experience_bottle"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "feather",
+      "sourceNames": ["feather"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "fermented_spider_eye",
+      "sourceNames": ["fermented_spider_eye"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "filled_map",
+      "sourceNames": ["filled_map"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "fire_charge",
+      "sourceNames": ["fire_charge"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "fireball",
+      "sourceNames": ["fireball"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "fireworks",
+      "sourceNames": ["fireworks"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "fireworks_charge",
+      "sourceNames": ["fireworks_charge"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "fireworks_charge_overlay",
+      "sourceNames": ["fireworks_charge_overlay"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "fireworks_rocket",
+      "sourceNames": ["fireworks_rocket"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "fireworks_star",
+      "sourceNames": ["fireworks_star"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "fireworks_star_overlay",
+      "sourceNames": ["fireworks_star_overlay"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "firework_rocket",
+      "sourceNames": ["firework_rocket"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "firework_star",
+      "sourceNames": ["firework_star"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "firework_star_overlay",
+      "sourceNames": ["firework_star_overlay"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "fish_clownfish_raw",
+      "sourceNames": ["fish_clownfish_raw"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "fish_cod_cooked",
+      "sourceNames": ["fish_cod_cooked"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "fish_cod_raw",
+      "sourceNames": ["fish_cod_raw"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "fish_pufferfish_raw",
+      "sourceNames": ["fish_pufferfish_raw"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "fish_salmon_cooked",
+      "sourceNames": ["fish_salmon_cooked"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "fish_salmon_raw",
+      "sourceNames": ["fish_salmon_raw"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "fishing_rod",
+      "sourceNames": ["fishing_rod"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "fishing_rod_cast",
+      "sourceNames": ["fishing_rod_cast"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "fishing_rod_uncast",
+      "sourceNames": ["fishing_rod_uncast"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "flint",
+      "sourceNames": ["flint"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "flint_and_steel",
+      "sourceNames": ["flint_and_steel"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "flower_pot",
+      "sourceNames": ["flower_pot"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "furnace_minecart",
+      "sourceNames": ["furnace_minecart"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "ghast_tear",
+      "sourceNames": ["ghast_tear"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "glass_bottle",
+      "sourceNames": ["glass_bottle"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "glistering_melon_slice",
+      "sourceNames": ["glistering_melon_slice"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "glowstone_dust",
+      "sourceNames": ["glowstone_dust"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "gold_axe",
+      "sourceNames": ["gold_axe"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "gold_boots",
+      "sourceNames": ["gold_boots"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "gold_chestplate",
+      "sourceNames": ["gold_chestplate"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "gold_ingot",
+      "sourceNames": ["gold_ingot"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "gold_leggings",
+      "sourceNames": ["gold_leggings"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "gold_nugget",
+      "sourceNames": ["gold_nugget"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "gold_helmet",
+      "sourceNames": ["gold_helmet"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "gold_hoe",
+      "sourceNames": ["gold_hoe"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "gold_horse_armor",
+      "sourceNames": ["gold_horse_armor"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "gold_pickaxe",
+      "sourceNames": ["gold_pickaxe"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "gold_shovel",
+      "sourceNames": ["gold_shovel"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "gold_sword",
+      "sourceNames": ["gold_sword"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "golden_axe",
+      "sourceNames": ["golden_axe"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "golden_apple",
+      "sourceNames": ["golden_apple"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "golden_boots",
+      "sourceNames": ["golden_boots"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "golden_carrot",
+      "sourceNames": ["golden_carrot"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "golden_chestplate",
+      "sourceNames": ["golden_chestplate"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "golden_leggings",
+      "sourceNames": ["golden_leggings"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "golden_helmet",
+      "sourceNames": ["golden_helmet"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "golden_hoe",
+      "sourceNames": ["golden_hoe"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "golden_horse_armor",
+      "sourceNames": ["golden_horse_armor"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "golden_pickaxe",
+      "sourceNames": ["golden_pickaxe"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "golden_shovel",
+      "sourceNames": ["golden_shovel"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "golden_sword",
+      "sourceNames": ["golden_sword"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "gray_dye",
+      "sourceNames": ["gray_dye"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "green_dye",
+      "sourceNames": ["green_dye"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "gunpowder",
+      "sourceNames": ["gunpowder"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "heart_of_the_sea",
+      "sourceNames": ["heart_of_the_sea"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 256
+        }
+      ]
+    },
+    {
+      "id": "hopper",
+      "sourceNames": ["hopper"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "hopper_minecart",
+      "sourceNames": ["hopper_minecart"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "ink_sac",
+      "sourceNames": ["ink_sac"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "iron_axe",
+      "sourceNames": ["iron_axe"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "iron_boots",
+      "sourceNames": ["iron_boots"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "iron_chestplate",
+      "sourceNames": ["iron_chestplate"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "iron_door",
+      "sourceNames": ["iron_door"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "iron_helmet",
+      "sourceNames": ["iron_helmet"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "iron_hoe",
+      "sourceNames": ["iron_hoe"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "iron_horse_armor",
+      "sourceNames": ["iron_horse_armor"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "iron_ingot",
+      "sourceNames": ["iron_ingot"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "iron_leggings",
+      "sourceNames": ["iron_leggings"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "iron_nugget",
+      "sourceNames": ["iron_nugget"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 224
+        }
+      ]
+    },
+    {
+      "id": "iron_pickaxe",
+      "sourceNames": ["iron_pickaxe"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "iron_shovel",
+      "sourceNames": ["iron_shovel"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "iron_sword",
+      "sourceNames": ["iron_sword"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "item_frame",
+      "sourceNames": ["item_frame"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "jungle_boat",
+      "sourceNames": ["jungle_boat"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "jungle_door",
+      "sourceNames": ["jungle_door"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "kelp",
+      "sourceNames": ["kelp"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 256
+        }
+      ]
+    },
+    {
+      "id": "lapis_lazuli",
+      "sourceNames": ["lapis_lazuli"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "lava_bucket",
+      "sourceNames": ["lava_bucket"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "lead",
+      "sourceNames": ["lead"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "leather",
+      "sourceNames": ["leather"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "leather_boots",
+      "sourceNames": ["leather_boots"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "leather_boots_overlay",
+      "sourceNames": ["leather_boots_overlay"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "leather_chestplate",
+      "sourceNames": ["leather_chestplate"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "leather_chestplate_overlay",
+      "sourceNames": ["leather_chestplate_overlay"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "leather_helmet",
+      "sourceNames": ["leather_helmet"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "leather_helmet_overlay",
+      "sourceNames": ["leather_helmet_overlay"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "leather_horse_armor",
+      "sourceNames": ["leather_horse_armor"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "leather_leggings",
+      "sourceNames": ["leather_leggings"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "leather_leggings_overlay",
+      "sourceNames": ["leather_leggings_overlay"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "light_blue_dye",
+      "sourceNames": ["light_blue_dye"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "light_gray_dye",
+      "sourceNames": ["light_gray_dye"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "lime_dye",
+      "sourceNames": ["lime_dye"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "lingering_potion",
+      "sourceNames": ["lingering_potion"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "magenta_dye",
+      "sourceNames": ["magenta_dye"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "magma_cream",
+      "sourceNames": ["magma_cream"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "map",
+      "sourceNames": ["map"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "map_empty",
+      "sourceNames": ["map_empty"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "map_filled",
+      "sourceNames": ["map_filled"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "melon",
+      "sourceNames": ["melon"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "melon_seeds",
+      "sourceNames": ["melon_seeds"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "melon_slice",
+      "sourceNames": ["melon_slice"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "melon_speckled",
+      "sourceNames": ["melon_speckled"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "milk_bucket",
+      "sourceNames": ["milk_bucket"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "minecart",
+      "sourceNames": ["minecart"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "minecart_chest",
+      "sourceNames": ["minecart_chest"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "minecart_command_block",
+      "sourceNames": ["minecart_command_block"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "minecart_furnace",
+      "sourceNames": ["minecart_furnace"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "minecart_hopper",
+      "sourceNames": ["minecart_hopper"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "minecart_normal",
+      "sourceNames": ["minecart_normal"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "minecart_tnt",
+      "sourceNames": ["minecart_tnt"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "mushroom_stew",
+      "sourceNames": ["mushroom_stew"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "music_disc_11",
+      "sourceNames": ["music_disc_11"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "music_disc_13",
+      "sourceNames": ["music_disc_13"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "music_disc_blocks",
+      "sourceNames": ["music_disc_blocks"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "music_disc_cat",
+      "sourceNames": ["music_disc_cat"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "music_disc_chirp",
+      "sourceNames": ["music_disc_chirp"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "music_disc_far",
+      "sourceNames": ["music_disc_far"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "music_disc_mall",
+      "sourceNames": ["music_disc_mall"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "music_disc_mellohi",
+      "sourceNames": ["music_disc_mellohi"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "music_disc_stal",
+      "sourceNames": ["music_disc_stal"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "music_disc_strad",
+      "sourceNames": ["music_disc_strad"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "music_disc_wait",
+      "sourceNames": ["music_disc_wait"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "music_disc_ward",
+      "sourceNames": ["music_disc_ward"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "mutton",
+      "sourceNames": ["mutton"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "mutton_cooked",
+      "sourceNames": ["mutton_cooked"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "mutton_raw",
+      "sourceNames": ["mutton_raw"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "name_tag",
+      "sourceNames": ["name_tag"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "nautilus_shell",
+      "sourceNames": ["nautilus_shell"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 256
+        }
+      ]
+    },
+    {
+      "id": "nether_brick",
+      "sourceNames": ["nether_brick"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "nether_star",
+      "sourceNames": ["nether_star"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "nether_wart",
+      "sourceNames": ["nether_wart"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "netherbrick",
+      "sourceNames": ["netherbrick"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "oak_boat",
+      "sourceNames": ["oak_boat"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "oak_door",
+      "sourceNames": ["oak_door"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "oak_sign",
+      "sourceNames": ["oak_sign"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "orange_dye",
+      "sourceNames": ["orange_dye"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "painting",
+      "sourceNames": ["painting"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "paper",
+      "sourceNames": ["paper"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "phantom_membrane",
+      "sourceNames": ["phantom_membrane"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 256
+        }
+      ]
+    },
+    {
+      "id": "pink_dye",
+      "sourceNames": ["pink_dye"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "poisonous_potato",
+      "sourceNames": ["poisonous_potato"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "popped_chorus_fruit",
+      "sourceNames": ["popped_chorus_fruit"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "porkchop",
+      "sourceNames": ["porkchop"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "porkchop_cooked",
+      "sourceNames": ["porkchop_cooked"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "porkchop_raw",
+      "sourceNames": ["porkchop_raw"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "potato",
+      "sourceNames": ["potato"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "potato_baked",
+      "sourceNames": ["potato_baked"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "potato_poisonous",
+      "sourceNames": ["potato_poisonous"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "potion",
+      "sourceNames": ["potion"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "potion_bottle_empty",
+      "sourceNames": ["potion_bottle_empty"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "potion_bottle_drinkable",
+      "sourceNames": ["potion_bottle_drinkable"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "potion_bottle_splash",
+      "sourceNames": ["potion_bottle_splash"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "potion_bottle_lingering",
+      "sourceNames": ["potion_bottle_lingering"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "potion_overlay",
+      "sourceNames": ["potion_overlay"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "prismarine_crystals",
+      "sourceNames": ["prismarine_crystals"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "prismarine_shard",
+      "sourceNames": ["prismarine_shard"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "pufferfish",
+      "sourceNames": ["pufferfish"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "pufferfish_bucket",
+      "sourceNames": ["pufferfish_bucket"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "pumpkin_pie",
+      "sourceNames": ["pumpkin_pie"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "pumpkin_seeds",
+      "sourceNames": ["pumpkin_seeds"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "purple_dye",
+      "sourceNames": ["purple_dye"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "quartz",
+      "sourceNames": ["quartz"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "rabbit",
+      "sourceNames": ["rabbit"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "rabbit_cooked",
+      "sourceNames": ["rabbit_cooked"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "rabbit_foot",
+      "sourceNames": ["rabbit_foot"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 224
+        }
+      ]
+    },
+    {
+      "id": "rabbit_hide",
+      "sourceNames": ["rabbit_hide"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 224
+        }
+      ]
+    },
+    {
+      "id": "rabbit_raw",
+      "sourceNames": ["rabbit_raw"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "rabbit_stew",
+      "sourceNames": ["rabbit_stew"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "record_11",
+      "sourceNames": ["record_11"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "record_13",
+      "sourceNames": ["record_13"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "record_blocks",
+      "sourceNames": ["record_blocks"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "record_cat",
+      "sourceNames": ["record_cat"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "record_chirp",
+      "sourceNames": ["record_chirp"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "record_far",
+      "sourceNames": ["record_far"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "record_mall",
+      "sourceNames": ["record_mall"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "record_mellohi",
+      "sourceNames": ["record_mellohi"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "record_stal",
+      "sourceNames": ["record_stal"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "record_strad",
+      "sourceNames": ["record_strad"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "record_wait",
+      "sourceNames": ["record_wait"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "record_ward",
+      "sourceNames": ["record_ward"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "red_dye",
+      "sourceNames": ["red_dye"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "redstone",
+      "sourceNames": ["redstone"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "redstone_dust",
+      "sourceNames": ["redstone_dust"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "reeds",
+      "sourceNames": ["reeds"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "repeater",
+      "sourceNames": ["repeater"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "rose_red",
+      "sourceNames": ["rose_red"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "rotten_flesh",
+      "sourceNames": ["rotten_flesh"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "saddle",
+      "sourceNames": ["saddle"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "salmon",
+      "sourceNames": ["salmon"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "salmon_bucket",
+      "sourceNames": ["salmon_bucket"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "scute",
+      "sourceNames": ["scute"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 256
+        }
+      ]
+    },
+    {
+      "id": "sea_pickle",
+      "sourceNames": ["sea_pickle"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 256
+        }
+      ]
+    },
+    {
+      "id": "seeds_melon",
+      "sourceNames": ["seeds_melon"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "seeds_pumpkin",
+      "sourceNames": ["seeds_pumpkin"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "seeds_wheat",
+      "sourceNames": ["seeds_wheat"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "shears",
+      "sourceNames": ["shears"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "shulker_shell",
+      "sourceNames": ["shulker_shell"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 224
+        }
+      ]
+    },
+    {
+      "id": "sign",
+      "sourceNames": ["sign"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "slimeball",
+      "sourceNames": ["slimeball"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "slime_ball",
+      "sourceNames": ["slime_ball"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "snowball",
+      "sourceNames": ["snowball"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "spawn_egg",
+      "sourceNames": ["spawn_egg"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "spawn_egg_overlay",
+      "sourceNames": ["spawn_egg_overlay"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "spectral_arrow",
+      "sourceNames": ["spectral_arrow"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "spider_eye",
+      "sourceNames": ["spider_eye"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "spider_eye_fermented",
+      "sourceNames": ["spider_eye_fermented"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "splash_bottle",
+      "sourceNames": ["splash_bottle"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "splash_potion",
+      "sourceNames": ["splash_potion"],
+      "positions": [
+        {
+          "x": 160,
+          "y": 144
+        }
+      ]
+    },
+    {
+      "id": "spruce_boat",
+      "sourceNames": ["spruce_boat"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "spruce_door",
+      "sourceNames": ["spruce_door"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 208
+        }
+      ]
+    },
+    {
+      "id": "stick",
+      "sourceNames": ["stick"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 48
+        }
+      ]
+    },
+    {
+      "id": "stone_axe",
+      "sourceNames": ["stone_axe"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "stone_hoe",
+      "sourceNames": ["stone_hoe"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "stone_pickaxe",
+      "sourceNames": ["stone_pickaxe"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "stone_shovel",
+      "sourceNames": ["stone_shovel"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "stone_sword",
+      "sourceNames": ["stone_sword"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "string",
+      "sourceNames": ["string"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "structure_void",
+      "sourceNames": ["structure_void"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 224
+        }
+      ]
+    },
+    {
+      "id": "sugar",
+      "sourceNames": ["sugar"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "sugar_cane",
+      "sourceNames": ["sugar_cane"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "tipped_arrow_base",
+      "sourceNames": ["tipped_arrow_base"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "tipped_arrow_head",
+      "sourceNames": ["tipped_arrow_head"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "tnt_minecart",
+      "sourceNames": ["tnt_minecart"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "totem_of_undying",
+      "sourceNames": ["totem_of_undying"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 224
+        }
+      ]
+    },
+    {
+      "id": "trident",
+      "sourceNames": ["trident"],
+      "positions": [
+        {
+          "x": 224,
+          "y": 256
+        }
+      ]
+    },
+    {
+      "id": "tropical_fish",
+      "sourceNames": ["tropical_fish"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 160
+        }
+      ]
+    },
+    {
+      "id": "tropical_fish_bucket",
+      "sourceNames": ["tropical_fish_bucket"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 240
+        }
+      ]
+    },
+    {
+      "id": "turtle_helmet",
+      "sourceNames": ["turtle_helmet"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 256
+        }
+      ]
+    },
+    {
+      "id": "turtle_scute",
+      "sourceNames": ["turtle_scute"],
+      "positions": [
+        {
+          "x": 208,
+          "y": 256
+        }
+      ]
+    },
+    {
+      "id": "water_bucket",
+      "sourceNames": ["water_bucket"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "wheat",
+      "sourceNames": ["wheat"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 16
+        }
+      ]
+    },
+    {
+      "id": "wheat_seeds",
+      "sourceNames": ["wheat_seeds"],
+      "positions": [
+        {
+          "x": 144,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "wood_axe",
+      "sourceNames": ["wood_axe"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "wood_hoe",
+      "sourceNames": ["wood_hoe"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "wood_pickaxe",
+      "sourceNames": ["wood_pickaxe"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "wood_shovel",
+      "sourceNames": ["wood_shovel"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "wood_sword",
+      "sourceNames": ["wood_sword"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "wooden_armorstand",
+      "sourceNames": ["wooden_armorstand"],
+      "positions": [
+        {
+          "x": 128,
+          "y": 192
+        }
+      ]
+    },
+    {
+      "id": "wooden_axe",
+      "sourceNames": ["wooden_axe"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "wooden_hoe",
+      "sourceNames": ["wooden_hoe"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 128
+        }
+      ]
+    },
+    {
+      "id": "wooden_pickaxe",
+      "sourceNames": ["wooden_pickaxe"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 96
+        }
+      ]
+    },
+    {
+      "id": "wooden_shovel",
+      "sourceNames": ["wooden_shovel"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "wooden_sword",
+      "sourceNames": ["wooden_sword"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "writable_book",
+      "sourceNames": ["writable_book"],
+      "positions": [
+        {
+          "x": 176,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "written_book",
+      "sourceNames": ["written_book"],
+      "positions": [
+        {
+          "x": 192,
+          "y": 176
+        }
+      ]
+    },
+    {
+      "id": "yellow_dye",
+      "sourceNames": ["yellow_dye"],
+      "positions": [
+        {
+          "x": 240,
+          "y": 112
+        }
+      ]
+    }
+  ],
+  "sourcePathTemplates": {
+    "java": ["assets/minecraft/textures/item/{id}.png", "assets/minecraft/textures/items/{id}.png"],
+    "bedrock": ["textures/items/{id}.png"]
+  }
+}
