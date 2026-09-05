@@ -89,11 +89,17 @@ describe('GUI HUD end-to-end conversion', () => {
   it('rebuilds the Wii U FUI and Media ARC from a 256px Java HUD', async () => {
     const baseline = await createWiiUBaseAssetSet('test', completeWiiUBaseFiles());
     if (!baseline.assetSet) throw new Error('test baseline missing');
-    const result = await convertWiiUPack(pack('java', 256), baseline.assetSet);
+    const input = pack('java', 256);
+    const result = await convertWiiUPack(input, baseline.assetSet);
     const output = result.outputFiles.find((file) => file.path === WIIU_PATHS.media);
     expect(output).toBeDefined();
-    expect(result.report.converted).toBe(18);
+    expect(result.report.converted).toBe(20);
     expect(result.report.resized).toBe(0);
+
+    const rawIcons = result.outputFiles.find((file) => file.path === WIIU_PATHS.guiIcons);
+    const rawWidgets = result.outputFiles.find((file) => file.path === WIIU_PATHS.guiWidgets);
+    expect(rawIcons?.blob).toBe(input.textures[0]?.blob);
+    expect(rawWidgets?.blob).toBe(input.textures[1]?.blob);
 
     const archive = parseArc(new Uint8Array(await output!.blob.arrayBuffer()));
     const target = hudTargetMapping('wiiu').fuis[0];
@@ -111,6 +117,11 @@ describe('GUI HUD end-to-end conversion', () => {
     const output = result.outputFiles.find((file) => file.path === outputPath);
     expect(output).toBeDefined();
     expect(result.report.resized).toBe(36);
+    expect(
+      result.outputFiles.some(
+        (file) => file.path === `${SWITCH_ATMOSPHERE_PREFIX}/${SWITCH_PATHS.guiWidgets}`,
+      ),
+    ).toBe(true);
     expect(
       result.report.entries.some((entry) => entry.destination?.includes('skinGraphicsHud')),
     ).toBe(true);

@@ -9,6 +9,7 @@ import type {
 import { composeAtlas } from '../../atlas/composeAtlas';
 import { convertFileTextures } from '../../convert/convertFileTextures';
 import { convertSpecialTextures } from '../../convert/convertSpecialTextures';
+import { convertGuiTextures } from '../../gui-textures/convertGuiTextures';
 import { inspectImage } from '../../image/decodeImage';
 import { convertHudTextures } from '../../gui-hud/convertHudTextures';
 import { hudTargetMapping } from '../../gui-hud/mappings';
@@ -16,6 +17,7 @@ import type { EditionMappings } from '../../mappings/createEditionMappings';
 import { generateMipmaps } from '../../mipmap/generateMipmaps';
 import { createOutputZip } from '../../packaging/createOutputZip';
 import { addReportEntry, createConversionReport } from '../../report/createConversionReport';
+import { convertSkyTexture } from '../../sky/convertSkyTexture';
 import {
   inspectTextures,
   resolveBlockResolution,
@@ -29,6 +31,9 @@ export interface ConsoleEditionPaths {
   terrain: string;
   terrainMipmaps: readonly string[];
   particles: string;
+  guiIcons: string;
+  guiWidgets: string;
+  sky: string;
 }
 
 export interface ConsoleConversionDefinition<TTarget extends TargetEdition> {
@@ -229,6 +234,17 @@ export async function convertConsolePack<TTarget extends TargetEdition>(
   );
   overrides.push(
     ...(await convertHudTextures(pack, baseline, definition.target, report, processed)),
+  );
+  // Raw GUI passthrough and HUD/FUI conversion intentionally may consume the
+  // same source sheet. processed only prevents a final unsupported entry.
+  overrides.push(
+    ...convertGuiTextures(
+      pack,
+      { icons: paths.guiIcons, widgets: paths.guiWidgets },
+      report,
+      processed,
+    ),
+    ...(await convertSkyTexture(pack, paths.sky, report, processed)),
   );
   progress(onProgress, 'files', 80);
 

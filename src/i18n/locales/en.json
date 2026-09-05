@@ -81,7 +81,15 @@
     "preserved": "Vanilla preserved"
   },
   "messages": {
-    "guiSheetMissing": "The source HUD sheet was not present, so its mapped Console Edition sprites remain unchanged."
+    "guiSheetMissing": "The source HUD sheet was not present, so its mapped Console Edition sprites remain unchanged.",
+    "guiCopied": "The original GUI PNG was copied without decoding or re-encoding.",
+    "guiRenamedToWidgets": "The original gui.png bytes were copied as widgets.png.",
+    "guiCandidateNotSelected": "A higher-confidence GUI texture candidate was selected.",
+    "javaSkyResized": "The Java 3x2 sky sheet was resized without changing its face layout.",
+    "bedrockSkyCombined": "The six Bedrock cubemap faces were combined in the verified LCE layout and resized.",
+    "skyCandidateNotSelected": "A higher-priority valid overworld sky candidate was selected.",
+    "skyCandidateInvalid": "This sky candidate was invalid and was skipped.",
+    "skyCubemapSetSkipped": "This cubemap set was incomplete or ambiguous and was skipped."
   },
   "warnings": {
     "mixedItems": "Mixed item resolutions were normalized to the largest safe power-of-two size.",
@@ -93,7 +101,15 @@
     "guiSheetDimensions": "This GUI sheet is not a square integer multiple of 256px, so its HUD sprites were skipped and the Console Edition defaults were preserved.",
     "guiMapping": "The verified HUD mapping did not match this baseline, so the Media archive was left out of the output.",
     "guiFuiValidation": "The HUD FUI failed structural or image validation, so the Media archive was left out of the output.",
-    "guiArcValidation": "The Media ARC failed structural validation, so it was left out of the output."
+    "guiArcValidation": "The Media ARC failed structural validation, so it was left out of the output.",
+    "javaSkyDimensions": "This Java sky is not a valid 3x2 sheet of six square faces and was skipped.",
+    "bedrockSkyMissingFaces": "This Bedrock cubemap set does not contain all six faces and was skipped.",
+    "bedrockSkyUnexpectedFaces": "This Bedrock cubemap directory contains faces outside cubemap_0 through cubemap_5 and was skipped.",
+    "bedrockSkyDuplicateFaces": "This Bedrock cubemap directory contains duplicate face numbers and was skipped.",
+    "bedrockSkyDimensions": "The six Bedrock cubemap faces are not equal-sized squares and were skipped.",
+    "multipleJavaSkyCandidates": "Multiple Java sky candidates were found; the highest-priority valid candidate shown here was selected.",
+    "multipleBedrockSkyCandidates": "Multiple Bedrock cubemap sets were found; the highest-priority valid overworld set shown here was selected.",
+    "skyConversion": "The selected sky could not be rendered, so sky output was skipped."
   },
   "errors": {
     "heading": "Unable to continue",

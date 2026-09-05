@@ -9,6 +9,9 @@ export const WIIU_PATHS = {
     'Common/res/TitleUpdate/res/terrainMipMapLevel3.png',
   ],
   particles: 'Common/res/TitleUpdate/res/particles.png',
+  guiIcons: 'Common/res/gui/icons.png',
+  guiWidgets: 'Common/res/gui/widgets.png',
+  sky: 'Common/res/misc/sky.png',
 } as const;
 
 export function specialMipmapPath(destination: string, level: number): string {

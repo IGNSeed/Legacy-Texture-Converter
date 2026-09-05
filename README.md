@@ -16,6 +16,8 @@ Java Edition / Bedrock Edition のテクスチャパックを、Minecraft: Wii U
 - 最終 `terrain.png` からの mipmap 再生成
 - armor、fire、water、lava、glint、particles の変換
 - Java / Bedrock の GUI sheet から crosshair、hotbar、health、armor、hunger、oxygen、experience HUD を変換
+- Java / Bedrock の `icons.png` と widget sheet を無加工で `Common/res/gui/` へコピー（`gui.png` は `widgets.png` に改名）
+- Java の 3×2 custom Sky、または Bedrock の overworld cubemap 6面を LCE `sky.png`（4032×2688）へ変換
 - Wii U `skinGraphicsHud.fui` と Switch の handheld / HD FUI を個別に再構築し、Media ARC へ再格納
 - Wii U は BASE + UPD を統合した `Common/res/...` 出力
 - Switch は Title ID `01006BD001E06000` の Atmosphère 配置済み ZIP を出力
@@ -41,6 +43,13 @@ Wii U 基準アセットは公開用 ZIP としてアプリに同梱され、ペ
 基準リソースは `BundledWiiUBaseAssetProvider` が Pages の base URL に対応したパスから読み込み、PNG 形式・vanilla atlas 解像度・必須カテゴリを検証した `WiiUBaseAssetSet` として変換処理へ渡します。`items.png`、`terrain.png`、`particles.png` は Wii U vanilla 画像を土台にしますが、認識した slot は描画前に完全消去してから入力テクスチャを配置します。これにより入力画像の透明部分から元アイコンが透けず、slot 単位で置き換わります。入力に存在しない slot は基準画像のまま維持されます。
 
 Java / Bedrock にのみ存在し、Wii U の対応先が確認できないテクスチャは、空き slot へ配置せず未対応として報告します。
+
+GUI の raw copy は HUD/FUI 変換と独立して実行され、入力 PNG のバイト列を変更しません。Java Sky は OptiFine / MCPatcher の overworld custom-sky path を優先して 3×2 sheet 全体をリサイズします。Bedrock Sky は同一ディレクトリの `cubemap_0.png`～`cubemap_5.png` を、次の確認済み配置で結合してから 4032×2688 へリサイズします。
+
+```text
+[cubemap_5][cubemap_4][cubemap_2]
+[cubemap_3][cubemap_0][cubemap_1]
+```
 
 ## Nintendo Switch Edition 1.0.17 出力
 

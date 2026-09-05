@@ -10,6 +10,7 @@ import { findArcEntry, getArcEntryData, parseArc, serializeArc } from '../binary
 import { findFuiImage, getFuiImageData, parseFui, serializeFui } from '../binary/fui';
 import { decodeImage, inspectImage, type DecodedImage } from '../image/decodeImage';
 import { addReportEntry, addWarning } from '../report/createConversionReport';
+import { selectGuiTexture } from '../gui-textures/selectGuiTextures';
 import type { ConsoleBaseAssetSet } from '../editions/common/baseAssets';
 import { hudSourceMappings, hudTargetMapping } from './mappings';
 import { renderHudSprite, resolveHudSheetScale } from './renderHudSprite';
@@ -52,9 +53,7 @@ function warningKey(reason: unknown): { code: string; messageKey: string } {
 }
 
 function sourceSheet(pack: ParsedPack, sheet: string): ParsedTexture | undefined {
-  return pack.textures.find(
-    (texture) => texture.category === 'gui' && texture.canonicalId === sheet,
-  );
+  return selectGuiTexture(pack, sheet === 'icons' ? 'icons' : 'widgets');
 }
 
 async function validateReplacementDecodes(

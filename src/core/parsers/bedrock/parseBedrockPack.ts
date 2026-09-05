@@ -4,6 +4,8 @@ import type {
   TextureCategory,
   VirtualFile,
 } from '../../../types/conversion';
+import { isGuiTexturePath } from '../../gui-textures/selectGuiTextures';
+import { isBedrockCubemapTexturePath } from '../../sky/selectSkySource';
 import { normalizeBedrockTextureId } from './normalizeBedrockTextureId';
 
 const SPECIAL_IDS = new Set([
@@ -51,12 +53,8 @@ async function readFlipbookMetadata(files: readonly VirtualFile[]): Promise<Map<
 
 export function classifyBedrockTexture(path: string, id: string): TextureCategory {
   const normalized = path.toLowerCase().replaceAll('\\', '/');
-  if (
-    ((id === 'icons' || id === 'gui') && !normalized.includes('/')) ||
-    /(^|\/)textures\/gui\/(?:icons|gui)\.png$/.test(normalized)
-  ) {
-    return 'gui';
-  }
+  if (isGuiTexturePath('bedrock', path)) return 'gui';
+  if (isBedrockCubemapTexturePath(path)) return 'sky';
   if (SPECIAL_IDS.has(id)) return 'special';
   if (/(^|\/)textures\/models\/armor\//.test(normalized)) return 'armor';
   if (/(^|\/)textures\/particles?\//.test(normalized)) return 'particles';

@@ -81,7 +81,15 @@
     "preserved": "vanilla を維持"
   },
   "messages": {
-    "guiSheetMissing": "入力側に HUD sheet がないため、対応する Console Edition sprite は変更せず維持しました。"
+    "guiSheetMissing": "入力側に HUD sheet がないため、対応する Console Edition sprite は変更せず維持しました。",
+    "guiCopied": "元の GUI PNG をデコード・再エンコードせず、そのままコピーしました。",
+    "guiRenamedToWidgets": "元の gui.png のバイト列を変更せず widgets.png としてコピーしました。",
+    "guiCandidateNotSelected": "より信頼度の高い GUI テクスチャ候補を採用しました。",
+    "javaSkyResized": "Java の 3×2 Sky sheet の面配置を変えずにリサイズしました。",
+    "bedrockSkyCombined": "Bedrock cubemap 6面を確認済みの LCE 配置で結合してリサイズしました。",
+    "skyCandidateNotSelected": "優先度が高い有効な overworld Sky 候補を採用しました。",
+    "skyCandidateInvalid": "この Sky 候補は形式が不正なためスキップしました。",
+    "skyCubemapSetSkipped": "この cubemap セットは不足または曖昧さがあるためスキップしました。"
   },
   "warnings": {
     "mixedItems": "アイテム解像度が混在しているため、安全な最大の2の累乗サイズへ統一しました。",
@@ -93,7 +101,15 @@
     "guiSheetDimensions": "GUI sheet が正方形の 256px 整数倍ではないため、この HUD はスキップして Console Edition の既定画像を維持しました。",
     "guiMapping": "確認済み HUD mapping と基準アセットが一致しないため、Media archive は出力しませんでした。",
     "guiFuiValidation": "HUD FUI の構造または画像検証に失敗したため、Media archive は出力しませんでした。",
-    "guiArcValidation": "Media ARC の構造検証に失敗したため、出力しませんでした。"
+    "guiArcValidation": "Media ARC の構造検証に失敗したため、出力しませんでした。",
+    "javaSkyDimensions": "Java Sky が正方形6面の 3×2 sheet ではないためスキップしました。",
+    "bedrockSkyMissingFaces": "Bedrock cubemap の6面が揃っていないため、このセットをスキップしました。",
+    "bedrockSkyUnexpectedFaces": "cubemap_0～cubemap_5 以外の面が同じディレクトリにあるため、このセットをスキップしました。",
+    "bedrockSkyDuplicateFaces": "同じ番号の Bedrock cubemap が重複しているため、このセットをスキップしました。",
+    "bedrockSkyDimensions": "Bedrock cubemap 6面が同じ大きさの正方形ではないためスキップしました。",
+    "multipleJavaSkyCandidates": "複数の Java Sky 候補から、表示された最優先の有効な画像を採用しました。",
+    "multipleBedrockSkyCandidates": "複数の Bedrock cubemap セットから、表示された最優先の有効な overworld セットを採用しました。",
+    "skyConversion": "選択した Sky を描画できなかったため、Sky 出力をスキップしました。"
   },
   "errors": {
     "heading": "処理を続行できません",

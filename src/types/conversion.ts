@@ -2,7 +2,7 @@ export type SourceEdition = 'java' | 'bedrock' | 'unknown';
 export type TargetEdition = 'wiiu' | 'switch';
 
 export type TextureCategory =
-  'item' | 'terrain' | 'armor' | 'particles' | 'special' | 'gui' | 'unknown';
+  'item' | 'terrain' | 'armor' | 'particles' | 'special' | 'gui' | 'sky' | 'unknown';
 
 export interface VirtualFile {
   path: string;

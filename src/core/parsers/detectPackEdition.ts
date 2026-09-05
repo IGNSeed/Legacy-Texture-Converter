@@ -9,7 +9,11 @@ export function detectPackEdition(files: readonly VirtualFile[]): SourceEdition 
   const hasBedrockManifest = paths.some(
     (path) => path.endsWith('/manifest.json') || path === 'manifest.json',
   );
-  const hasBedrockTextures = paths.some((path) => /(^|\/)textures\/(blocks|items)\//.test(path));
+  const hasBedrockTextures = paths.some(
+    (path) =>
+      /(^|\/)textures\/(blocks|items)\//.test(path) ||
+      /(^|\/)textures\/environment\/overworld_cubemap\/cubemap_\d+\.png$/.test(path),
+  );
 
   if ((hasJavaMetadata || hasJavaAssets) && !(hasBedrockManifest && hasBedrockTextures))
     return 'java';
