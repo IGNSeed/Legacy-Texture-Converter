@@ -33,9 +33,7 @@ export function OutputEdition({ value, disabled, onChange }: OutputEditionProps)
             disabled={disabled}
             onChange={() => void onChange('switch')}
           />{' '}
-          <span>
-            {t('output.switch')} · {t('output.switchVersion')}
-          </span>
+          <span>{t('output.switch')}</span>
         </label>
       </div>
     </section>

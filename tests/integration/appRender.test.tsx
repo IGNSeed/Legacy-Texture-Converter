@@ -25,6 +25,7 @@ describe('application shell', () => {
     act(() => root.render(<App />));
 
     expect(container.textContent).toContain('Legacy Texture Converter');
+    expect(container.textContent).not.toContain('1.0.17');
     expect(container.querySelector('[aria-labelledby="baseline-heading"]')).toBeNull();
     expect(container.querySelector('button.convert-button')).not.toBeNull();
     const outputChoices = container.querySelectorAll<HTMLInputElement>(
