@@ -29,24 +29,6 @@
     "java": "Java Edition",
     "bedrock": "Bedrock Edition"
   },
-  "baseline": {
-    "heading": "{{edition}} 基準アセット",
-    "description": "公開済みの {{edition}} 基準アセットをブラウザへ自動的に読み込みます。手動で選択またはアップロードする必要はありません。",
-    "loading": "基準アセットを読み込んでいます…",
-    "loaded": "基準アセットの準備が完了しました。",
-    "unavailable": "基準アセットを読み込めませんでした。通信状態を確認して再試行してください。",
-    "retry": "再試行",
-    "validation": "基準リソース検証結果",
-    "ok": "OK",
-    "issueCount": "問題 {{count}} 件",
-    "groups": {
-      "items": "items.png",
-      "terrain": "terrain と mipmap",
-      "particles": "particles.png",
-      "armor": "防具",
-      "specialTextures": "特殊テクスチャ・Media ARC"
-    }
-  },
   "output": {
     "heading": "出力エディション",
     "wiiu": "Wii U Edition",

@@ -13,7 +13,7 @@ describe('application shell', () => {
     vi.unstubAllGlobals();
   });
 
-  it('renders the converter UI and selects Switch as an active output', () => {
+  it('renders the converter UI without a baseline panel and selects Switch as output', () => {
     const container = document.createElement('div');
     document.body.append(container);
     const root = createRoot(container);
@@ -25,8 +25,7 @@ describe('application shell', () => {
     act(() => root.render(<App />));
 
     expect(container.textContent).toContain('Legacy Texture Converter');
-    expect(container.querySelector('[aria-labelledby="baseline-heading"]')).not.toBeNull();
-    expect(container.querySelector('[role="status"]')).not.toBeNull();
+    expect(container.querySelector('[aria-labelledby="baseline-heading"]')).toBeNull();
     expect(container.querySelector('button.convert-button')).not.toBeNull();
     const outputChoices = container.querySelectorAll<HTMLInputElement>(
       'input[name="output-edition"]',

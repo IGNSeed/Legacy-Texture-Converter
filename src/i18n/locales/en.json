@@ -29,24 +29,6 @@
     "java": "Java Edition",
     "bedrock": "Bedrock Edition"
   },
-  "baseline": {
-    "heading": "{{edition}} baseline",
-    "description": "The published {{edition}} baseline is loaded automatically in your browser. No manual selection or upload is required.",
-    "loading": "Loading the baseline assets…",
-    "loaded": "The baseline assets are ready.",
-    "unavailable": "The baseline assets could not be loaded. Check your connection and try again.",
-    "retry": "Try again",
-    "validation": "Baseline validation",
-    "ok": "OK",
-    "issueCount": "{{count}} issue(s)",
-    "groups": {
-      "items": "items.png",
-      "terrain": "terrain and mipmaps",
-      "particles": "particles.png",
-      "armor": "Armor",
-      "specialTextures": "Special textures and Media ARC"
-    }
-  },
   "output": {
     "heading": "Output edition",
     "wiiu": "Wii U Edition",

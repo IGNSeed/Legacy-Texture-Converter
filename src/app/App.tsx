@@ -4,7 +4,6 @@ import { ConversionProgress } from '../features/converter/ConversionProgress';
 import { OutputEdition } from '../features/converter/OutputEdition';
 import { PackInformation } from '../features/converter/PackInformation';
 import { ReportPanel } from '../features/report/ReportPanel';
-import { BaselinePanel } from '../features/settings/BaselinePanel';
 import { UploadPanel } from '../features/upload/UploadPanel';
 import { useTextureConverter } from '../hooks/useTextureConverter';
 
@@ -35,13 +34,6 @@ export function App() {
           value={converter.targetEdition}
           disabled={busy}
           onChange={converter.chooseTargetEdition}
-        />
-        <BaselinePanel
-          disabled={busy}
-          target={converter.targetEdition}
-          status={converter.baselineStatus}
-          validation={converter.baselineValidation}
-          onRetry={converter.loadBaseline}
         />
         <div className="convert-row">
           <button

@@ -232,66 +232,6 @@ button:disabled {
   margin-top: 18px;
 }
 
-.baseline {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  gap: 24px;
-}
-
-.baseline h2 {
-  margin-bottom: 8px;
-}
-
-.baseline p {
-  max-width: 620px;
-  margin-bottom: 8px;
-  color: #aeb4b2;
-  font-size: 0.86rem;
-  line-height: 1.55;
-}
-
-.loaded-baseline,
-.missing-baseline {
-  font-size: 0.8rem;
-}
-
-.loaded-baseline {
-  color: #aaceb4;
-}
-
-.missing-baseline {
-  color: #e8b993;
-}
-
-.baseline-validation {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 7px 16px;
-  padding: 0;
-  margin: 14px 0 0;
-  list-style: none;
-}
-
-.baseline-validation li {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  color: #a7acab;
-  font-size: 0.78rem;
-}
-
-.baseline-validation .is-valid strong {
-  color: #aaceb4;
-}
-
-.baseline-validation .is-invalid strong {
-  color: #e8b993;
-}
-
-.baseline-buttons {
-  max-width: 250px;
-}
 .edition-options {
   display: flex;
   gap: 22px;
@@ -483,15 +423,6 @@ footer strong {
   .result-heading {
     align-items: stretch;
     flex-direction: column;
-  }
-
-  .baseline {
-    grid-template-columns: 1fr;
-  }
-
-  .baseline-buttons {
-    max-width: none;
-    justify-content: flex-start;
   }
 }
 
