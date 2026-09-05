@@ -2,6 +2,7 @@
   "version": 1,
   "source": "Minecraft Nintendo Switch Edition 1.0.17 Common",
   "files": [
+    "Common/Media/MediaNX.arc",
     "Common/res/1_2_2/armor/chain_1.png",
     "Common/res/1_2_2/armor/chain_2.png",
     "Common/res/1_2_2/armor/cloth_1.png",

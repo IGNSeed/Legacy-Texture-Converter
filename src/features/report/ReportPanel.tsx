@@ -15,6 +15,7 @@ export function ReportPanel({ report, downloadUrl, downloadName }: ReportPanelPr
     ['unsupported', report.unsupported],
     ['skipped', report.skipped],
     ['resized', report.resized],
+    ['preserved', report.preserved],
     ['warnings', report.warnings.length],
     ['errors', report.errors.length],
   ] as const;
@@ -104,6 +105,7 @@ export function ReportPanel({ report, downloadUrl, downloadName }: ReportPanelPr
                     <span className={`entry-status ${entry.status}`}>
                       {t(`status.${entry.status}`)}
                     </span>
+                    {entry.messageKey && <small>{t(entry.messageKey)}</small>}
                   </td>
                 </tr>
               ))}

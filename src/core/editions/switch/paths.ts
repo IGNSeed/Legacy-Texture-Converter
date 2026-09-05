@@ -2,6 +2,7 @@ export const SWITCH_TITLE_ID = '01006BD001E06000';
 export const SWITCH_ATMOSPHERE_PREFIX = `atmosphere/contents/${SWITCH_TITLE_ID}/romfs`;
 
 export const SWITCH_PATHS = {
+  media: 'Common/Media/MediaNX.arc',
   items: 'Common/res/TitleUpdate/res/items.png',
   terrain: 'Common/res/TitleUpdate/res/terrain.png',
   terrainMip2: 'Common/res/TitleUpdate/res/terrainMipMapLevel2.png',

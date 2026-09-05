@@ -1,0 +1,164 @@
+{
+  "version": 1,
+  "target": "switch",
+  "mediaPath": "Common/Media/MediaNX.arc",
+  "storedColorOrder": "bgra",
+  "fuis": [
+    {
+      "name": "skinGraphicsHud.fui",
+      "imageCount": 224,
+      "entries": [
+        {
+          "semantic": "health.absorption.half",
+          "descriptor": 67,
+          "index": 171,
+          "width": 9,
+          "height": 9
+        },
+        {
+          "semantic": "health.absorption.full",
+          "descriptor": 66,
+          "index": 172,
+          "width": 9,
+          "height": 9
+        },
+        { "semantic": "crosshair", "descriptor": 46, "index": 183, "width": 15, "height": 15 },
+        {
+          "semantic": "hotbar.selection",
+          "descriptor": 45,
+          "index": 184,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "semantic": "hotbar.background",
+          "descriptor": 44,
+          "index": 185,
+          "width": 182,
+          "height": 22
+        },
+        {
+          "semantic": "health.normal.half",
+          "descriptor": 43,
+          "index": 186,
+          "width": 9,
+          "height": 9
+        },
+        {
+          "semantic": "health.normal.full",
+          "descriptor": 39,
+          "index": 190,
+          "width": 9,
+          "height": 9
+        },
+        {
+          "semantic": "health.normal.empty",
+          "descriptor": 35,
+          "index": 194,
+          "width": 9,
+          "height": 9
+        },
+        { "semantic": "hunger.half", "descriptor": 33, "index": 196, "width": 9, "height": 9 },
+        { "semantic": "hunger.full", "descriptor": 29, "index": 200, "width": 9, "height": 9 },
+        { "semantic": "hunger.empty", "descriptor": 25, "index": 204, "width": 9, "height": 9 },
+        {
+          "semantic": "experience.progress",
+          "descriptor": 22,
+          "index": 207,
+          "width": 182,
+          "height": 5
+        },
+        {
+          "semantic": "experience.background",
+          "descriptor": 21,
+          "index": 208,
+          "width": 182,
+          "height": 5
+        },
+        { "semantic": "armor.half", "descriptor": 20, "index": 209, "width": 9, "height": 9 },
+        { "semantic": "armor.empty", "descriptor": 19, "index": 210, "width": 9, "height": 9 },
+        { "semantic": "armor.full", "descriptor": 18, "index": 211, "width": 9, "height": 9 },
+        { "semantic": "oxygen.empty", "descriptor": 17, "index": 212, "width": 9, "height": 9 },
+        { "semantic": "oxygen.full", "descriptor": 16, "index": 213, "width": 9, "height": 9 }
+      ]
+    },
+    {
+      "name": "skinHDGraphicsHud.fui",
+      "imageCount": 259,
+      "entries": [
+        {
+          "semantic": "health.absorption.half",
+          "descriptor": 67,
+          "index": 204,
+          "width": 9,
+          "height": 9
+        },
+        {
+          "semantic": "health.absorption.full",
+          "descriptor": 66,
+          "index": 205,
+          "width": 9,
+          "height": 9
+        },
+        { "semantic": "crosshair", "descriptor": 46, "index": 218, "width": 15, "height": 15 },
+        {
+          "semantic": "hotbar.selection",
+          "descriptor": 45,
+          "index": 219,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "semantic": "hotbar.background",
+          "descriptor": 44,
+          "index": 220,
+          "width": 182,
+          "height": 22
+        },
+        {
+          "semantic": "health.normal.half",
+          "descriptor": 43,
+          "index": 221,
+          "width": 9,
+          "height": 9
+        },
+        {
+          "semantic": "health.normal.full",
+          "descriptor": 39,
+          "index": 225,
+          "width": 9,
+          "height": 9
+        },
+        {
+          "semantic": "health.normal.empty",
+          "descriptor": 35,
+          "index": 229,
+          "width": 9,
+          "height": 9
+        },
+        { "semantic": "hunger.half", "descriptor": 33, "index": 231, "width": 9, "height": 9 },
+        { "semantic": "hunger.full", "descriptor": 29, "index": 235, "width": 9, "height": 9 },
+        { "semantic": "hunger.empty", "descriptor": 25, "index": 239, "width": 9, "height": 9 },
+        {
+          "semantic": "experience.progress",
+          "descriptor": 22,
+          "index": 242,
+          "width": 182,
+          "height": 5
+        },
+        {
+          "semantic": "experience.background",
+          "descriptor": 21,
+          "index": 243,
+          "width": 182,
+          "height": 5
+        },
+        { "semantic": "armor.half", "descriptor": 20, "index": 244, "width": 9, "height": 9 },
+        { "semantic": "armor.empty", "descriptor": 19, "index": 245, "width": 9, "height": 9 },
+        { "semantic": "armor.full", "descriptor": 18, "index": 246, "width": 9, "height": 9 },
+        { "semantic": "oxygen.empty", "descriptor": 17, "index": 247, "width": 9, "height": 9 },
+        { "semantic": "oxygen.full", "descriptor": 16, "index": 248, "width": 9, "height": 9 }
+      ]
+    }
+  ]
+}

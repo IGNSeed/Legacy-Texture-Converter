@@ -34,6 +34,7 @@ export async function analyzePack(
     inspectTextures(blockTextures),
   ]);
   const recognizedCount = pack.textures.filter((texture) => {
+    if (texture.category === 'gui') return true;
     if (
       mappings.resolveSpecialMapping(texture.canonicalId) ||
       mappings.resolveGlintMapping(texture.canonicalId)

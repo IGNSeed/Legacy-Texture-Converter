@@ -25,6 +25,12 @@ const SPECIAL_IDS = new Set([
 
 export function classifyJavaTexture(path: string, id: string): TextureCategory {
   const normalized = path.toLowerCase().replaceAll('\\', '/');
+  if (
+    ((id === 'icons' || id === 'widgets') && !normalized.includes('/')) ||
+    /(^|\/)textures\/gui\/(?:icons|widgets)\.png$/.test(normalized)
+  ) {
+    return 'gui';
+  }
   if (SPECIAL_IDS.has(id)) return 'special';
   if (
     /(^|\/)textures\/(?:models\/armor|entity\/equipment\/(?:humanoid|humanoid_leggings))\//.test(

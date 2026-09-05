@@ -1,7 +1,8 @@
 export type SourceEdition = 'java' | 'bedrock' | 'unknown';
 export type TargetEdition = 'wiiu' | 'switch';
 
-export type TextureCategory = 'item' | 'terrain' | 'armor' | 'particles' | 'special' | 'unknown';
+export type TextureCategory =
+  'item' | 'terrain' | 'armor' | 'particles' | 'special' | 'gui' | 'unknown';
 
 export interface VirtualFile {
   path: string;
@@ -24,7 +25,7 @@ export interface ParsedPack {
   textures: ParsedTexture[];
 }
 
-export type ConversionStatus = 'converted' | 'unsupported' | 'skipped' | 'resized';
+export type ConversionStatus = 'converted' | 'unsupported' | 'skipped' | 'resized' | 'preserved';
 
 export interface ConversionEntry {
   sourcePath: string;
@@ -53,6 +54,7 @@ export interface ConversionReport {
   unsupported: number;
   skipped: number;
   resized: number;
+  preserved: number;
   warnings: ConversionMessage[];
   errors: ConversionMessage[];
   entries: ConversionEntry[];

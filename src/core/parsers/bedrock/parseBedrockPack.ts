@@ -51,6 +51,12 @@ async function readFlipbookMetadata(files: readonly VirtualFile[]): Promise<Map<
 
 export function classifyBedrockTexture(path: string, id: string): TextureCategory {
   const normalized = path.toLowerCase().replaceAll('\\', '/');
+  if (
+    ((id === 'icons' || id === 'gui') && !normalized.includes('/')) ||
+    /(^|\/)textures\/gui\/(?:icons|gui)\.png$/.test(normalized)
+  ) {
+    return 'gui';
+  }
   if (SPECIAL_IDS.has(id)) return 'special';
   if (/(^|\/)textures\/models\/armor\//.test(normalized)) return 'armor';
   if (/(^|\/)textures\/particles?\//.test(normalized)) return 'particles';

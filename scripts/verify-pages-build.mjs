@@ -11,13 +11,13 @@ const baselines = [
   {
     label: 'Wii U',
     path: 'assets/wiiu/default/wiiu-base-assets.zip',
-    sha256: 'ee4ea1509613c5c7e61edfce839834e3ae691fbcbeded35ea39f613db086fbdc',
+    sha256: 'c58c7b5b2a8a331648a973faf9bc834b3dfbee8e0bac652c7270046e4319356b',
     manifest: 'data/mappings/wiiu/default-assets.json',
   },
   {
     label: 'Nintendo Switch Edition 1.0.17',
     path: 'assets/switch/default/switch-base-assets.zip',
-    sha256: 'dc46eea3f5b891fe63d591c49515e9d5562a21f2d3bf33b681411e8a324284aa',
+    sha256: '69f28c1a6b35b4ff8a49cca08c5b3752759d8dc7e5ea6089dc213beef6791c73',
     manifest: 'data/mappings/switch/default-assets.json',
   },
 ];

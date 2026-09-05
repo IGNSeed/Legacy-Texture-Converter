@@ -81,4 +81,15 @@ describe('Wii U BASE + UPD baseline', () => {
       ]),
     );
   });
+
+  it('rejects a malformed Media ARC before conversion', async () => {
+    const files = completeWiiUBaseFiles();
+    files.find((file) => file.path === WIIU_PATHS.media)!.blob = new Blob(['not-an-arc']);
+
+    const loaded = await createWiiUBaseAssetSet('invalid media', files);
+    expect(loaded.assetSet).toBeUndefined();
+    expect(loaded.validation.invalid).toContainEqual(
+      expect.objectContaining({ path: WIIU_PATHS.media, reason: 'invalid-binary' }),
+    );
+  });
 });

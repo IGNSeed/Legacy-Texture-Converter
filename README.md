@@ -15,6 +15,8 @@ Java Edition / Bedrock Edition のテクスチャパックを、Minecraft: Wii U
 - 入力解像度に追従する item atlas
 - 最終 `terrain.png` からの mipmap 再生成
 - armor、fire、water、lava、glint、particles の変換
+- Java / Bedrock の GUI sheet から crosshair、hotbar、health、armor、hunger、oxygen、experience HUD を変換
+- Wii U `skinGraphicsHud.fui` と Switch の handheld / HD FUI を個別に再構築し、Media ARC へ再格納
 - Wii U は BASE + UPD を統合した `Common/res/...` 出力
 - Switch は Title ID `01006BD001E06000` の Atmosphère 配置済み ZIP を出力
 - 未対応・スキップ・リサイズ・警告を含む変換レポート
@@ -31,6 +33,7 @@ Common/res/TitleUpdate/res/terrain.png
 Common/res/TitleUpdate/res/terrainMipMapLevel2.png
 Common/res/TitleUpdate/res/terrainMipMapLevel3.png
 Common/res/TitleUpdate/res/particles.png
+Common/Media/MediaWiiU.arc
 ```
 
 Wii U 基準アセットは公開用 ZIP としてアプリに同梱され、ページを開くとブラウザへ自動的に読み込まれます。利用者が BASE / UPD ZIP やフォルダを選択する必要はありません。入力テクスチャパックも引き続き外部サーバーへ送信されず、変換処理はブラウザ内で完結します。
@@ -49,6 +52,8 @@ atmosphere/
    └─ 01006BD001E06000/
       └─ romfs/
          └─ Common/
+            ├─ Media/
+            │  └─ MediaNX.arc
             └─ res/
                ├─ 1_2_2/armor/...
                └─ TitleUpdate/res/...
@@ -58,7 +63,7 @@ Switch 1.0.17 の確認済み atlas は `items.png` が 256×272、`terrain.png`
 
 Java の `.mcmeta` と Bedrock の flipbook 定義から解釈できる frame 順・時間は Console Edition のテキスト定義へ変換します。固定順で動く特殊画像は Switch の既定定義を維持し、clock / compass はゲーム側の runtime 制御用 strip として出力します。
 
-調査根拠と Switch 固有差分は [`docs/switch-1.0.17.md`](docs/switch-1.0.17.md) にまとめています。
+調査根拠と Switch 固有差分は [`docs/switch-1.0.17.md`](docs/switch-1.0.17.md)、GUI/HUD の source rectangle・FUI descriptor・ARC/FUI 再構築仕様は [`docs/gui-hud-conversion.md`](docs/gui-hud-conversion.md) にまとめています。
 
 ## 開発
 
@@ -116,6 +121,7 @@ https://ignseed.github.io/Legacy-Texture-Converter/
 - `data/mappings/wiiu/` — atlas、armor、特殊画像、alias のマッピング
 - `data/mappings/switch/` — Switch 1.0.17 固有の atlas、armor、特殊画像、alias、基準 manifest
 - `src/core/editions/common/` — エディション adapter が共有する変換契約と pipeline
+- `src/core/binary/`, `src/core/gui-hud/` — ARC/FUI の安全な読込・再構築と GUI/HUD 変換
 - `src/core/editions/wiiu/base-assets/` — 公開アセット provider、BASE/UPD 統合、検証、型付き基準アセット
 - `src/core/editions/wiiu/` — Wii U 固有の出力・変換 adapter
 - `src/core/editions/switch/` — Switch 固有の path、baseline、validation、変換 adapter
@@ -127,6 +133,8 @@ https://ignseed.github.io/Legacy-Texture-Converter/
 - Switch 対応の基準バージョンは Nintendo Switch Edition 1.0.17 です。他バージョンの title / resource layout 互換性は保証しません。
 - 出力先エディションに存在しない新しい Java / Bedrock コンテンツは変換せず、未対応として報告します。
 - 複雑な Bedrock flipbook や、標準外の Java animation 定義は完全には再現できない場合があります。その場合は警告し、確認済みの出力先既定シーケンスを維持します。
+- GUI/HUD 対応は確認済みの静的 HUD sprite に限定されます。menu layout、container、font、controller glyph、任意の FUI layout は変換しません。
+- GUI sheet は 256×256 の正方形整数倍（最大 4096×4096）のみを扱い、nearest-neighbor で対象 sprite の実寸へ変換します。
 - 非常に大きな item atlas がブラウザの安全な canvas 上限を超える場合は、明示的なエラーで停止します。
 - 公開基準アセットには第三者のゲーム素材が含まれます。コードの GPL-3.0 ライセンスは、それらの素材に対する権利を付与しません。詳細は `THIRD_PARTY_NOTICES.md` を確認してください。
 - 基準アセットの再生成元には `LocalAssets/` または `.local-assets/` を使用できます。両方とも Git 管理・production build の対象外です。

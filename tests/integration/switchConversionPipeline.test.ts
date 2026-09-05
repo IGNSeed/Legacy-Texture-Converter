@@ -117,6 +117,7 @@ describe.each<Exclude<SourceEdition, 'unknown'>>(['java', 'bedrock'])(
       expect(paths).toContain(`${expectedRoot}Common/res/1_2_2/armor/iron_1.png`);
       expect(paths).toContain(`${expectedRoot}Common/res/1_2_2/armor/diamond_2.png`);
       expect(paths).toContain(`${expectedRoot}Common/res/TitleUpdate/res/particles.png`);
+      expect(paths).not.toContain(`${expectedRoot}Common/Media/MediaNX.arc`);
       expect(paths).toContain(
         `${expectedRoot}Common/res/TitleUpdate/res/textures/blocks/waterMipMapLevel5.png`,
       );
@@ -130,7 +131,8 @@ describe.each<Exclude<SourceEdition, 'unknown'>>(['java', 'bedrock'])(
             !/(?:^|\/)(?:References|switch|LegacyTextureConverter|BASE|UPD)(?:\/|$)/i.test(path),
         ),
       ).toBe(true);
-      expect(result.outputFiles.length).toBe(SWITCH_BASE_ASSET_PATHS.length + 2);
+      // The large optional Media ARC baseline is emitted only when a GUI HUD sheet was converted.
+      expect(result.outputFiles.length).toBe(SWITCH_BASE_ASSET_PATHS.length + 1);
       const animationText = await archive
         .file(`${expectedRoot}Common/res/TitleUpdate/res/textures/blocks/fire_0.txt`)
         ?.async('text');

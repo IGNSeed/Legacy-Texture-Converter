@@ -1,6 +1,7 @@
 {
   "version": 1,
   "files": [
+    "Common/Media/MediaWiiU.arc",
     "Common/res/1_2_2/armor/chain_1.png",
     "Common/res/1_2_2/armor/chain_2.png",
     "Common/res/1_2_2/armor/cloth_1.png",

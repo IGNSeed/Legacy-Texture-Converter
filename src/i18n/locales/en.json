@@ -44,7 +44,7 @@
       "terrain": "terrain and mipmaps",
       "particles": "particles.png",
       "armor": "Armor",
-      "specialTextures": "Special and animated textures"
+      "specialTextures": "Special textures and Media ARC"
     }
   },
   "output": {
@@ -82,6 +82,7 @@
     "unsupported": "Unsupported",
     "skipped": "Skipped",
     "resized": "Resized",
+    "preserved": "Vanilla preserved",
     "warnings": "Warnings",
     "errors": "Errors",
     "details": "Texture details",
@@ -95,7 +96,11 @@
     "converted": "Converted",
     "unsupported": "Unsupported",
     "skipped": "Skipped",
-    "resized": "Resized"
+    "resized": "Resized",
+    "preserved": "Vanilla preserved"
+  },
+  "messages": {
+    "guiSheetMissing": "The source HUD sheet was not present, so its mapped Console Edition sprites remain unchanged."
   },
   "warnings": {
     "mixedItems": "Mixed item resolutions were normalized to the largest safe power-of-two size.",
@@ -103,7 +108,11 @@
     "nonSquare": "A non-square texture could not be placed safely.",
     "invalidPng": "A PNG could not be decoded and was skipped.",
     "animation": "Animation metadata could not be interpreted; the target edition's default sequence was kept.",
-    "animationFixedOrder": "This texture uses a fixed Console Edition animation order, so source animation metadata was not copied."
+    "animationFixedOrder": "This texture uses a fixed Console Edition animation order, so source animation metadata was not copied.",
+    "guiSheetDimensions": "This GUI sheet is not a square integer multiple of 256px, so its HUD sprites were skipped and the Console Edition defaults were preserved.",
+    "guiMapping": "The verified HUD mapping did not match this baseline, so the Media archive was left out of the output.",
+    "guiFuiValidation": "The HUD FUI failed structural or image validation, so the Media archive was left out of the output.",
+    "guiArcValidation": "The Media ARC failed structural validation, so it was left out of the output."
   },
   "errors": {
     "heading": "Unable to continue",
@@ -112,7 +121,7 @@
     "unknown-edition": "Select Java Edition or Bedrock Edition for this input.",
     "baseline-incomplete": "Wait for the published Wii U baseline to load, then try again.",
     "switch-baseline-incomplete": "Wait for the published Nintendo Switch Edition baseline to load, then try again.",
-    "baseline-invalid": "The Wii U baseline contains an invalid PNG or unexpected vanilla atlas size.",
+    "baseline-invalid": "The selected baseline contains an invalid image, Media archive, or unexpected resource layout.",
     "unsafe-path": "The archive contains an unsafe path and was rejected.",
     "canvas-limit": "The requested atlas is too large for a safe browser canvas.",
     "generic": "The pack could not be processed. Check that the archive and PNG files are valid."

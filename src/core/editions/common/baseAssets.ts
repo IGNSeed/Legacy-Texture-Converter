@@ -4,7 +4,7 @@ export type BaseAssetGroup = 'items' | 'terrain' | 'particles' | 'armor' | 'spec
 
 export interface BaseAssetIssue {
   path: string;
-  reason: 'missing' | 'invalid-png' | 'unexpected-dimensions';
+  reason: 'missing' | 'invalid-png' | 'unexpected-dimensions' | 'invalid-binary';
   detail?: string;
 }
 

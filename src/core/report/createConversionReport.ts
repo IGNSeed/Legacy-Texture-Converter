@@ -18,6 +18,7 @@ export function createConversionReport(
     unsupported: 0,
     skipped: 0,
     resized: 0,
+    preserved: 0,
     warnings: [],
     errors: [],
     entries: [],

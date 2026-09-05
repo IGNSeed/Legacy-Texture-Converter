@@ -10,6 +10,8 @@ import { composeAtlas } from '../../atlas/composeAtlas';
 import { convertFileTextures } from '../../convert/convertFileTextures';
 import { convertSpecialTextures } from '../../convert/convertSpecialTextures';
 import { inspectImage } from '../../image/decodeImage';
+import { convertHudTextures } from '../../gui-hud/convertHudTextures';
+import { hudTargetMapping } from '../../gui-hud/mappings';
 import type { EditionMappings } from '../../mappings/createEditionMappings';
 import { generateMipmaps } from '../../mipmap/generateMipmaps';
 import { createOutputZip } from '../../packaging/createOutputZip';
@@ -88,7 +90,8 @@ export async function convertConsolePack<TTarget extends TargetEdition>(
   const overrides: OutputFile[] = [];
 
   progress(onProgress, 'reading', 5);
-  const defaults = [...baseline.files];
+  const mediaPath = hudTargetMapping(definition.target).mediaPath;
+  const defaults = baseline.files.filter((file) => file.path !== mediaPath);
   progress(onProgress, 'mapping', 15);
 
   const items = mappedTextures(pack, 'item', mappings);
@@ -223,6 +226,9 @@ export async function convertConsolePack<TTarget extends TargetEdition>(
       mappings.resolveSpecialMapping,
       definition.specialMipmapPath,
     )),
+  );
+  overrides.push(
+    ...(await convertHudTextures(pack, baseline, definition.target, report, processed)),
   );
   progress(onProgress, 'files', 80);
 

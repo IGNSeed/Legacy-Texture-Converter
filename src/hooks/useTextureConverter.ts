@@ -97,13 +97,15 @@ export function useTextureConverter() {
     }
   }, []);
 
+  const selectedBaseline = baselines[targetEdition];
+
   useEffect(() => {
+    if (selectedBaseline.status !== 'loading' || selectedBaseline.assetSet) return;
     const task = window.setTimeout(() => {
-      void loadTargetBaseline('wiiu');
-      void loadTargetBaseline('switch');
+      void loadTargetBaseline(targetEdition);
     }, 0);
     return () => window.clearTimeout(task);
-  }, [loadTargetBaseline]);
+  }, [loadTargetBaseline, selectedBaseline.assetSet, selectedBaseline.status, targetEdition]);
 
   const analyze = useCallback(
     async (input: RawInput, edition: Exclude<SourceEdition, 'unknown'>, target: TargetEdition) => {
@@ -237,7 +239,6 @@ export function useTextureConverter() {
     }
   }, [baselines, pack, targetEdition]);
 
-  const selectedBaseline = baselines[targetEdition];
   return {
     status,
     targetEdition,

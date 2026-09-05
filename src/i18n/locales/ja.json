@@ -44,7 +44,7 @@
       "terrain": "terrain と mipmap",
       "particles": "particles.png",
       "armor": "防具",
-      "specialTextures": "特殊・アニメーションテクスチャ"
+      "specialTextures": "特殊テクスチャ・Media ARC"
     }
   },
   "output": {
@@ -82,6 +82,7 @@
     "unsupported": "未対応",
     "skipped": "スキップ",
     "resized": "リサイズ",
+    "preserved": "vanilla を維持",
     "warnings": "警告",
     "errors": "エラー",
     "details": "テクスチャ詳細",
@@ -95,7 +96,11 @@
     "converted": "変換済み",
     "unsupported": "未対応",
     "skipped": "スキップ",
-    "resized": "リサイズ"
+    "resized": "リサイズ",
+    "preserved": "vanilla を維持"
+  },
+  "messages": {
+    "guiSheetMissing": "入力側に HUD sheet がないため、対応する Console Edition sprite は変更せず維持しました。"
   },
   "warnings": {
     "mixedItems": "アイテム解像度が混在しているため、安全な最大の2の累乗サイズへ統一しました。",
@@ -103,7 +108,11 @@
     "nonSquare": "正方形でないテクスチャを安全に配置できないためスキップしました。",
     "invalidPng": "PNG を読み込めなかったためスキップしました。",
     "animation": "アニメーション定義を解釈できなかったため、出力エディションの既定シーケンスを維持しました。",
-    "animationFixedOrder": "Console Edition 固有の固定アニメーション順を使用するため、入力側のアニメーション定義はコピーしませんでした。"
+    "animationFixedOrder": "Console Edition 固有の固定アニメーション順を使用するため、入力側のアニメーション定義はコピーしませんでした。",
+    "guiSheetDimensions": "GUI sheet が正方形の 256px 整数倍ではないため、この HUD はスキップして Console Edition の既定画像を維持しました。",
+    "guiMapping": "確認済み HUD mapping と基準アセットが一致しないため、Media archive は出力しませんでした。",
+    "guiFuiValidation": "HUD FUI の構造または画像検証に失敗したため、Media archive は出力しませんでした。",
+    "guiArcValidation": "Media ARC の構造検証に失敗したため、出力しませんでした。"
   },
   "errors": {
     "heading": "処理を続行できません",
@@ -112,7 +121,7 @@
     "unknown-edition": "この入力が Java Edition か Bedrock Edition かを選択してください。",
     "baseline-incomplete": "公開済みの Wii U 基準アセットの読込完了後に、もう一度お試しください。",
     "switch-baseline-incomplete": "公開済みの Nintendo Switch Edition 基準アセットの読込完了後に、もう一度お試しください。",
-    "baseline-invalid": "Wii U 基準リソースに無効なPNGまたは想定外のvanilla atlasサイズが含まれています。",
+    "baseline-invalid": "選択した基準リソースに無効な画像・Media archive、または想定外のリソース構造が含まれています。",
     "unsafe-path": "アーカイブ内に危険なパスがあるため拒否しました。",
     "canvas-limit": "要求されたアトラスがブラウザで安全に扱えるサイズを超えています。",
     "generic": "パックを処理できませんでした。アーカイブと PNG が有効か確認してください。"

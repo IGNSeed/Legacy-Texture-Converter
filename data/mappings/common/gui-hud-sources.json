@@ -1,0 +1,196 @@
+{
+  "version": 1,
+  "logicalSheetSize": 256,
+  "editions": {
+    "java": {
+      "sheets": ["icons", "widgets"],
+      "entries": [
+        {
+          "semantic": "crosshair",
+          "sheet": "icons",
+          "rect": { "x": 0, "y": 0, "width": 15, "height": 15 }
+        },
+        {
+          "semantic": "health.normal.empty",
+          "sheet": "icons",
+          "rect": { "x": 16, "y": 0, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "health.normal.full",
+          "sheet": "icons",
+          "rect": { "x": 52, "y": 0, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "health.normal.half",
+          "sheet": "icons",
+          "rect": { "x": 61, "y": 0, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "health.absorption.full",
+          "sheet": "icons",
+          "rect": { "x": 160, "y": 0, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "health.absorption.half",
+          "sheet": "icons",
+          "rect": { "x": 169, "y": 0, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "armor.full",
+          "sheet": "icons",
+          "rect": { "x": 16, "y": 9, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "armor.half",
+          "sheet": "icons",
+          "rect": { "x": 25, "y": 9, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "armor.empty",
+          "sheet": "icons",
+          "rect": { "x": 34, "y": 9, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "oxygen.full",
+          "sheet": "icons",
+          "rect": { "x": 16, "y": 18, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "oxygen.empty",
+          "sheet": "icons",
+          "rect": { "x": 25, "y": 18, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "hunger.empty",
+          "sheet": "icons",
+          "rect": { "x": 16, "y": 27, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "hunger.full",
+          "sheet": "icons",
+          "rect": { "x": 52, "y": 27, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "hunger.half",
+          "sheet": "icons",
+          "rect": { "x": 61, "y": 27, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "experience.background",
+          "sheet": "icons",
+          "rect": { "x": 0, "y": 64, "width": 182, "height": 5 }
+        },
+        {
+          "semantic": "experience.progress",
+          "sheet": "icons",
+          "rect": { "x": 0, "y": 69, "width": 182, "height": 5 }
+        },
+        {
+          "semantic": "hotbar.background",
+          "sheet": "widgets",
+          "rect": { "x": 0, "y": 0, "width": 182, "height": 22 }
+        },
+        {
+          "semantic": "hotbar.selection",
+          "sheet": "widgets",
+          "rect": { "x": 0, "y": 22, "width": 24, "height": 24 }
+        }
+      ]
+    },
+    "bedrock": {
+      "sheets": ["icons", "gui"],
+      "entries": [
+        {
+          "semantic": "crosshair",
+          "sheet": "icons",
+          "rect": { "x": 0, "y": 0, "width": 15, "height": 15 }
+        },
+        {
+          "semantic": "health.normal.empty",
+          "sheet": "icons",
+          "rect": { "x": 16, "y": 0, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "health.normal.full",
+          "sheet": "icons",
+          "rect": { "x": 52, "y": 0, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "health.normal.half",
+          "sheet": "icons",
+          "rect": { "x": 61, "y": 0, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "health.absorption.full",
+          "sheet": "icons",
+          "rect": { "x": 160, "y": 0, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "health.absorption.half",
+          "sheet": "icons",
+          "rect": { "x": 169, "y": 0, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "armor.full",
+          "sheet": "icons",
+          "rect": { "x": 16, "y": 9, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "armor.half",
+          "sheet": "icons",
+          "rect": { "x": 25, "y": 9, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "armor.empty",
+          "sheet": "icons",
+          "rect": { "x": 34, "y": 9, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "oxygen.full",
+          "sheet": "icons",
+          "rect": { "x": 16, "y": 18, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "oxygen.empty",
+          "sheet": "icons",
+          "rect": { "x": 25, "y": 18, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "hunger.empty",
+          "sheet": "icons",
+          "rect": { "x": 16, "y": 27, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "hunger.full",
+          "sheet": "icons",
+          "rect": { "x": 52, "y": 27, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "hunger.half",
+          "sheet": "icons",
+          "rect": { "x": 61, "y": 27, "width": 9, "height": 9 }
+        },
+        {
+          "semantic": "experience.background",
+          "sheet": "icons",
+          "rect": { "x": 0, "y": 64, "width": 182, "height": 5 }
+        },
+        {
+          "semantic": "experience.progress",
+          "sheet": "icons",
+          "rect": { "x": 0, "y": 69, "width": 182, "height": 5 }
+        },
+        {
+          "semantic": "hotbar.background",
+          "sheet": "gui",
+          "rect": { "x": 0, "y": 0, "width": 182, "height": 22 }
+        },
+        {
+          "semantic": "hotbar.selection",
+          "sheet": "gui",
+          "rect": { "x": 0, "y": 22, "width": 24, "height": 24 }
+        }
+      ]
+    }
+  }
+}

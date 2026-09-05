@@ -95,6 +95,7 @@ describe('complete Wii U conversion pipeline', () => {
     expect(paths).toContain('Common/res/TitleUpdate/res/terrainMipMapLevel3.png');
     expect(paths).toContain('Common/res/1_2_2/armor/iron_1.png');
     expect(paths).toContain('Common/res/TitleUpdate/res/textures/blocks/fire_0.png');
+    expect(paths).not.toContain('Common/Media/MediaWiiU.arc');
     expect(paths.every((path) => !/^(BASE|UPD)\//.test(path))).toBe(true);
   });
 });

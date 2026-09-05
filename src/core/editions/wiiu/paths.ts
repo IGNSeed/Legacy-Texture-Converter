@@ -1,4 +1,5 @@
 export const WIIU_PATHS = {
+  media: 'Common/Media/MediaWiiU.arc',
   items: 'Common/res/TitleUpdate/res/items.png',
   terrain: 'Common/res/TitleUpdate/res/terrain.png',
   terrainMip2: 'Common/res/TitleUpdate/res/terrainMipMapLevel2.png',

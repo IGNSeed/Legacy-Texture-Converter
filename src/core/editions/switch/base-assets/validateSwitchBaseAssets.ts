@@ -1,5 +1,6 @@
 import type { OutputFile } from '../../../../types/conversion';
 import { validateBaseAssets } from '../../common/baseAssets';
+import { validateHudBaselineMedia } from '../../../gui-hud/validation';
 import {
   EXPECTED_SWITCH_BASE_DIMENSIONS,
   SWITCH_BASE_ASSET_PATHS,
@@ -7,12 +8,13 @@ import {
 } from './manifest';
 import type { SwitchBaseAssetValidation } from './types';
 
-export function validateSwitchBaseAssets(
+export async function validateSwitchBaseAssets(
   files: readonly OutputFile[],
 ): Promise<SwitchBaseAssetValidation> {
-  return validateBaseAssets(files, {
+  const validation = await validateBaseAssets(files, {
     paths: SWITCH_BASE_ASSET_PATHS,
     expectedDimensions: EXPECTED_SWITCH_BASE_DIMENSIONS,
     groupForPath: switchBaseAssetGroup,
   });
+  return validateHudBaselineMedia(files, 'switch', validation);
 }
