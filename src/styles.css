@@ -242,6 +242,58 @@ button:disabled {
   align-items: center;
   gap: 7px;
 }
+.edition-options label small {
+  color: #a8aeac;
+}
+.dialog-backdrop {
+  position: fixed;
+  z-index: 10;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  padding: 20px;
+  background: rgb(7 10 9 / 72%);
+}
+.version-dialog {
+  width: min(100%, 520px);
+  padding: 24px;
+  border: 1px solid #3d4743;
+  border-radius: 14px;
+  background: #181d1b;
+  box-shadow: 0 24px 70px rgb(0 0 0 / 45%);
+}
+.version-dialog h3 {
+  margin: 0 0 8px;
+}
+.version-dialog > p {
+  margin: 0 0 18px;
+  color: #a8aeac;
+}
+.version-options {
+  display: grid;
+  gap: 10px;
+}
+.version-options label {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 13px;
+  border: 1px solid #39413e;
+  border-radius: 9px;
+}
+.version-options span {
+  display: grid;
+  gap: 3px;
+}
+.version-options small {
+  color: #a8aeac;
+}
+.dialog-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-top: 20px;
+}
 .convert-row {
   display: flex;
   justify-content: flex-end;

@@ -4,24 +4,25 @@ import type {
   OutputFile,
   ParsedPack,
   ParsedTexture,
+  Ps3Version,
   TargetEdition,
 } from '../../types/conversion';
 import { findArcEntry, getArcEntryData, parseArc, serializeArc } from '../binary/arc';
 import { findFuiImage, getFuiImageData, parseFui, serializeFui } from '../binary/fui';
-import { decodeImage, inspectImage, type DecodedImage } from '../image/decodeImage';
+import { decodeImage, inspectImage } from '../image/decodeImage';
 import { addReportEntry, addWarning } from '../report/createConversionReport';
 import { selectGuiTexture } from '../gui-textures/selectGuiTextures';
 import type { ConsoleBaseAssetSet } from '../editions/common/baseAssets';
 import { hudSourceMappings, hudTargetMapping } from './mappings';
+import { convertSwfHud } from './convertSwfHud';
 import { renderHudSprite, resolveHudSheetScale } from './renderHudSprite';
-import type { HudSourceEntry, HudTargetFuiMapping, HudTargetMappingDocument } from './types';
+import type {
+  HudSourceEntry,
+  HudTargetFuiMapping,
+  HudTargetMappingDocument,
+  PreparedHudSheet,
+} from './types';
 import { validateHudTargetFui } from './validation';
-
-interface PreparedSheet {
-  texture: ParsedTexture;
-  image: DecodedImage;
-  scale: number;
-}
 
 interface ParsedTargetFui {
   mapping: HudTargetFuiMapping;
@@ -41,15 +42,27 @@ function debugDetail(reason: unknown): string | undefined {
   return reason instanceof Error ? reason.message : undefined;
 }
 
-function warningKey(reason: unknown): { code: string; messageKey: string } {
+function warningKey(reason: unknown, target: TargetEdition): { code: string; messageKey: string } {
   const message = debugDetail(reason) ?? '';
   if (message.startsWith('arc:')) {
-    return { code: 'gui-arc-validation', messageKey: 'warnings.guiArcValidation' };
+    return {
+      code: 'gui-arc-validation',
+      messageKey: target === 'ps3' ? 'warnings.ps3GuiArcValidation' : 'warnings.guiArcValidation',
+    };
   }
   if (message.startsWith('fui:')) {
-    return { code: 'gui-fui-validation', messageKey: 'warnings.guiFuiValidation' };
+    return {
+      code: 'gui-fui-validation',
+      messageKey: target === 'ps3' ? 'warnings.ps3GuiFuiValidation' : 'warnings.guiFuiValidation',
+    };
   }
-  return { code: 'gui-mapping', messageKey: 'warnings.guiMapping' };
+  if (message.startsWith('swf:')) {
+    return { code: 'gui-swf-validation', messageKey: 'warnings.ps3GuiSwfValidation' };
+  }
+  return {
+    code: 'gui-mapping',
+    messageKey: target === 'ps3' ? 'warnings.ps3GuiMapping' : 'warnings.guiMapping',
+  };
 }
 
 function sourceSheet(pack: ParsedPack, sheet: string): ParsedTexture | undefined {
@@ -72,7 +85,7 @@ async function validateReplacementDecodes(
 
 function addSkippedSheets(
   report: ConversionReport,
-  sheets: Iterable<PreparedSheet>,
+  sheets: Iterable<PreparedHudSheet>,
   destination: string,
 ): void {
   for (const sheet of sheets) {
@@ -91,9 +104,9 @@ async function prepareSheets(
   mapping: HudTargetMappingDocument,
   report: ConversionReport,
   processed: Set<string>,
-): Promise<Map<string, PreparedSheet>> {
+): Promise<Map<string, PreparedHudSheet>> {
   const sourceDefinition = hudSourceMappings.editions[pack.edition];
-  const prepared = new Map<string, PreparedSheet>();
+  const prepared = new Map<string, PreparedHudSheet>();
 
   for (const sheetName of sourceDefinition.sheets) {
     const texture = sourceSheet(pack, sheetName);
@@ -165,13 +178,17 @@ export async function convertHudTextures(
   target: TargetEdition,
   report: ConversionReport,
   processed: Set<string>,
+  ps3Version?: Ps3Version,
 ): Promise<OutputFile[]> {
-  const mapping = hudTargetMapping(target);
+  const mapping = hudTargetMapping(target, ps3Version);
   const prepared = await prepareSheets(pack, mapping, report, processed);
   if (prepared.size === 0) return [];
 
   const pendingEntries: ConversionEntry[] = [];
   try {
+    if (mapping.backend === 'swf') {
+      return await convertSwfHud(pack, baseline, mapping, prepared, report);
+    }
     const mediaBlob = baseline.byPath.get(mapping.mediaPath);
     if (!mediaBlob) throw new Error('hud-baseline-media-missing');
     const archive = parseArc(new Uint8Array(await mediaBlob.arrayBuffer()));
@@ -273,7 +290,7 @@ export async function convertHudTextures(
       { path: mapping.mediaPath, blob: bytesToBlob(rebuiltArchive, 'application/octet-stream') },
     ];
   } catch (reason) {
-    const warning = warningKey(reason);
+    const warning = warningKey(reason, target);
     addWarning(report, {
       ...warning,
       path: mapping.mediaPath,

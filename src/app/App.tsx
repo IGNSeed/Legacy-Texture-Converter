@@ -32,6 +32,7 @@ export function App() {
         )}
         <OutputEdition
           value={converter.targetEdition}
+          ps3Version={converter.ps3Version}
           disabled={busy}
           onChange={converter.chooseTargetEdition}
         />

@@ -1,6 +1,7 @@
 import type {
   ConversionResult,
   ParsedPack,
+  Ps3Version,
   ProgressCallback,
   TargetEdition,
 } from '../../../types/conversion';
@@ -14,6 +15,7 @@ export interface TargetEditionBaselineResult {
 
 export interface TargetEditionAdapter {
   id: TargetEdition;
+  ps3Version?: Ps3Version;
   mappings: EditionMappings;
   loadBaseline(): Promise<TargetEditionBaselineResult>;
   convert(

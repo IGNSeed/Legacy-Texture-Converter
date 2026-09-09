@@ -1,7 +1,7 @@
 {
   "header": {
     "title": "Legacy Texture Converter",
-    "subtitle": "Convert Java and Bedrock texture packs for Minecraft: Wii U Edition or Nintendo Switch Edition. Files stay in your browser.",
+    "subtitle": "Convert Java and Bedrock texture packs for Minecraft: Wii U, Nintendo Switch, or PlayStation 3 Edition. Files stay in your browser.",
     "language": "Language"
   },
   "upload": {
@@ -32,7 +32,20 @@
   "output": {
     "heading": "Output edition",
     "wiiu": "Wii U Edition",
-    "switch": "Nintendo Switch Edition"
+    "switch": "Nintendo Switch Edition",
+    "ps3": "PlayStation 3 Edition",
+    "ps3Versions": {
+      "latest": "Latest",
+      "1.8": "1.8"
+    },
+    "ps3Dialog": {
+      "heading": "Choose the PlayStation 3 version",
+      "description": "The two versions use different atlases and HUD formats.",
+      "latestHelp": "Uses the latest PS3 Common resources and FUI HUD files.",
+      "oldHelp": "Uses the PS3 1.8 resource layout and SWF HUD files.",
+      "cancel": "Cancel",
+      "confirm": "Use this version"
+    }
   },
   "convert": {
     "button": "Convert",
@@ -57,6 +70,7 @@
     "inputName": "Input pack",
     "inputEdition": "Input edition",
     "outputEdition": "Output edition",
+    "outputVersion": "Version",
     "itemResolution": "Item resolution",
     "blockResolution": "Block resolution",
     "converted": "Converted",
@@ -92,6 +106,10 @@
     "skyCubemapSetSkipped": "This cubemap set was incomplete or ambiguous and was skipped."
   },
   "warnings": {
+    "ps3GuiMapping": "The verified PS3 HUD mapping did not match this baseline. The original Media archive was preserved and HUD conversion was skipped.",
+    "ps3GuiFuiValidation": "The PS3 HUD FUI failed structural or image validation. The original Media archive was preserved and HUD conversion was skipped.",
+    "ps3GuiSwfValidation": "The PS3 HUD SWF failed structural or bitmap validation. The original Media archive was preserved and HUD conversion was skipped.",
+    "ps3GuiArcValidation": "The PS3 Media ARC failed round-trip validation. The original Media archive was preserved and HUD conversion was skipped.",
     "mixedItems": "Mixed item resolutions were normalized to the largest safe power-of-two size.",
     "mixedBlocks": "Mixed block resolutions were normalized to a 32px terrain atlas.",
     "nonSquare": "A non-square texture could not be placed safely.",
@@ -112,6 +130,7 @@
     "skyConversion": "The selected sky could not be rendered, so sky output was skipped."
   },
   "errors": {
+    "ps3-baseline-incomplete": "Wait for the selected PlayStation 3 Edition baseline to load, then try again.",
     "heading": "Unable to continue",
     "empty-input": "Choose at least one file.",
     "empty-pack": "No supported texture files were found in this pack.",
@@ -124,7 +143,7 @@
     "generic": "The pack could not be processed. Check that the archive and PNG files are valid."
   },
   "footer": {
-    "note": "Wii U and Nintendo Switch Edition outputs are built in the browser from edition-specific published baselines and verified resource layouts.",
+    "note": "Wii U, Nintendo Switch, and PlayStation 3 Edition outputs are built in the browser from edition-specific published baselines and verified resource layouts.",
     "disclaimer": "NOT AN OFFICIAL MINECRAFT PRODUCT. NOT APPROVED BY OR ASSOCIATED WITH MOJANG OR MICROSOFT."
   }
 }

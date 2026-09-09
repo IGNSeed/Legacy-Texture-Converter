@@ -21,3 +21,8 @@ export function createWiiUDownloadName(input: string): string {
 export function createSwitchDownloadName(input: string): string {
   return `${sanitizeFileName(input)}_Switch_1.0.17.zip`;
 }
+
+export function createPs3DownloadName(input: string, version: 'latest' | '1.8'): string {
+  const versionLabel = version === 'latest' ? 'Latest' : '1.8';
+  return `${sanitizeFileName(input)}_PS3_${versionLabel}.zip`;
+}

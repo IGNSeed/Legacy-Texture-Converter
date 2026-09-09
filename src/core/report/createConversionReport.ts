@@ -3,16 +3,19 @@ import type {
   ConversionMessage,
   ConversionReport,
   ParsedPack,
+  Ps3Version,
   TargetEdition,
 } from '../../types/conversion';
 
 export function createConversionReport(
   pack: ParsedPack,
   outputEdition: TargetEdition = 'wiiu',
+  ps3Version?: Ps3Version,
 ): ConversionReport {
   return {
     inputEdition: pack.edition,
     outputEdition,
+    ...(outputEdition === 'ps3' && ps3Version ? { ps3Version } : {}),
     inputName: pack.name,
     converted: 0,
     unsupported: 0,

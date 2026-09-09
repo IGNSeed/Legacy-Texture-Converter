@@ -1,7 +1,11 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { analyzePack, type PackSummary } from '../core/analysis/analyzePack';
 import type { BaseAssetValidation, ConsoleBaseAssetSet } from '../core/editions/common/baseAssets';
-import { targetEditionAdapter } from '../core/editions/targetEditions';
+import {
+  targetAdapterKey,
+  targetEditionAdapter,
+  type TargetAdapterKey,
+} from '../core/editions/targetEditions';
 import { readDroppedItems } from '../core/files/readDroppedItems';
 import { readInputFiles, type ReadInputResult } from '../core/files/readInputFiles';
 import { UnsafeArchivePathError } from '../core/files/normalizeArchivePath';
@@ -11,6 +15,7 @@ import type {
   ConversionProgress,
   ConversionResult,
   ParsedPack,
+  Ps3Version,
   SourceEdition,
   TargetEdition,
 } from '../types/conversion';
@@ -30,10 +35,12 @@ interface BaselineState {
   validation?: BaseAssetValidation;
 }
 
-function initialBaselines(): Record<TargetEdition, BaselineState> {
+function initialBaselines(): Record<TargetAdapterKey, BaselineState> {
   return {
     wiiu: { status: 'loading' },
     switch: { status: 'loading' },
+    'ps3-latest': { status: 'loading' },
+    'ps3-1.8': { status: 'loading' },
   };
 }
 
@@ -49,6 +56,7 @@ function errorCode(error: unknown): string {
         'baseline-incomplete',
         'baseline-invalid',
         'switch-baseline-incomplete',
+        'ps3-baseline-incomplete',
       ].includes(error.message)
     ) {
       return error.message;
@@ -60,6 +68,7 @@ function errorCode(error: unknown): string {
 export function useTextureConverter() {
   const [status, setStatus] = useState<AppStatus>('idle');
   const [targetEdition, setTargetEdition] = useState<TargetEdition>('wiiu');
+  const [ps3Version, setPs3Version] = useState<Ps3Version>('latest');
   const [rawInput, setRawInput] = useState<RawInput>();
   const [pack, setPack] = useState<ParsedPack>();
   const [summary, setSummary] = useState<PackSummary>();
@@ -77,13 +86,14 @@ export function useTextureConverter() {
     if (downloadUrl) return () => URL.revokeObjectURL(downloadUrl);
   }, [downloadUrl]);
 
-  const loadTargetBaseline = useCallback(async (target: TargetEdition) => {
+  const loadTargetBaseline = useCallback(async (target: TargetEdition, version?: Ps3Version) => {
+    const key = targetAdapterKey(target, version);
     try {
-      const loaded = await targetEditionAdapter(target).loadBaseline();
+      const loaded = await targetEditionAdapter(target, version).loadBaseline();
       if (!loaded.assetSet) throw new Error('baseline-invalid');
       setBaselines((current) => ({
         ...current,
-        [target]: {
+        [key]: {
           status: 'ready',
           assetSet: loaded.assetSet,
           validation: loaded.validation,
@@ -92,29 +102,41 @@ export function useTextureConverter() {
     } catch {
       setBaselines((current) => ({
         ...current,
-        [target]: { status: 'error' },
+        [key]: { status: 'error' },
       }));
     }
   }, []);
 
-  const selectedBaseline = baselines[targetEdition];
+  const selectedKey = targetAdapterKey(targetEdition, ps3Version);
+  const selectedBaseline = baselines[selectedKey];
 
   useEffect(() => {
     if (selectedBaseline.status !== 'loading' || selectedBaseline.assetSet) return;
     const task = window.setTimeout(() => {
-      void loadTargetBaseline(targetEdition);
+      void loadTargetBaseline(targetEdition, ps3Version);
     }, 0);
     return () => window.clearTimeout(task);
-  }, [loadTargetBaseline, selectedBaseline.assetSet, selectedBaseline.status, targetEdition]);
+  }, [
+    loadTargetBaseline,
+    ps3Version,
+    selectedBaseline.assetSet,
+    selectedBaseline.status,
+    targetEdition,
+  ]);
 
   const analyze = useCallback(
-    async (input: RawInput, edition: Exclude<SourceEdition, 'unknown'>, target: TargetEdition) => {
+    async (
+      input: RawInput,
+      edition: Exclude<SourceEdition, 'unknown'>,
+      target: TargetEdition,
+      version?: Ps3Version,
+    ) => {
       setStatus('analyzing');
       setProgress({ stage: 'analyzing', percent: 8 });
       setError(undefined);
       const parsed = await parsePack(input.name, input.files, edition);
       if (parsed.textures.length === 0) throw new Error('empty-pack');
-      const packSummary = await analyzePack(parsed, targetEditionAdapter(target).mappings);
+      const packSummary = await analyzePack(parsed, targetEditionAdapter(target, version).mappings);
       setPack(parsed);
       setSummary(packSummary);
       setStatus('ready');
@@ -138,9 +160,9 @@ export function useTextureConverter() {
         setStatus('ready');
         return;
       }
-      await analyze(raw, detectedEdition, targetEdition);
+      await analyze(raw, detectedEdition, targetEdition, ps3Version);
     },
-    [analyze, targetEdition],
+    [analyze, ps3Version, targetEdition],
   );
 
   const loadFiles = useCallback(
@@ -172,18 +194,20 @@ export function useTextureConverter() {
       if (!rawInput) return;
       try {
         setRawInput({ ...rawInput, detectedEdition: edition });
-        await analyze(rawInput, edition, targetEdition);
+        await analyze(rawInput, edition, targetEdition, ps3Version);
       } catch (reason) {
         setError(errorCode(reason));
         setStatus('error');
       }
     },
-    [analyze, rawInput, targetEdition],
+    [analyze, ps3Version, rawInput, targetEdition],
   );
 
   const chooseTargetEdition = useCallback(
-    async (target: TargetEdition) => {
+    async (target: TargetEdition, version?: Ps3Version) => {
+      const selectedVersion = target === 'ps3' ? (version ?? ps3Version) : ps3Version;
       setTargetEdition(target);
+      if (target === 'ps3') setPs3Version(selectedVersion);
       setResult(undefined);
       setProgress(undefined);
       setError(undefined);
@@ -191,7 +215,7 @@ export function useTextureConverter() {
       try {
         setStatus('analyzing');
         setProgress({ stage: 'analyzing', percent: 8 });
-        setSummary(await analyzePack(pack, targetEditionAdapter(target).mappings));
+        setSummary(await analyzePack(pack, targetEditionAdapter(target, selectedVersion).mappings));
         setProgress(undefined);
         setStatus('ready');
       } catch (reason) {
@@ -199,16 +223,16 @@ export function useTextureConverter() {
         setStatus('error');
       }
     },
-    [pack],
+    [pack, ps3Version],
   );
 
   const loadBaseline = useCallback(() => {
     setBaselines((current) => ({
       ...current,
-      [targetEdition]: { status: 'loading' },
+      [selectedKey]: { status: 'loading' },
     }));
-    return loadTargetBaseline(targetEdition);
-  }, [loadTargetBaseline, targetEdition]);
+    return loadTargetBaseline(targetEdition, ps3Version);
+  }, [loadTargetBaseline, ps3Version, selectedKey, targetEdition]);
 
   const convert = useCallback(async () => {
     if (!pack) {
@@ -216,9 +240,15 @@ export function useTextureConverter() {
       setStatus('error');
       return;
     }
-    const baseline = baselines[targetEdition].assetSet;
+    const baseline = baselines[selectedKey].assetSet;
     if (!baseline) {
-      setError(targetEdition === 'switch' ? 'switch-baseline-incomplete' : 'baseline-incomplete');
+      setError(
+        targetEdition === 'switch'
+          ? 'switch-baseline-incomplete'
+          : targetEdition === 'ps3'
+            ? 'ps3-baseline-incomplete'
+            : 'baseline-incomplete',
+      );
       setStatus('error');
       return;
     }
@@ -226,7 +256,7 @@ export function useTextureConverter() {
       setError(undefined);
       setResult(undefined);
       setStatus('converting');
-      const conversion = await targetEditionAdapter(targetEdition).convert(
+      const conversion = await targetEditionAdapter(targetEdition, ps3Version).convert(
         pack,
         baseline,
         setProgress,
@@ -237,11 +267,12 @@ export function useTextureConverter() {
       setError(errorCode(reason));
       setStatus('error');
     }
-  }, [baselines, pack, targetEdition]);
+  }, [baselines, pack, ps3Version, selectedKey, targetEdition]);
 
   return {
     status,
     targetEdition,
+    ps3Version,
     rawInput,
     pack,
     summary,

@@ -1,5 +1,9 @@
 export type SourceEdition = 'java' | 'bedrock' | 'unknown';
-export type TargetEdition = 'wiiu' | 'switch';
+export type TargetEdition = 'wiiu' | 'switch' | 'ps3';
+export type Ps3Version = 'latest' | '1.8';
+
+export type TargetSelection =
+  { edition: 'wiiu' } | { edition: 'switch' } | { edition: 'ps3'; version: Ps3Version };
 
 export type TextureCategory =
   'item' | 'terrain' | 'armor' | 'particles' | 'special' | 'gui' | 'sky' | 'unknown';
@@ -47,6 +51,7 @@ export interface ConversionMessage {
 export interface ConversionReport {
   inputEdition: Exclude<SourceEdition, 'unknown'>;
   outputEdition: TargetEdition;
+  ps3Version?: Ps3Version;
   inputName: string;
   itemResolution?: number;
   blockResolution?: number;

@@ -10,6 +10,10 @@ interface ReportPanelProps {
 export function ReportPanel({ report, downloadUrl, downloadName }: ReportPanelProps) {
   const { t } = useTranslation();
   const outputEdition = t(`output.${report.outputEdition}`);
+  const outputLabel =
+    report.outputEdition === 'ps3' && report.ps3Version
+      ? `${outputEdition} (${t(`output.ps3Versions.${report.ps3Version}`)})`
+      : outputEdition;
   const metrics = [
     ['converted', report.converted],
     ['unsupported', report.unsupported],
@@ -30,12 +34,12 @@ export function ReportPanel({ report, downloadUrl, downloadName }: ReportPanelPr
             <p>
               {report.outputEdition === 'switch'
                 ? t('report.switchReady')
-                : t('report.success', { edition: outputEdition })}
+                : t('report.success', { edition: outputLabel })}
             </p>
           </div>
         </div>
         <a className="primary-button" href={downloadUrl} download={downloadName}>
-          {t('report.download', { edition: outputEdition })}
+          {t('report.download', { edition: outputLabel })}
         </a>
       </div>
       <dl className="info-grid report-info">
@@ -51,6 +55,12 @@ export function ReportPanel({ report, downloadUrl, downloadName }: ReportPanelPr
           <dt>{t('report.outputEdition')}</dt>
           <dd>{outputEdition}</dd>
         </div>
+        {report.outputEdition === 'ps3' && report.ps3Version && (
+          <div>
+            <dt>{t('report.outputVersion')}</dt>
+            <dd>{t(`output.ps3Versions.${report.ps3Version}`)}</dd>
+          </div>
+        )}
         <div>
           <dt>{t('report.itemResolution')}</dt>
           <dd>{report.itemResolution ? `${report.itemResolution}px` : t('pack.none')}</dd>

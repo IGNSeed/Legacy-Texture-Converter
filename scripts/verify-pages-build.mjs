@@ -20,6 +20,18 @@ const baselines = [
     sha256: '69f28c1a6b35b4ff8a49cca08c5b3752759d8dc7e5ea6089dc213beef6791c73',
     manifest: 'data/mappings/switch/default-assets.json',
   },
+  {
+    label: 'PlayStation 3 Edition Latest',
+    path: 'assets/ps3/latest/ps3-latest-base-assets.zip',
+    sha256: 'f48dd056d293fe442dbbd898288b7bbba27d805cac7331c38110c5dab3d42d02',
+    manifest: 'data/mappings/ps3/latest/default-assets.json',
+  },
+  {
+    label: 'PlayStation 3 Edition 1.8',
+    path: 'assets/ps3/1.8/ps3-1.8-base-assets.zip',
+    sha256: 'fee5b4f5815f013c7c46102f2e42862c18635801807c064fb99c6e0f52ef68db',
+    manifest: 'data/mappings/ps3/1.8/default-assets.json',
+  },
 ];
 const allowedArchiveAssets = new Set(baselines.map((baseline) => baseline.path));
 

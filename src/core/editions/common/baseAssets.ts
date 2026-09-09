@@ -1,4 +1,4 @@
-import type { OutputFile, TargetEdition } from '../../../types/conversion';
+import type { OutputFile, Ps3Version, TargetEdition } from '../../../types/conversion';
 
 export type BaseAssetGroup = 'items' | 'terrain' | 'particles' | 'armor' | 'specialTextures';
 
@@ -24,6 +24,7 @@ export interface BaseAssetValidation {
 
 export interface ConsoleBaseAssetSet<TTarget extends TargetEdition = TargetEdition> {
   target: TTarget;
+  ps3Version?: Ps3Version;
   provider: 'bundled' | 'user-supplied';
   name: string;
   files: OutputFile[];

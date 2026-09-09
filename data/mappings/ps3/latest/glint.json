@@ -1,0 +1,11 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "glint",
+      "sourceNames": ["glint", "enchanted_item_glint", "enchanted_actor_glint"],
+      "destinations": ["Common/res/TitleUpdate/res/misc/glint.png"]
+    }
+  ],
+  "source": "Minecraft PlayStation 3 Edition latest (1.13) Common"
+}

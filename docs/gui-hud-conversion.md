@@ -157,6 +157,10 @@ Automated tests cover malformed and truncated ARC/FUI data, offset recalculation
 
 ## Known limitations
 
+PlayStation 3 Latest and 1.8 use version-specific FUI and SWF backends. Their verified formats,
+bitmap IDs, archive hashes, and preservation rules are documented in
+[`ps3-editions.md`](ps3-editions.md).
+
 - Conversion currently covers the static HUD sprites listed above. It does not convert menu layouts, container screens, fonts, controller glyphs, cursor animation, or arbitrary FUI vector/layout content.
 - Only square integer-multiple 256×256 source sheets are accepted. Mixed scale within a single sheet cannot be inferred safely.
 - Target descriptor maps are specific to the verified Wii U resources and Nintendo Switch Edition 1.0.17. Other title updates must be researched and mapped separately.

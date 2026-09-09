@@ -1,0 +1,753 @@
+{
+  "version": 1,
+  "category": "particles",
+  "atlas": {
+    "width": 128,
+    "height": 128,
+    "slotSize": 8
+  },
+  "entries": [
+    {
+      "id": "angry",
+      "sourceNames": ["angry"],
+      "positions": [
+        {
+          "x": 8,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "id": "critical_hit",
+      "sourceNames": ["critical_hit"],
+      "positions": [
+        {
+          "x": 8,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "drip_fall",
+      "sourceNames": ["drip_fall"],
+      "positions": [
+        {
+          "x": 8,
+          "y": 56
+        }
+      ]
+    },
+    {
+      "id": "drip_hang",
+      "sourceNames": ["drip_hang"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 56
+        }
+      ]
+    },
+    {
+      "id": "drip_land",
+      "sourceNames": ["drip_land"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 56
+        }
+      ]
+    },
+    {
+      "id": "effect_0",
+      "sourceNames": ["effect_0"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "effect_1",
+      "sourceNames": ["effect_1"],
+      "positions": [
+        {
+          "x": 8,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "effect_2",
+      "sourceNames": ["effect_2"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "effect_3",
+      "sourceNames": ["effect_3"],
+      "positions": [
+        {
+          "x": 24,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "effect_4",
+      "sourceNames": ["effect_4"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "effect_5",
+      "sourceNames": ["effect_5"],
+      "positions": [
+        {
+          "x": 40,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "effect_6",
+      "sourceNames": ["effect_6"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "effect_7",
+      "sourceNames": ["effect_7"],
+      "positions": [
+        {
+          "x": 56,
+          "y": 64
+        }
+      ]
+    },
+    {
+      "id": "enchanted_hit",
+      "sourceNames": ["enchanted_hit"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "flame",
+      "sourceNames": ["flame"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 24
+        }
+      ]
+    },
+    {
+      "id": "generic_0",
+      "sourceNames": ["generic_0"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "generic_1",
+      "sourceNames": ["generic_1"],
+      "positions": [
+        {
+          "x": 8,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "generic_2",
+      "sourceNames": ["generic_2"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "generic_3",
+      "sourceNames": ["generic_3"],
+      "positions": [
+        {
+          "x": 24,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "generic_4",
+      "sourceNames": ["generic_4"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "generic_5",
+      "sourceNames": ["generic_5"],
+      "positions": [
+        {
+          "x": 40,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "generic_6",
+      "sourceNames": ["generic_6"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "generic_7",
+      "sourceNames": ["generic_7"],
+      "positions": [
+        {
+          "x": 56,
+          "y": 0
+        }
+      ]
+    },
+    {
+      "id": "glint",
+      "sourceNames": ["glint"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "id": "heart",
+      "sourceNames": ["heart"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 40
+        }
+      ]
+    },
+    {
+      "id": "lava",
+      "sourceNames": ["lava"],
+      "positions": [
+        {
+          "x": 8,
+          "y": 24
+        }
+      ]
+    },
+    {
+      "id": "note",
+      "sourceNames": ["note"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 32
+        }
+      ]
+    },
+    {
+      "id": "sga_a",
+      "sourceNames": ["sga_a"],
+      "positions": [
+        {
+          "x": 8,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "sga_b",
+      "sourceNames": ["sga_b"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "sga_c",
+      "sourceNames": ["sga_c"],
+      "positions": [
+        {
+          "x": 24,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "sga_d",
+      "sourceNames": ["sga_d"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "sga_e",
+      "sourceNames": ["sga_e"],
+      "positions": [
+        {
+          "x": 40,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "sga_f",
+      "sourceNames": ["sga_f"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "sga_g",
+      "sourceNames": ["sga_g"],
+      "positions": [
+        {
+          "x": 56,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "sga_h",
+      "sourceNames": ["sga_h"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "sga_i",
+      "sourceNames": ["sga_i"],
+      "positions": [
+        {
+          "x": 72,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "sga_j",
+      "sourceNames": ["sga_j"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "sga_k",
+      "sourceNames": ["sga_k"],
+      "positions": [
+        {
+          "x": 88,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "sga_l",
+      "sourceNames": ["sga_l"],
+      "positions": [
+        {
+          "x": 96,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "sga_m",
+      "sourceNames": ["sga_m"],
+      "positions": [
+        {
+          "x": 104,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "sga_n",
+      "sourceNames": ["sga_n"],
+      "positions": [
+        {
+          "x": 112,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "sga_o",
+      "sourceNames": ["sga_o"],
+      "positions": [
+        {
+          "x": 120,
+          "y": 112
+        }
+      ]
+    },
+    {
+      "id": "sga_p",
+      "sourceNames": ["sga_p"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 120
+        }
+      ]
+    },
+    {
+      "id": "sga_q",
+      "sourceNames": ["sga_q"],
+      "positions": [
+        {
+          "x": 8,
+          "y": 120
+        }
+      ]
+    },
+    {
+      "id": "sga_r",
+      "sourceNames": ["sga_r"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 120
+        }
+      ]
+    },
+    {
+      "id": "sga_s",
+      "sourceNames": ["sga_s"],
+      "positions": [
+        {
+          "x": 24,
+          "y": 120
+        }
+      ]
+    },
+    {
+      "id": "sga_t",
+      "sourceNames": ["sga_t"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 120
+        }
+      ]
+    },
+    {
+      "id": "sga_u",
+      "sourceNames": ["sga_u"],
+      "positions": [
+        {
+          "x": 40,
+          "y": 120
+        }
+      ]
+    },
+    {
+      "id": "sga_v",
+      "sourceNames": ["sga_v"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 120
+        }
+      ]
+    },
+    {
+      "id": "sga_w",
+      "sourceNames": ["sga_w"],
+      "positions": [
+        {
+          "x": 56,
+          "y": 120
+        }
+      ]
+    },
+    {
+      "id": "sga_x",
+      "sourceNames": ["sga_x"],
+      "positions": [
+        {
+          "x": 64,
+          "y": 120
+        }
+      ]
+    },
+    {
+      "id": "sga_y",
+      "sourceNames": ["sga_y"],
+      "positions": [
+        {
+          "x": 72,
+          "y": 120
+        }
+      ]
+    },
+    {
+      "id": "sga_z",
+      "sourceNames": ["sga_z"],
+      "positions": [
+        {
+          "x": 80,
+          "y": 120
+        }
+      ]
+    },
+    {
+      "id": "spark_0",
+      "sourceNames": ["spark_0"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "spark_1",
+      "sourceNames": ["spark_1"],
+      "positions": [
+        {
+          "x": 8,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "spark_2",
+      "sourceNames": ["spark_2"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "spark_3",
+      "sourceNames": ["spark_3"],
+      "positions": [
+        {
+          "x": 24,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "spark_4",
+      "sourceNames": ["spark_4"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "spark_5",
+      "sourceNames": ["spark_5"],
+      "positions": [
+        {
+          "x": 40,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "spark_6",
+      "sourceNames": ["spark_6"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "spark_7",
+      "sourceNames": ["spark_7"],
+      "positions": [
+        {
+          "x": 56,
+          "y": 80
+        }
+      ]
+    },
+    {
+      "id": "spell_0",
+      "sourceNames": ["spell_0"],
+      "positions": [
+        {
+          "x": 0,
+          "y": 72
+        }
+      ]
+    },
+    {
+      "id": "spell_1",
+      "sourceNames": ["spell_1"],
+      "positions": [
+        {
+          "x": 8,
+          "y": 72
+        }
+      ]
+    },
+    {
+      "id": "spell_2",
+      "sourceNames": ["spell_2"],
+      "positions": [
+        {
+          "x": 16,
+          "y": 72
+        }
+      ]
+    },
+    {
+      "id": "spell_3",
+      "sourceNames": ["spell_3"],
+      "positions": [
+        {
+          "x": 24,
+          "y": 72
+        }
+      ]
+    },
+    {
+      "id": "spell_4",
+      "sourceNames": ["spell_4"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 72
+        }
+      ]
+    },
+    {
+      "id": "spell_5",
+      "sourceNames": ["spell_5"],
+      "positions": [
+        {
+          "x": 40,
+          "y": 72
+        }
+      ]
+    },
+    {
+      "id": "spell_6",
+      "sourceNames": ["spell_6"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 72
+        }
+      ]
+    },
+    {
+      "id": "spell_7",
+      "sourceNames": ["spell_7"],
+      "positions": [
+        {
+          "x": 56,
+          "y": 72
+        }
+      ]
+    },
+    {
+      "id": "splash_0",
+      "sourceNames": ["splash_0"],
+      "positions": [
+        {
+          "x": 24,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "id": "splash_1",
+      "sourceNames": ["splash_1"],
+      "positions": [
+        {
+          "x": 32,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "id": "splash_2",
+      "sourceNames": ["splash_2"],
+      "positions": [
+        {
+          "x": 40,
+          "y": 8
+        }
+      ]
+    },
+    {
+      "id": "splash_3",
+      "sourceNames": ["splash_3"],
+      "positions": [
+        {
+          "x": 48,
+          "y": 8
+        }
+      ]
+    }
+  ],
+  "sourcePathTemplates": {
+    "java": [
+      "assets/minecraft/textures/particle/{id}.png",
+      "assets/minecraft/textures/particles/{id}.png"
+    ],
+    "bedrock": ["textures/particle/{id}.png"]
+  },
+  "directAtlas": {
+    "sourceNames": ["particles"],
+    "destination": "Common/res/TitleUpdate/res/particles.png"
+  },
+  "source": "Minecraft PlayStation 3 Edition 1.8 Common"
+}

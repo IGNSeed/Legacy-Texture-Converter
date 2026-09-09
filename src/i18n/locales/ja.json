@@ -32,7 +32,20 @@
   "output": {
     "heading": "出力エディション",
     "wiiu": "Wii U Edition",
-    "switch": "Nintendo Switch Edition"
+    "switch": "Nintendo Switch Edition",
+    "ps3": "PlayStation 3 Edition",
+    "ps3Versions": {
+      "latest": "Latest",
+      "1.8": "1.8"
+    },
+    "ps3Dialog": {
+      "heading": "PlayStation 3 のバージョンを選択",
+      "description": "2つのバージョンでは atlas と HUD 形式が異なります。",
+      "latestHelp": "最新 PS3 Common と FUI 形式の HUD を使用します。",
+      "oldHelp": "PS3 1.8 のリソース構造と SWF 形式の HUD を使用します。",
+      "cancel": "キャンセル",
+      "confirm": "このバージョンを使用"
+    }
   },
   "convert": {
     "button": "変換",
@@ -57,6 +70,7 @@
     "inputName": "入力パック",
     "inputEdition": "入力エディション",
     "outputEdition": "出力エディション",
+    "outputVersion": "バージョン",
     "itemResolution": "アイテム解像度",
     "blockResolution": "ブロック解像度",
     "converted": "変換済み",
@@ -92,6 +106,10 @@
     "skyCubemapSetSkipped": "この cubemap セットは不足または曖昧さがあるためスキップしました。"
   },
   "warnings": {
+    "ps3GuiMapping": "検証済みの PS3 HUD mapping と baseline が一致しませんでした。元の Media archive を維持し、HUD 変換だけをスキップしました。",
+    "ps3GuiFuiValidation": "PS3 HUD FUI の構造または画像検証に失敗しました。元の Media archive を維持し、HUD 変換だけをスキップしました。",
+    "ps3GuiSwfValidation": "PS3 HUD SWF の構造または bitmap 検証に失敗しました。元の Media archive を維持し、HUD 変換だけをスキップしました。",
+    "ps3GuiArcValidation": "PS3 Media ARC の round-trip 検証に失敗しました。元の Media archive を維持し、HUD 変換だけをスキップしました。",
     "mixedItems": "アイテム解像度が混在しているため、安全な最大の2の累乗サイズへ統一しました。",
     "mixedBlocks": "ブロック解像度が混在しているため、32px terrain atlas へ統一しました。",
     "nonSquare": "正方形でないテクスチャを安全に配置できないためスキップしました。",
@@ -112,6 +130,7 @@
     "skyConversion": "選択した Sky を描画できなかったため、Sky 出力をスキップしました。"
   },
   "errors": {
+    "ps3-baseline-incomplete": "選択した PlayStation 3 Edition 基準アセットの読み込み完了後に、もう一度お試しください。",
     "heading": "処理を続行できません",
     "empty-input": "1つ以上のファイルを選択してください。",
     "empty-pack": "対応するテクスチャがパック内に見つかりませんでした。",

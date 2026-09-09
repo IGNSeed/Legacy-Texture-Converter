@@ -1,6 +1,6 @@
 # Legacy Texture Converter
 
-Java Edition / Bedrock Edition のテクスチャパックを、Minecraft: Wii U Edition または Minecraft: Nintendo Switch Edition の Legacy Console Edition リソース構造へ変換するブラウザアプリです。アップロードしたファイルは外部サーバーへ送信せず、展開・画像処理・ZIP 生成をすべてブラウザ内で行います。
+Java Edition / Bedrock Edition のテクスチャパックを、Minecraft: Wii U Edition、Minecraft: Nintendo Switch Edition、Minecraft: PlayStation 3 Edition の Legacy Console Edition リソース構造へ変換するブラウザアプリです。アップロードしたファイルは外部サーバーへ送信せず、展開・画像処理・ZIP 生成をすべてブラウザ内で行います。
 
 ## 主な機能
 
@@ -8,19 +8,21 @@ Java Edition / Bedrock Edition のテクスチャパックを、Minecraft: Wii U
 - Bedrock: ZIP、MCPACK、展開済みフォルダ、個別 PNG
 - ファイル選択、フォルダ選択、ドラッグ＆ドロップ
 - Java / Bedrock の自動判定と、判定不能時の手動選択
-- Wii U / Switch 1.0.17 のエディション別基準アセットを自動読み込み（手動アップロード不要）
-- 出力先を Wii U / Nintendo Switch Edition から選択
+- Wii U / Switch 1.0.17 / PS3 Latest / PS3 1.8 のエディション別基準アセットを自動読み込み（手動アップロード不要）
+- 出力先を Wii U / Nintendo Switch / PlayStation 3 Edition から選択
+- PlayStation 3 選択時に Latest / 1.8 をバージョンダイアログで選択
 - エディション固有の `items.png` / `terrain.png` / `particles.png` atlas 生成
 - 16px / 32px block と、64px 以上から 32px への nearest-neighbor 縮小
 - 入力解像度に追従する item atlas
 - 最終 `terrain.png` からの mipmap 再生成
 - armor、fire、water、lava、glint、particles の変換
 - Java / Bedrock の GUI sheet から crosshair、hotbar、health、armor、hunger、oxygen、experience HUD を変換
-- Java / Bedrock の `icons.png` と widget sheet を無加工で `Common/res/gui/` へコピー（`gui.png` は `widgets.png` に改名）
+- Java / Bedrock の `icons.png` と widget sheet を無加工で `Common/res/gui/` へコピー（PS3 は実ファイルどおり `gui.png`、Wii U / Switch は `widgets.png`）
 - Java の 3×2 custom Sky、または Bedrock の overworld cubemap 6面を LCE `sky.png`（4032×2688）へ変換
-- Wii U `skinGraphicsHud.fui` と Switch の handheld / HD FUI を個別に再構築し、Media ARC へ再格納
+- Wii U / Switch の FUI、PS3 Latest の FUI、PS3 1.8 の CWS/SWF HUD を個別に再構築し、Media ARC へ再格納
 - Wii U は BASE + UPD を統合した `Common/res/...` 出力
 - Switch は Title ID `01006BD001E06000` の Atmosphère 配置済み ZIP を出力
+- PS3 は選択バージョンに対応する `Common/...` 構造の ZIP を出力
 - 未対応・スキップ・リサイズ・警告を含む変換レポート
 - 日本語 / English UI（選択をブラウザに保存）
 - zip-slip 対策を含む入力・出力パス検証
@@ -105,13 +107,25 @@ npm run build
 
 `dist/` は GitHub project page 用の `/Legacy-Texture-Converter/` base で生成されます。`npm run build` は Pages 用 URL、ローカル専用ファイルの非混入、公開基準アセット ZIP の内容が manifest と一致することも検査します。
 
-公開基準アセットを管理者が更新する場合は、ローカル専用の `LocalAssets/wiiu/default/` と `LocalAssets/switch/default/` を確認したうえで次を実行します。
+公開基準アセットを管理者が更新する場合は、ローカル専用の `LocalAssets/wiiu/default/`、`LocalAssets/switch/default/`、`LocalAssets/ps3/<version>/default/` を確認したうえで次を実行します。
 
 ```bash
 npm run assets:bundle
 ```
 
-このコマンドは各 `default-assets.json` に列挙されたレビュー済みファイルだけを、Wii U と Switch の `public/assets/.../default/*-base-assets.zip` へ格納します。片方だけを更新する場合は `npm run assets:bundle:wiiu` または `npm run assets:bundle:switch` を使用できます。`LocalAssets/` と `References/` 自体は公開されません。
+このコマンドは各 `default-assets.json` に列挙されたレビュー済みファイルだけを、Wii U、Switch、PS3 の `public/assets/.../*-base-assets.zip` へ格納します。個別に更新する場合は `npm run assets:bundle:wiiu`、`npm run assets:bundle:switch`、`npm run assets:bundle:ps3` を使用できます。`LocalAssets/` と `References/` 自体は公開されません。
+
+## PlayStation 3 Edition 出力
+
+PlayStation 3 Edition は **Latest** または **1.8** を選択できます。atlas mapping、baseline
+bundle、validation、HUD backend はバージョン別です。Latest は FUI HUD を含む
+`Common/Media/MediaPS3.arc` を再構築し、1.8 は実際の CWS/SWF 9 HUD を再構築しながら
+対象外 SWF tag を維持します。どちらも PS3 の `Common/...` 構造を直接出力します。
+確認済みリソース差分、hash、対応 SWF subset、検証境界は
+[`docs/ps3-editions.md`](docs/ps3-editions.md) を参照してください。
+
+baseline 管理者は、Git 対象外の `LocalAssets/ps3/<version>/default/` から
+`npm run assets:bundle:ps3` で両方の PS3 archive を再生成できます。
 
 ## GitHub Pages
 
@@ -129,17 +143,20 @@ https://ignseed.github.io/Legacy-Texture-Converter/
 - `src/core/parsers/bedrock/` — Bedrock pack の検出・正規化
 - `data/mappings/wiiu/` — atlas、armor、特殊画像、alias のマッピング
 - `data/mappings/switch/` — Switch 1.0.17 固有の atlas、armor、特殊画像、alias、基準 manifest
+- `data/mappings/ps3/` — PS3 Latest / 1.8 固有の atlas、HUD、特殊画像、alias、基準 manifest
 - `src/core/editions/common/` — エディション adapter が共有する変換契約と pipeline
-- `src/core/binary/`, `src/core/gui-hud/` — ARC/FUI の安全な読込・再構築と GUI/HUD 変換
+- `src/core/binary/`, `src/core/gui-hud/` — ARC/FUI/SWF の安全な読込・再構築と GUI/HUD 変換
 - `src/core/editions/wiiu/base-assets/` — 公開アセット provider、BASE/UPD 統合、検証、型付き基準アセット
 - `src/core/editions/wiiu/` — Wii U 固有の出力・変換 adapter
 - `src/core/editions/switch/` — Switch 固有の path、baseline、validation、変換 adapter
+- `src/core/editions/ps3/` — PS3 の version 固有 path、baseline、validation、変換 adapter
 - `src/core/atlas/`, `image/`, `mipmap/`, `packaging/` — 共通処理
 - `src/i18n/` — 日本語 / 英語 locale
 
 ## 既知の制限
 
 - Switch 対応の基準バージョンは Nintendo Switch Edition 1.0.17 です。他バージョンの title / resource layout 互換性は保証しません。
+- PS3 対応は調査済みの Latest（1.13 Common）と 1.8 Common に限定されます。
 - 出力先エディションに存在しない新しい Java / Bedrock コンテンツは変換せず、未対応として報告します。
 - 複雑な Bedrock flipbook や、標準外の Java animation 定義は完全には再現できない場合があります。その場合は警告し、確認済みの出力先既定シーケンスを維持します。
 - GUI/HUD 対応は確認済みの静的 HUD sprite に限定されます。menu layout、container、font、controller glyph、任意の FUI layout は変換しません。

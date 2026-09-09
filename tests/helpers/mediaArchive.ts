@@ -89,7 +89,7 @@ export function createSyntheticArc(entries: readonly [string, Uint8Array][]): Ui
   return output;
 }
 
-export function syntheticMediaArchiveBlob(target: TargetEdition): Blob {
+export function syntheticMediaArchiveBlob(target: Exclude<TargetEdition, 'ps3'>): Blob {
   const mapping = hudTargetMapping(target);
   const entries: [string, Uint8Array][] = [
     ['unrelated.bin', new Uint8Array([1, 2, 3, 4])],

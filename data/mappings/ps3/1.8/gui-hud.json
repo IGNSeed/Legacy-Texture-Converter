@@ -1,0 +1,128 @@
+{
+  "version": 1,
+  "source": "Minecraft PlayStation 3 Edition 1.8 Common",
+  "target": "ps3",
+  "ps3Version": "1.8",
+  "backend": "swf",
+  "mediaPath": "Common/Media/MediaPS3.arc",
+  "swfs": [
+    {
+      "name": "skinGraphicsHud.swf",
+      "signature": "CWS",
+      "swfVersion": 9,
+      "bitmapTagCode": 36,
+      "bitmapFormat": 5,
+      "bitmapCount": 53,
+      "entries": [
+        {
+          "semantic": "health.absorption.half",
+          "bitmapId": 6,
+          "width": 9,
+          "height": 9
+        },
+        {
+          "semantic": "health.absorption.full",
+          "bitmapId": 7,
+          "width": 9,
+          "height": 9
+        },
+        {
+          "semantic": "crosshair",
+          "bitmapId": 53,
+          "width": 15,
+          "height": 15
+        },
+        {
+          "semantic": "hotbar.selection",
+          "bitmapId": 54,
+          "width": 24,
+          "height": 24
+        },
+        {
+          "semantic": "hotbar.background",
+          "bitmapId": 55,
+          "width": 182,
+          "height": 22
+        },
+        {
+          "semantic": "health.normal.half",
+          "bitmapId": 56,
+          "width": 9,
+          "height": 9
+        },
+        {
+          "semantic": "health.normal.full",
+          "bitmapId": 60,
+          "width": 9,
+          "height": 9
+        },
+        {
+          "semantic": "health.normal.empty",
+          "bitmapId": 64,
+          "width": 9,
+          "height": 9
+        },
+        {
+          "semantic": "hunger.half",
+          "bitmapId": 66,
+          "width": 9,
+          "height": 9
+        },
+        {
+          "semantic": "hunger.full",
+          "bitmapId": 70,
+          "width": 9,
+          "height": 9
+        },
+        {
+          "semantic": "hunger.empty",
+          "bitmapId": 74,
+          "width": 9,
+          "height": 9
+        },
+        {
+          "semantic": "experience.progress",
+          "bitmapId": 77,
+          "width": 182,
+          "height": 5
+        },
+        {
+          "semantic": "experience.background",
+          "bitmapId": 78,
+          "width": 182,
+          "height": 5
+        },
+        {
+          "semantic": "armor.half",
+          "bitmapId": 79,
+          "width": 9,
+          "height": 9
+        },
+        {
+          "semantic": "armor.empty",
+          "bitmapId": 80,
+          "width": 9,
+          "height": 9
+        },
+        {
+          "semantic": "armor.full",
+          "bitmapId": 81,
+          "width": 9,
+          "height": 9
+        },
+        {
+          "semantic": "oxygen.empty",
+          "bitmapId": 82,
+          "width": 9,
+          "height": 9
+        },
+        {
+          "semantic": "oxygen.full",
+          "bitmapId": 83,
+          "width": 9,
+          "height": 9
+        }
+      ]
+    }
+  ]
+}

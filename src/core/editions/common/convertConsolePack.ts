@@ -4,6 +4,7 @@ import type {
   ParsedPack,
   ParsedTexture,
   ProgressCallback,
+  Ps3Version,
   TargetEdition,
 } from '../../../types/conversion';
 import { composeAtlas } from '../../atlas/composeAtlas';
@@ -38,6 +39,7 @@ export interface ConsoleEditionPaths {
 
 export interface ConsoleConversionDefinition<TTarget extends TargetEdition> {
   target: TTarget;
+  ps3Version?: Ps3Version;
   mappings: EditionMappings;
   paths: ConsoleEditionPaths;
   createDownloadName: (inputName: string) => string;
@@ -46,6 +48,7 @@ export interface ConsoleConversionDefinition<TTarget extends TargetEdition> {
     overrides: readonly OutputFile[],
   ) => OutputFile[];
   specialMipmapPath: (destination: string, level: number) => string;
+  preserveUnmodifiedMedia?: boolean;
 }
 
 function progress(
@@ -90,13 +93,15 @@ export async function convertConsolePack<TTarget extends TargetEdition>(
   onProgress?: ProgressCallback,
 ): Promise<ConversionResult> {
   const { mappings, paths } = definition;
-  const report = createConversionReport(pack, definition.target);
+  const report = createConversionReport(pack, definition.target, definition.ps3Version);
   const processed = new Set<string>();
   const overrides: OutputFile[] = [];
 
   progress(onProgress, 'reading', 5);
-  const mediaPath = hudTargetMapping(definition.target).mediaPath;
-  const defaults = baseline.files.filter((file) => file.path !== mediaPath);
+  const mediaPath = hudTargetMapping(definition.target, definition.ps3Version).mediaPath;
+  const defaults = definition.preserveUnmodifiedMedia
+    ? baseline.files
+    : baseline.files.filter((file) => file.path !== mediaPath);
   progress(onProgress, 'mapping', 15);
 
   const items = mappedTextures(pack, 'item', mappings);
@@ -233,7 +238,14 @@ export async function convertConsolePack<TTarget extends TargetEdition>(
     )),
   );
   overrides.push(
-    ...(await convertHudTextures(pack, baseline, definition.target, report, processed)),
+    ...(await convertHudTextures(
+      pack,
+      baseline,
+      definition.target,
+      report,
+      processed,
+      definition.ps3Version,
+    )),
   );
   // Raw GUI passthrough and HUD/FUI conversion intentionally may consume the
   // same source sheet. processed only prevents a final unsupported entry.

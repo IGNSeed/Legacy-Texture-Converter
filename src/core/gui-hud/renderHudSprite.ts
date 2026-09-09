@@ -21,14 +21,20 @@ export function resolveHudSheetScale(
   return Number.isSafeInteger(scale) && scale <= 16 ? scale : undefined;
 }
 
-export async function renderHudSprite(
+export interface RenderedHudPixels {
+  width: number;
+  height: number;
+  rgba: Uint8Array;
+}
+
+export function renderHudSpritePixels(
   sheet: DecodedImage,
   sourceScale: number,
   rect: HudRect,
   targetWidth: number,
   targetHeight: number,
   swapRedBlue: boolean,
-): Promise<Blob> {
+): RenderedHudPixels {
   const sourceX = rect.x * sourceScale;
   const sourceY = rect.y * sourceScale;
   const sourceWidth = rect.width * sourceScale;
@@ -67,12 +73,31 @@ export async function renderHudSprite(
   );
   if (swapRedBlue) targetRgba = swapRedBlueChannels(targetRgba);
 
-  const targetCanvas = createCanvas(targetWidth, targetHeight);
+  return { width: targetWidth, height: targetHeight, rgba: new Uint8Array(targetRgba) };
+}
+
+export async function renderHudSprite(
+  sheet: DecodedImage,
+  sourceScale: number,
+  rect: HudRect,
+  targetWidth: number,
+  targetHeight: number,
+  swapRedBlue: boolean,
+): Promise<Blob> {
+  const rendered = renderHudSpritePixels(
+    sheet,
+    sourceScale,
+    rect,
+    targetWidth,
+    targetHeight,
+    swapRedBlue,
+  );
+  const targetCanvas = createCanvas(rendered.width, rendered.height);
   const targetContext = getCanvasContext(targetCanvas);
   targetContext.imageSmoothingEnabled = false;
-  targetContext.clearRect(0, 0, targetWidth, targetHeight);
-  const imageData = targetContext.createImageData(targetWidth, targetHeight);
-  imageData.data.set(targetRgba);
+  targetContext.clearRect(0, 0, rendered.width, rendered.height);
+  const imageData = targetContext.createImageData(rendered.width, rendered.height);
+  imageData.data.set(rendered.rgba);
   targetContext.putImageData(imageData, 0, 0);
   return canvasToPng(targetCanvas);
 }

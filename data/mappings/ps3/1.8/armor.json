@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "entries": [
+    {
+      "id": "leather_layer_1",
+      "sourceNames": ["leather_layer_1", "leather_1", "cloth_1"],
+      "destinations": [
+        "Common/res/1_2_2/armor/cloth_1.png",
+        "Common/res/TitleUpdate/res/armor/cloth_1.png"
+      ]
+    },
+    {
+      "id": "leather_layer_1_overlay",
+      "sourceNames": ["leather_layer_1_overlay", "leather_1_overlay", "cloth_1_b"],
+      "destinations": ["Common/res/TitleUpdate/res/armor/cloth_1_b.png"]
+    },
+    {
+      "id": "leather_layer_2",
+      "sourceNames": ["leather_layer_2", "leather_2", "cloth_2"],
+      "destinations": [
+        "Common/res/1_2_2/armor/cloth_2.png",
+        "Common/res/TitleUpdate/res/armor/cloth_2.png"
+      ]
+    },
+    {
+      "id": "leather_layer_2_overlay",
+      "sourceNames": ["leather_layer_2_overlay", "leather_2_overlay", "cloth_2_b"],
+      "destinations": ["Common/res/TitleUpdate/res/armor/cloth_2_b.png"]
+    },
+    {
+      "id": "chainmail_layer_1",
+      "sourceNames": ["chainmail_layer_1", "chainmail_1", "chain_1"],
+      "destinations": ["Common/res/1_2_2/armor/chain_1.png"]
+    },
+    {
+      "id": "chainmail_layer_2",
+      "sourceNames": ["chainmail_layer_2", "chainmail_2", "chain_2"],
+      "destinations": ["Common/res/1_2_2/armor/chain_2.png"]
+    },
+    {
+      "id": "iron_layer_1",
+      "sourceNames": ["iron_layer_1", "iron_1"],
+      "destinations": ["Common/res/1_2_2/armor/iron_1.png"]
+    },
+    {
+      "id": "iron_layer_2",
+      "sourceNames": ["iron_layer_2", "iron_2"],
+      "destinations": ["Common/res/1_2_2/armor/iron_2.png"]
+    },
+    {
+      "id": "gold_layer_1",
+      "sourceNames": ["gold_layer_1", "gold_1"],
+      "destinations": ["Common/res/1_2_2/armor/gold_1.png"]
+    },
+    {
+      "id": "gold_layer_2",
+      "sourceNames": ["gold_layer_2", "gold_2"],
+      "destinations": ["Common/res/1_2_2/armor/gold_2.png"]
+    },
+    {
+      "id": "diamond_layer_1",
+      "sourceNames": ["diamond_layer_1", "diamond_1"],
+      "destinations": ["Common/res/1_2_2/armor/diamond_1.png"]
+    },
+    {
+      "id": "diamond_layer_2",
+      "sourceNames": ["diamond_layer_2", "diamond_2"],
+      "destinations": ["Common/res/1_2_2/armor/diamond_2.png"]
+    }
+  ],
+  "source": "Minecraft PlayStation 3 Edition 1.8 Common"
+}
