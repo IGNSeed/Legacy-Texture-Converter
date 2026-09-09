@@ -10,8 +10,8 @@ export const wiiuAdapter: TargetEditionAdapter = {
   id: 'wiiu',
   mappings: wiiuMappings,
   loadBaseline: () => baselineProvider.load(),
-  convert(pack, baseline, onProgress) {
+  convert(pack, baseline, options, onProgress) {
     if (baseline.target !== 'wiiu') throw new Error('baseline-target-mismatch');
-    return convertWiiUPack(pack, baseline as WiiUBaseAssetSet, onProgress);
+    return convertWiiUPack(pack, baseline as WiiUBaseAssetSet, options, onProgress);
   },
 };

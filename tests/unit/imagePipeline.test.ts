@@ -216,4 +216,114 @@ describe('browser image pipeline', () => {
       expect.objectContaining({ canonicalId: 'stone', status: 'resized' }),
     );
   });
+
+  it.each([
+    { name: 'upscales 16px input to 64px', sources: [16], target: 64 },
+    { name: 'downscales 256px input to 32px', sources: [256], target: 32 },
+    { name: 'normalizes mixed input to selected 32px', sources: [16, 32, 64], target: 32 },
+    { name: 'normalizes mixed input to selected 128px', sources: [16, 32, 64], target: 128 },
+  ])('$name with nearest-neighbor drawing', async ({ sources, target }) => {
+    const mock = canvasMock();
+    vi.spyOn(document, 'createElement').mockReturnValue(mock.canvas);
+    const decodedSizes = [
+      { width: 256, height: 272 },
+      ...sources.map((size) => ({
+        width: size,
+        height: size,
+      })),
+    ];
+    vi.stubGlobal(
+      'createImageBitmap',
+      vi.fn(() => {
+        const size = decodedSizes.shift();
+        if (!size) throw new Error('unexpected image decode');
+        return Promise.resolve({ ...size, close: vi.fn() });
+      }),
+    );
+    const report = createConversionReport({
+      name: 'pack',
+      edition: 'java',
+      files: [],
+      textures: [],
+    });
+    const ids = ['diamond_sword', 'apple', 'iron_ingot'];
+
+    await composeAtlas({
+      base: new Blob(['default-items']),
+      mapping: itemMappings,
+      resolveMapping: resolveAtlasMapping,
+      textures: sources.map((size, index) => ({
+        sourcePath: `assets/minecraft/textures/item/${ids[index]}.png`,
+        canonicalId: ids[index] ?? 'diamond_sword',
+        category: 'item',
+        blob: new Blob([`${size}px-item`]),
+      })),
+      targetSlotSize: target,
+      destination: 'Common/res/TitleUpdate/res/items.png',
+      report,
+      processed: new Set(),
+    });
+
+    expect(mock.canvas).toMatchObject({ width: target * 16, height: target * 17 });
+    expect(mock.context.imageSmoothingEnabled).toBe(false);
+    expect(mock.drawImage.mock.calls.slice(1)).toHaveLength(sources.length);
+    for (const call of mock.drawImage.mock.calls.slice(1)) {
+      expect(call[7]).toBe(target);
+      expect(call[8]).toBe(target);
+    }
+    expect(report.entries).toHaveLength(sources.length);
+    expect(report.entries.every((entry) => entry.outputResolution === `${target}x${target}`)).toBe(
+      true,
+    );
+  });
+
+  it('scales an animated item frame without interpolation', async () => {
+    const mock = canvasMock();
+    vi.spyOn(document, 'createElement').mockReturnValue(mock.canvas);
+    vi.stubGlobal(
+      'createImageBitmap',
+      vi
+        .fn()
+        .mockResolvedValueOnce({ width: 256, height: 272, close: vi.fn() })
+        .mockResolvedValueOnce({ width: 16, height: 64, close: vi.fn() }),
+    );
+    const report = createConversionReport({
+      name: 'animated-pack',
+      edition: 'java',
+      files: [],
+      textures: [],
+    });
+
+    await composeAtlas({
+      base: new Blob(['default-items']),
+      mapping: itemMappings,
+      resolveMapping: resolveAtlasMapping,
+      textures: [
+        {
+          sourcePath: 'assets/minecraft/textures/item/apple.png',
+          canonicalId: 'apple',
+          category: 'item',
+          blob: new Blob(['animated-item']),
+          animationMetadata: '{"animation":{}}',
+        },
+      ],
+      targetSlotSize: 64,
+      destination: 'Common/res/TitleUpdate/res/items.png',
+      report,
+      processed: new Set(),
+    });
+
+    expect(mock.context.imageSmoothingEnabled).toBe(false);
+    expect(mock.drawImage).toHaveBeenLastCalledWith(
+      expect.anything(),
+      0,
+      0,
+      16,
+      16,
+      expect.any(Number),
+      expect.any(Number),
+      64,
+      64,
+    );
+  });
 });

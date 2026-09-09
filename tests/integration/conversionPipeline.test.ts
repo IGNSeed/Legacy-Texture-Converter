@@ -1,7 +1,7 @@
 import JSZip from 'jszip';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createWiiUBaseAssetSet } from '../../src/core/editions/wiiu/base-assets';
-import { convertWiiUPack } from '../../src/core/editions/wiiu/convertWiiUPack';
+import { wiiuAdapter } from '../../src/core/editions/wiiu/wiiuAdapter';
 import type { ParsedTexture } from '../../src/types/conversion';
 import { completeWiiUBaseFiles } from '../helpers/wiiuBaseAssets';
 
@@ -51,7 +51,7 @@ describe('complete Wii U conversion pipeline', () => {
     );
     const loadedBaseline = await createWiiUBaseAssetSet('test', completeWiiUBaseFiles());
     if (!loadedBaseline.assetSet) throw new Error('test baseline was not created');
-    const result = await convertWiiUPack(
+    const result = await wiiuAdapter.convert(
       {
         name: 'Example.zip',
         edition: 'java',
@@ -83,11 +83,13 @@ describe('complete Wii U conversion pipeline', () => {
         ],
       },
       loadedBaseline.assetSet,
+      { itemResolution: 32 },
     );
 
     expect(result.downloadName).toBe('Example_WiiU.zip');
     expect(result.report.converted).toBe(5);
-    expect(result.report.resized).toBe(1);
+    expect(result.report.itemResolution).toBe(32);
+    expect(result.report.resized).toBe(2);
     expect(result.report.unsupported).toBe(1);
     const archive = await JSZip.loadAsync(result.zipBlob);
     const paths = Object.keys(archive.files);

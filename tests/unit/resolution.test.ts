@@ -1,8 +1,10 @@
 import { describe, expect, it } from 'vitest';
 import {
   isPowerOfTwo,
+  itemResolutionForMaximum,
   resolveBlockResolution,
   resolveItemResolution,
+  resolveSuggestedItemResolution,
   type TextureDimensions,
 } from '../../src/core/validation/resolution';
 import { createConversionReport } from '../../src/core/report/createConversionReport';
@@ -37,5 +39,35 @@ describe('output resolution', () => {
     const report = createConversionReport(pack);
     expect(resolveItemResolution([dimension(16), dimension(128)], report)).toBe(128);
     expect(report.warnings.map((warning) => warning.code)).toContain('mixed-item-resolution');
+  });
+
+  it.each([
+    [16, 16],
+    [32, 32],
+    [64, 64],
+    [128, 128],
+    [256, 256],
+    [512, 256],
+    [1024, 256],
+  ] as const)('uses %ipx input as a %ipx dialog default', (input, expected) => {
+    expect(itemResolutionForMaximum(input)).toBe(expected);
+    expect(resolveSuggestedItemResolution([dimension(input)])).toBe(expected);
+  });
+
+  it('falls back to a 16px dialog default when no items are present', () => {
+    expect(itemResolutionForMaximum()).toBe(16);
+    expect(resolveSuggestedItemResolution([])).toBe(16);
+  });
+
+  it('uses the requested resolution while retaining mixed-resolution warnings', () => {
+    const report = createConversionReport(pack);
+    expect(
+      resolveItemResolution([dimension(16), dimension(32), dimension(64)], report, undefined, 32),
+    ).toBe(32);
+    expect(report.warnings.map((warning) => warning.code)).toContain('mixed-item-resolution');
+  });
+
+  it('validates the selected resolution instead of an oversized detected maximum', () => {
+    expect(resolveItemResolution([dimension(1024)], undefined, undefined, 256)).toBe(256);
   });
 });

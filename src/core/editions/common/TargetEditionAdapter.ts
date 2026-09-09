@@ -1,4 +1,5 @@
 import type {
+  ConversionOptions,
   ConversionResult,
   ParsedPack,
   Ps3Version,
@@ -21,6 +22,7 @@ export interface TargetEditionAdapter {
   convert(
     pack: ParsedPack,
     baseline: ConsoleBaseAssetSet,
+    options?: ConversionOptions,
     onProgress?: ProgressCallback,
   ): Promise<ConversionResult>;
 }

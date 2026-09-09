@@ -1,6 +1,11 @@
 export type SourceEdition = 'java' | 'bedrock' | 'unknown';
 export type TargetEdition = 'wiiu' | 'switch' | 'ps3';
 export type Ps3Version = 'latest' | '1.8';
+export type ItemResolution = 16 | 32 | 64 | 128 | 256;
+
+export interface ConversionOptions {
+  itemResolution?: ItemResolution;
+}
 
 export type TargetSelection =
   { edition: 'wiiu' } | { edition: 'switch' } | { edition: 'ps3'; version: Ps3Version };

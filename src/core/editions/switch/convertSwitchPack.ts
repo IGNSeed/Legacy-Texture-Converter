@@ -1,4 +1,9 @@
-import type { ConversionResult, ParsedPack, ProgressCallback } from '../../../types/conversion';
+import type {
+  ConversionOptions,
+  ConversionResult,
+  ParsedPack,
+  ProgressCallback,
+} from '../../../types/conversion';
 import { createSwitchDownloadName } from '../../files/sanitizeFileName';
 import { switchMappings } from '../../mappings/switchMappings';
 import { buildSwitchFileTree } from '../../packaging/buildSwitchFileTree';
@@ -9,6 +14,7 @@ import { SWITCH_PATHS, switchSpecialMipmapPath } from './paths';
 export function convertSwitchPack(
   pack: ParsedPack,
   baseline: SwitchBaseAssetSet,
+  options?: ConversionOptions,
   onProgress?: ProgressCallback,
 ): Promise<ConversionResult> {
   return convertConsolePack(
@@ -30,6 +36,7 @@ export function convertSwitchPack(
       buildFileTree: buildSwitchFileTree,
       specialMipmapPath: switchSpecialMipmapPath,
     },
+    options,
     onProgress,
   );
 }

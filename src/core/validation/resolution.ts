@@ -1,5 +1,4 @@
-import type { ParsedTexture } from '../../types/conversion';
-import type { ConversionReport } from '../../types/conversion';
+import type { ConversionReport, ItemResolution, ParsedTexture } from '../../types/conversion';
 import type { AtlasMappingDocument } from '../../types/mappings';
 import { inspectImage } from '../image/decodeImage';
 import { MAX_CANVAS_DIMENSION } from '../image/canvas';
@@ -9,6 +8,10 @@ export interface TextureDimensions {
   width: number;
   height: number;
 }
+
+export const ITEM_RESOLUTION_OPTIONS = [
+  16, 32, 64, 128, 256,
+] as const satisfies readonly ItemResolution[];
 
 export function isPowerOfTwo(value: number): boolean {
   return value > 0 && (value & (value - 1)) === 0;
@@ -35,18 +38,43 @@ function squarePowerOfTwoSizes(entries: readonly TextureDimensions[]): number[] 
     .map((entry) => entry.width);
 }
 
+function detectedItemResolution(
+  entries: readonly TextureDimensions[],
+  report?: ConversionReport,
+): number {
+  const sizes = squarePowerOfTwoSizes(entries);
+  if (sizes.length === 0) return 16;
+  if (new Set(sizes).size > 1) {
+    report?.warnings.push({ code: 'mixed-item-resolution', messageKey: 'warnings.mixedItems' });
+  }
+  return Math.max(16, ...sizes);
+}
+
+export function itemResolutionForMaximum(maximum?: number): ItemResolution {
+  if (maximum === undefined || !isPowerOfTwo(maximum) || maximum <= 16) return 16;
+  if (maximum >= 256) return 256;
+  if (maximum >= 128) return 128;
+  if (maximum >= 64) return 64;
+  return 32;
+}
+
+export function resolveSuggestedItemResolution(
+  entries: readonly TextureDimensions[],
+): ItemResolution {
+  return itemResolutionForMaximum(detectedItemResolution(entries));
+}
+
 export function resolveItemResolution(
   entries: readonly TextureDimensions[],
   report?: ConversionReport,
   mapping?: AtlasMappingDocument,
+  requestedResolution?: ItemResolution,
 ): number {
-  const sizes = squarePowerOfTwoSizes(entries);
-  if (sizes.length === 0) return 16;
-  const distinct = [...new Set(sizes)];
-  if (distinct.length > 1) {
-    report?.warnings.push({ code: 'mixed-item-resolution', messageKey: 'warnings.mixedItems' });
+  if (requestedResolution !== undefined && !ITEM_RESOLUTION_OPTIONS.includes(requestedResolution)) {
+    throw new Error(`invalid-item-resolution:${requestedResolution}`);
   }
-  const target = Math.max(16, ...sizes);
+  const detectedResolution = detectedItemResolution(entries, report);
+  const target = requestedResolution ?? detectedResolution;
   const atlas = mapping?.atlas ?? { width: 256, height: 272, slotSize: 16 };
   if (
     atlas.width * (target / atlas.slotSize) > MAX_CANVAS_DIMENSION ||

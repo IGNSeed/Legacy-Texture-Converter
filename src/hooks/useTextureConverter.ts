@@ -12,6 +12,7 @@ import { UnsafeArchivePathError } from '../core/files/normalizeArchivePath';
 import { detectPackEdition } from '../core/parsers/detectPackEdition';
 import { parsePack } from '../core/parsers/parsePack';
 import type {
+  ConversionOptions,
   ConversionProgress,
   ConversionResult,
   ParsedPack,
@@ -109,6 +110,10 @@ export function useTextureConverter() {
 
   const selectedKey = targetAdapterKey(targetEdition, ps3Version);
   const selectedBaseline = baselines[selectedKey];
+  const selectedAdapter = useMemo(
+    () => targetEditionAdapter(targetEdition, ps3Version),
+    [ps3Version, targetEdition],
+  );
 
   useEffect(() => {
     if (selectedBaseline.status !== 'loading' || selectedBaseline.assetSet) return;
@@ -234,40 +239,39 @@ export function useTextureConverter() {
     return loadTargetBaseline(targetEdition, ps3Version);
   }, [loadTargetBaseline, ps3Version, selectedKey, targetEdition]);
 
-  const convert = useCallback(async () => {
-    if (!pack) {
-      setError('unknown-edition');
-      setStatus('error');
-      return;
-    }
-    const baseline = baselines[selectedKey].assetSet;
-    if (!baseline) {
-      setError(
-        targetEdition === 'switch'
-          ? 'switch-baseline-incomplete'
-          : targetEdition === 'ps3'
-            ? 'ps3-baseline-incomplete'
-            : 'baseline-incomplete',
-      );
-      setStatus('error');
-      return;
-    }
-    try {
-      setError(undefined);
-      setResult(undefined);
-      setStatus('converting');
-      const conversion = await targetEditionAdapter(targetEdition, ps3Version).convert(
-        pack,
-        baseline,
-        setProgress,
-      );
-      setResult(conversion);
-      setStatus('success');
-    } catch (reason) {
-      setError(errorCode(reason));
-      setStatus('error');
-    }
-  }, [baselines, pack, ps3Version, selectedKey, targetEdition]);
+  const convert = useCallback(
+    async (options: ConversionOptions) => {
+      if (!pack) {
+        setError('unknown-edition');
+        setStatus('error');
+        return;
+      }
+      const baseline = baselines[selectedKey].assetSet;
+      if (!baseline) {
+        setError(
+          targetEdition === 'switch'
+            ? 'switch-baseline-incomplete'
+            : targetEdition === 'ps3'
+              ? 'ps3-baseline-incomplete'
+              : 'baseline-incomplete',
+        );
+        setStatus('error');
+        return;
+      }
+      try {
+        setError(undefined);
+        setResult(undefined);
+        setStatus('converting');
+        const conversion = await selectedAdapter.convert(pack, baseline, options, setProgress);
+        setResult(conversion);
+        setStatus('success');
+      } catch (reason) {
+        setError(errorCode(reason));
+        setStatus('error');
+      }
+    },
+    [baselines, pack, selectedAdapter, selectedKey, targetEdition],
+  );
 
   return {
     status,
@@ -281,6 +285,7 @@ export function useTextureConverter() {
     baseline: selectedBaseline.assetSet,
     baselineStatus: selectedBaseline.status,
     baselineValidation: selectedBaseline.validation,
+    itemMapping: selectedAdapter.mappings.items,
     downloadUrl,
     error,
     loadFiles,

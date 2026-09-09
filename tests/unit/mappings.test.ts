@@ -7,6 +7,7 @@ import {
   terrainMappings,
 } from '../../src/core/mappings/wiiuMappings';
 import { atlasOutputDimensions } from '../../src/core/atlas/composeAtlas';
+import { MAX_CANVAS_DIMENSION } from '../../src/core/image/canvas';
 
 describe('Wii U mappings', () => {
   it('resolves item slots and modern aliases', () => {
@@ -31,6 +32,23 @@ describe('Wii U mappings', () => {
       height: 1088,
       scale: 4,
     });
+  });
+
+  it.each([
+    [16, 256, 272],
+    [32, 512, 544],
+    [64, 1024, 1088],
+    [128, 2048, 2176],
+    [256, 4096, 4352],
+  ] as const)('creates a %ipx item atlas at %ix%i', (slotSize, width, height) => {
+    const output = atlasOutputDimensions(itemMappings, slotSize);
+    expect(output).toEqual({
+      width,
+      height,
+      scale: slotSize / 16,
+    });
+    expect(output.width).toBeLessThanOrEqual(MAX_CANVAS_DIMENSION);
+    expect(output.height).toBeLessThanOrEqual(MAX_CANVAS_DIMENSION);
   });
 
   it('maps Java and Bedrock armor names to exact Wii U paths', () => {

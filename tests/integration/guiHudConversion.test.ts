@@ -100,10 +100,16 @@ describe('GUI HUD end-to-end conversion', () => {
         const baseline = await createPs3BaseAssetSet(`PS3 ${version}`, files, version);
         if (!baseline.assetSet) throw new Error('test PS3 baseline missing');
         const input = pack(sourceEdition, 256);
-        const result = await convertPs3Pack(input, baseline.assetSet, version);
+        const result = await convertPs3Pack(input, baseline.assetSet, version, {
+          itemResolution: 64,
+        });
         const output = result.outputFiles.find((file) => file.path === PS3_PATHS.media);
         expect(output).toBeDefined();
-        expect(result.report).toMatchObject({ outputEdition: 'ps3', ps3Version: version });
+        expect(result.report).toMatchObject({
+          outputEdition: 'ps3',
+          ps3Version: version,
+          itemResolution: 64,
+        });
         expect(result.downloadName).toBe(
           `${sourceEdition}-hud_PS3_${version === 'latest' ? 'Latest' : '1.8'}.zip`,
         );

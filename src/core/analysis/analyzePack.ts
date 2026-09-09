@@ -1,12 +1,13 @@
-import type { ParsedPack, ParsedTexture } from '../../types/conversion';
+import type { ItemResolution, ParsedPack, ParsedTexture } from '../../types/conversion';
 import type { EditionMappings } from '../mappings/createEditionMappings';
 import { wiiuMappings } from '../mappings/wiiuMappings';
-import { inspectTextures } from '../validation/resolution';
+import { inspectTextures, resolveSuggestedItemResolution } from '../validation/resolution';
 
 export interface PackSummary {
   textureCount: number;
   recognizedCount: number;
   itemResolutions: number[];
+  suggestedItemResolution: ItemResolution;
   blockResolutions: number[];
   specialTextures: string[];
 }
@@ -57,6 +58,7 @@ export async function analyzePack(
     textureCount: pack.textures.length,
     recognizedCount,
     itemResolutions: [...new Set(items.map((item) => item.width))].sort((a, b) => a - b),
+    suggestedItemResolution: resolveSuggestedItemResolution(items),
     blockResolutions: [...new Set(blocks.map((item) => item.width))].sort((a, b) => a - b),
     specialTextures: [
       ...new Set(

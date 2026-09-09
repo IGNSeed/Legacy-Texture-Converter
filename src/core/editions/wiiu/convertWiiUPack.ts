@@ -1,4 +1,9 @@
-import type { ConversionResult, ParsedPack, ProgressCallback } from '../../../types/conversion';
+import type {
+  ConversionOptions,
+  ConversionResult,
+  ParsedPack,
+  ProgressCallback,
+} from '../../../types/conversion';
 import { createWiiUDownloadName } from '../../files/sanitizeFileName';
 import { wiiuMappings } from '../../mappings/wiiuMappings';
 import { buildWiiUFileTree } from '../../packaging/buildWiiUFileTree';
@@ -9,6 +14,7 @@ import { specialMipmapPath, WIIU_PATHS } from './paths';
 export function convertWiiUPack(
   pack: ParsedPack,
   baseline: WiiUBaseAssetSet,
+  options?: ConversionOptions,
   onProgress?: ProgressCallback,
 ): Promise<ConversionResult> {
   return convertConsolePack(
@@ -30,6 +36,7 @@ export function convertWiiUPack(
       buildFileTree: buildWiiUFileTree,
       specialMipmapPath,
     },
+    options,
     onProgress,
   );
 }

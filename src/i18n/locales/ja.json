@@ -50,7 +50,16 @@
   "convert": {
     "button": "変換",
     "again": "もう一度変換",
-    "working": "変換中…"
+    "working": "変換中…",
+    "itemResolutionDialog": {
+      "heading": "アイテム出力解像度を選択",
+      "description": "items.png の1アイテムあたりの解像度を選択してください。入力より大きい値や小さい値も選択できます。",
+      "selected": "選択中の解像度",
+      "atlasSize": "items.png: {{width}} × {{height}}",
+      "slider": "アイテム出力解像度",
+      "cancel": "キャンセル",
+      "confirm": "確定して変換"
+    }
   },
   "progress": {
     "heading": "進行状況",
@@ -110,7 +119,7 @@
     "ps3GuiFuiValidation": "PS3 HUD FUI の構造または画像検証に失敗しました。元の Media archive を維持し、HUD 変換だけをスキップしました。",
     "ps3GuiSwfValidation": "PS3 HUD SWF の構造または bitmap 検証に失敗しました。元の Media archive を維持し、HUD 変換だけをスキップしました。",
     "ps3GuiArcValidation": "PS3 Media ARC の round-trip 検証に失敗しました。元の Media archive を維持し、HUD 変換だけをスキップしました。",
-    "mixedItems": "アイテム解像度が混在しているため、安全な最大の2の累乗サイズへ統一しました。",
+    "mixedItems": "アイテム解像度が混在しているため、選択した出力解像度へ統一しました。",
     "mixedBlocks": "ブロック解像度が混在しているため、32px terrain atlas へ統一しました。",
     "nonSquare": "正方形でないテクスチャを安全に配置できないためスキップしました。",
     "invalidPng": "PNG を読み込めなかったためスキップしました。",

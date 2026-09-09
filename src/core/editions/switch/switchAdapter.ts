@@ -10,8 +10,8 @@ export const switchAdapter: TargetEditionAdapter = {
   id: 'switch',
   mappings: switchMappings,
   loadBaseline: () => baselineProvider.load(),
-  convert(pack, baseline, onProgress) {
+  convert(pack, baseline, options, onProgress) {
     if (baseline.target !== 'switch') throw new Error('baseline-target-mismatch');
-    return convertSwitchPack(pack, baseline as SwitchBaseAssetSet, onProgress);
+    return convertSwitchPack(pack, baseline as SwitchBaseAssetSet, options, onProgress);
   },
 };

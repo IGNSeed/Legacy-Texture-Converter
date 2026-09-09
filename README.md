@@ -13,7 +13,7 @@ Java Edition / Bedrock Edition のテクスチャパックを、Minecraft: Wii U
 - PlayStation 3 選択時に Latest / 1.8 をバージョンダイアログで選択
 - エディション固有の `items.png` / `terrain.png` / `particles.png` atlas 生成
 - 16px / 32px block と、64px 以上から 32px への nearest-neighbor 縮小
-- 入力解像度に追従する item atlas
+- 変換前ダイアログで 16px / 32px / 64px / 128px / 256px から選べる item atlas
 - 最終 `terrain.png` からの mipmap 再生成
 - armor、fire、water、lava、glint、particles の変換
 - Java / Bedrock の GUI sheet から crosshair、hotbar、health、armor、hunger、oxygen、experience HUD を変換
@@ -41,6 +41,8 @@ Common/Media/MediaWiiU.arc
 ```
 
 Wii U 基準アセットは公開用 ZIP としてアプリに同梱され、ページを開くとブラウザへ自動的に読み込まれます。利用者が BASE / UPD ZIP やフォルダを選択する必要はありません。入力テクスチャパックも引き続き外部サーバーへ送信されず、変換処理はブラウザ内で完結します。
+
+変換ボタンを押すと、`items.png` の1スロットあたりの出力解像度を 16px / 32px / 64px / 128px / 256px から選択できます。初期値には入力パック内の最大の有効な item 解像度を最大 256px で使用し、確定した値を入力画像の解像度より優先します。拡大・縮小はいずれも nearest-neighbor で行います。Wii U、Switch 1.0.17、PS3 Latest の `items.png` は 16px 時の 256×272 を基準に最大 4096×4352 まで拡大します。PS3 1.8 は実アセットの 256×256 atlas を維持するため、同じ選択値でも縦寸法は異なります。
 
 基準リソースは `BundledWiiUBaseAssetProvider` が Pages の base URL に対応したパスから読み込み、PNG 形式・vanilla atlas 解像度・必須カテゴリを検証した `WiiUBaseAssetSet` として変換処理へ渡します。`items.png`、`terrain.png`、`particles.png` は Wii U vanilla 画像を土台にしますが、認識した slot は描画前に完全消去してから入力テクスチャを配置します。これにより入力画像の透明部分から元アイコンが透けず、slot 単位で置き換わります。入力に存在しない slot は基準画像のまま維持されます。
 

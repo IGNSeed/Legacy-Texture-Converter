@@ -1,4 +1,5 @@
 import type {
+  ConversionOptions,
   ConversionResult,
   OutputFile,
   ParsedPack,
@@ -90,6 +91,7 @@ export async function convertConsolePack<TTarget extends TargetEdition>(
   pack: ParsedPack,
   baseline: ConsoleBaseAssetSet<TTarget>,
   definition: ConsoleConversionDefinition<TTarget>,
+  options: ConversionOptions = {},
   onProgress?: ProgressCallback,
 ): Promise<ConversionResult> {
   const { mappings, paths } = definition;
@@ -120,7 +122,12 @@ export async function convertConsolePack<TTarget extends TargetEdition>(
     inspectTextures(terrain),
     inspectTextures(individualParticles),
   ]);
-  const itemResolution = resolveItemResolution(itemSizes, report, mappings.items);
+  const itemResolution = resolveItemResolution(
+    itemSizes,
+    report,
+    mappings.items,
+    options.itemResolution,
+  );
   const blockResolution = resolveBlockResolution(terrainSizes, report);
   let particleResolution = resolveParticleResolution(particleSizes, mappings.particles);
   report.itemResolution = itemResolution;

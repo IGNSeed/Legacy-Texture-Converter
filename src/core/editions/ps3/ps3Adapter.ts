@@ -16,11 +16,11 @@ export function ps3Adapter(version?: Ps3Version): TargetEditionAdapter {
     ps3Version: version,
     mappings: ps3Mappings(version),
     loadBaseline: () => providers[version].load(),
-    convert(pack, baseline, onProgress) {
+    convert(pack, baseline, options, onProgress) {
       if (baseline.target !== 'ps3' || baseline.ps3Version !== version) {
         throw new Error('baseline-target-mismatch');
       }
-      return convertPs3Pack(pack, baseline as Ps3BaseAssetSet, version, onProgress);
+      return convertPs3Pack(pack, baseline as Ps3BaseAssetSet, version, options, onProgress);
     },
   };
 }

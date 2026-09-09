@@ -50,7 +50,16 @@
   "convert": {
     "button": "Convert",
     "again": "Convert again",
-    "working": "Converting…"
+    "working": "Converting…",
+    "itemResolutionDialog": {
+      "heading": "Choose item output resolution",
+      "description": "Choose the resolution of each item in items.png. You can select a size above or below the input resolution.",
+      "selected": "Selected resolution",
+      "atlasSize": "items.png: {{width}} × {{height}}",
+      "slider": "Item output resolution",
+      "cancel": "Cancel",
+      "confirm": "Confirm and convert"
+    }
   },
   "progress": {
     "heading": "Progress",
@@ -110,7 +119,7 @@
     "ps3GuiFuiValidation": "The PS3 HUD FUI failed structural or image validation. The original Media archive was preserved and HUD conversion was skipped.",
     "ps3GuiSwfValidation": "The PS3 HUD SWF failed structural or bitmap validation. The original Media archive was preserved and HUD conversion was skipped.",
     "ps3GuiArcValidation": "The PS3 Media ARC failed round-trip validation. The original Media archive was preserved and HUD conversion was skipped.",
-    "mixedItems": "Mixed item resolutions were normalized to the largest safe power-of-two size.",
+    "mixedItems": "Mixed item resolutions were normalized to the selected output resolution.",
     "mixedBlocks": "Mixed block resolutions were normalized to a 32px terrain atlas.",
     "nonSquare": "A non-square texture could not be placed safely.",
     "invalidPng": "A PNG could not be decoded and was skipped.",

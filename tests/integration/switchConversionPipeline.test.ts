@@ -99,12 +99,15 @@ describe.each<Exclude<SourceEdition, 'unknown'>>(['java', 'bedrock'])(
       }
       const inputFiles = await readZipPack(await inputArchive.generateAsync({ type: 'blob' }));
       const pack = await parsePack(`${edition}-example.zip`, inputFiles, edition);
-      const result = await convertSwitchPack(pack, loadedBaseline.assetSet);
+      const result = await convertSwitchPack(pack, loadedBaseline.assetSet, {
+        itemResolution: 64,
+      });
 
       expect(result.downloadName).toBe(`${edition}-example_Switch_1.0.17.zip`);
       expect(result.report).toMatchObject({
         inputEdition: edition,
         outputEdition: 'switch',
+        itemResolution: 64,
         blockResolution: 32,
         unsupported: 1,
       });

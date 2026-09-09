@@ -1,4 +1,5 @@
 import type {
+  ConversionOptions,
   ConversionResult,
   ParsedPack,
   ProgressCallback,
@@ -15,6 +16,7 @@ export function convertPs3Pack(
   pack: ParsedPack,
   baseline: Ps3BaseAssetSet,
   version: Ps3Version,
+  options?: ConversionOptions,
   onProgress?: ProgressCallback,
 ): Promise<ConversionResult> {
   if (baseline.ps3Version !== version) throw new Error('baseline-version-mismatch');
@@ -39,6 +41,7 @@ export function convertPs3Pack(
       specialMipmapPath: ps3SpecialMipmapPath,
       preserveUnmodifiedMedia: true,
     },
+    options,
     onProgress,
   );
 }

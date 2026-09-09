@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Header } from '../components/Header';
 import { ConversionProgress } from '../features/converter/ConversionProgress';
+import { ConversionControls } from '../features/converter/ConversionControls';
 import { OutputEdition } from '../features/converter/OutputEdition';
 import { PackInformation } from '../features/converter/PackInformation';
 import { ReportPanel } from '../features/report/ReportPanel';
@@ -36,20 +37,14 @@ export function App() {
           disabled={busy}
           onChange={converter.chooseTargetEdition}
         />
-        <div className="convert-row">
-          <button
-            className="primary-button convert-button"
-            type="button"
-            disabled={!converter.pack || !converter.baseline || busy}
-            onClick={() => void converter.convert()}
-          >
-            {converter.status === 'converting'
-              ? t('convert.working')
-              : converter.result
-                ? t('convert.again')
-                : t('convert.button')}
-          </button>
-        </div>
+        <ConversionControls
+          disabled={!converter.pack || !converter.baseline || busy}
+          converting={converter.status === 'converting'}
+          hasResult={Boolean(converter.result)}
+          suggestedItemResolution={converter.summary?.suggestedItemResolution ?? 16}
+          itemMapping={converter.itemMapping}
+          onConvert={converter.convert}
+        />
         {converter.progress && busy && <ConversionProgress progress={converter.progress} />}
         {converter.error && (
           <section className="error-message" role="alert">
