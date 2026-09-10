@@ -1,6 +1,8 @@
 import type { VirtualFile } from '../../types/conversion';
+import { ArchiveReadError } from './archiveErrors';
+import { isArchiveFileName, isMultiVolumeRarFileName } from './archiveFormat';
 import { normalizeArchivePath } from './normalizeArchivePath';
-import { readZipPack } from './readZipPack';
+import { readInputFiles } from './readInputFiles';
 
 interface FileSystemEntryLike {
   isFile: boolean;
@@ -70,15 +72,21 @@ export async function readDroppedItems(dataTransfer: DataTransfer): Promise<{
   const virtualFiles: VirtualFile[] = [];
 
   if (entries.length > 0) {
+    if (entries.every((entry) => entry.isFile)) {
+      const files = await Promise.all(
+        entries.map((entry) => readFileEntry(entry as FileEntryLike)),
+      );
+      return readInputFiles(files);
+    }
+    const archiveEntry = entries.find((entry) => entry.isFile && isArchiveFileName(entry.name));
+    if (archiveEntry) {
+      throw new ArchiveReadError(
+        isMultiVolumeRarFileName(archiveEntry.name) ? 'rar-multi-volume' : 'archive-unsupported',
+      );
+    }
     for (const entry of entries) await walkEntry(entry, virtualFiles);
   } else {
-    for (const file of [...dataTransfer.files]) {
-      virtualFiles.push({ path: normalizeArchivePath(file.name), name: file.name, blob: file });
-    }
-  }
-
-  if (virtualFiles.length === 1 && /\.(zip|mcpack)$/i.test(virtualFiles[0].name)) {
-    return { name: virtualFiles[0].name, files: await readZipPack(virtualFiles[0].blob) };
+    return readInputFiles([...dataTransfer.files]);
   }
 
   return {

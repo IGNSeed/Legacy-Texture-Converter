@@ -10,7 +10,7 @@
     "or": "または",
     "files": "ファイルを選択",
     "folder": "フォルダを選択",
-    "formats": "ZIP、MCPACK、フォルダ、PNG に対応",
+    "formats": "ZIP、MCPACK、RAR、TAR、TAR.GZ、TGZ、フォルダ、PNG に対応",
     "privacy": "処理はローカルで完結し、ファイルは外部へ送信されません。",
     "dragActive": "ドロップしてパックを読み込み"
   },
@@ -147,6 +147,12 @@
     "baseline-incomplete": "公開済みの Wii U 基準アセットの読込完了後に、もう一度お試しください。",
     "switch-baseline-incomplete": "公開済みの Nintendo Switch Edition 基準アセットの読込完了後に、もう一度お試しください。",
     "baseline-invalid": "選択した基準リソースに無効な画像・Media archive、または想定外のリソース構造が含まれています。",
+    "archive-corrupt": "アーカイブが破損しているか、有効なアーカイブ構造ではありません。",
+    "archive-empty": "アーカイブ内に通常ファイルが含まれていません。",
+    "archive-too-large": "アーカイブ内のファイル数または展開サイズが、ブラウザで安全に処理できる上限を超えています。",
+    "archive-unsupported": "このアーカイブ形式またはアーカイブの選択方法には対応していません。",
+    "rar-password-protected": "パスワードで保護されたRARファイルには対応していません。",
+    "rar-multi-volume": "分割RARファイルには対応していません。",
     "unsafe-path": "アーカイブ内に危険なパスがあるため拒否しました。",
     "canvas-limit": "要求されたアトラスがブラウザで安全に扱えるサイズを超えています。",
     "generic": "パックを処理できませんでした。アーカイブと PNG が有効か確認してください。"

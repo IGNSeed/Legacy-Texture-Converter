@@ -80,6 +80,20 @@ const unreviewedArchives = archiveFiles.filter((file) => !allowedArchiveAssets.h
 if (unreviewedArchives.length > 0) {
   throw new Error(`Unreviewed archives found in dist: ${unreviewedArchives.join(', ')}`);
 }
+
+const wasmFiles = files.filter((file) => file.endsWith('.wasm'));
+if (wasmFiles.length !== 1 || !/^assets\/libarchive-[\w-]+\.wasm$/.test(wasmFiles[0])) {
+  throw new Error(
+    `Expected one Vite-managed libarchive WASM asset, found: ${wasmFiles.join(', ')}`,
+  );
+}
+const javascriptFiles = files.filter((file) => file.endsWith('.js'));
+const javascript = (
+  await Promise.all(javascriptFiles.map((file) => readFile(resolve(outputRoot, file), 'utf8')))
+).join('\n');
+if (!javascript.includes(`${pagesBase}${wasmFiles[0]}`)) {
+  throw new Error('The libarchive WASM URL is not prefixed for the GitHub Pages project path');
+}
 let reviewedBaselineFileCount = 0;
 for (const baseline of baselines) {
   if (!archiveFiles.includes(baseline.path)) {
@@ -107,5 +121,5 @@ for (const baseline of baselines) {
 }
 
 console.log(
-  `Pages build verified: ${localReferences.length} base-prefixed asset references, ${reviewedBaselineFileCount} reviewed baseline files.`,
+  `Pages build verified: ${localReferences.length} base-prefixed asset references, ${reviewedBaselineFileCount} reviewed baseline files, ${wasmFiles.length} lazy WASM asset.`,
 );

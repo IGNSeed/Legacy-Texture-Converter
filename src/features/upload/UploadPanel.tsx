@@ -65,7 +65,7 @@ export function UploadPanel({ disabled, onFiles, onDropFiles }: UploadPanelProps
           ref={fileInput}
           className="visually-hidden"
           type="file"
-          accept=".zip,.mcpack,.png,image/png,application/zip"
+          accept=".zip,.mcpack,.rar,.tar,.tar.gz,.tgz,.png,image/png,application/zip,application/vnd.rar,application/x-rar-compressed,application/x-tar,application/gzip"
           multiple
           onChange={changed}
         />

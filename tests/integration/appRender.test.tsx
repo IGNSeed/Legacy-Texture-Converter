@@ -30,6 +30,11 @@ describe('application shell', () => {
     expect(container.textContent).not.toContain('1.0.17');
     expect(container.querySelector('[aria-labelledby="baseline-heading"]')).toBeNull();
     expect(container.querySelector('button.convert-button')).not.toBeNull();
+    const uploadInput = container.querySelector<HTMLInputElement>('input[type="file"]');
+    expect(uploadInput?.accept).toContain('.rar');
+    expect(uploadInput?.accept).toContain('.tar.gz');
+    expect(uploadInput?.accept).toContain('.tgz');
+    expect(container.textContent).toContain('ZIP, MCPACK, RAR, TAR, TAR.GZ, TGZ');
     const outputChoices = container.querySelectorAll<HTMLInputElement>(
       'input[name="output-edition"]',
     );

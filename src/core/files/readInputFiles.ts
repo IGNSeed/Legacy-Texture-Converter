@@ -1,6 +1,8 @@
 import type { VirtualFile } from '../../types/conversion';
+import { ArchiveReadError } from './archiveErrors';
+import { detectArchiveFormat, isArchiveFileName, isMultiVolumeRarFileName } from './archiveFormat';
 import { normalizeArchivePath } from './normalizeArchivePath';
-import { readZipPack } from './readZipPack';
+import { readArchivePack } from './readArchivePack';
 
 export interface ReadInputResult {
   name: string;
@@ -15,8 +17,15 @@ export async function readInputFiles(inputFiles: readonly File[]): Promise<ReadI
   if (inputFiles.length === 0) throw new Error('empty-input');
 
   const first = inputFiles[0];
-  if (inputFiles.length === 1 && /\.(zip|mcpack)$/i.test(first.name)) {
-    return { name: first.name, files: await readZipPack(first) };
+  const directFiles = inputFiles.filter((file) => !file.webkitRelativePath);
+  if (inputFiles.length === 1 && directFiles.length === 1) {
+    const format = await detectArchiveFormat(first);
+    if (format !== 'unknown') {
+      return { name: first.name, files: await readArchivePack(first, format) };
+    }
+  } else if (directFiles.some((file) => isArchiveFileName(file.name))) {
+    const multiVolume = directFiles.find((file) => isMultiVolumeRarFileName(file.name));
+    throw new ArchiveReadError(multiVolume ? 'rar-multi-volume' : 'archive-unsupported');
   }
 
   const files = inputFiles.map((file) => {

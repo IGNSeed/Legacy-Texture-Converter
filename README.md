@@ -4,8 +4,8 @@ Java Edition / Bedrock Edition のテクスチャパックを、Minecraft: Wii U
 
 ## 主な機能
 
-- Java: ZIP、展開済みフォルダ、個別 PNG
-- Bedrock: ZIP、MCPACK、展開済みフォルダ、個別 PNG
+- Java: ZIP、RAR、TAR、TAR.GZ、TGZ、展開済みフォルダ、個別 PNG
+- Bedrock: ZIP、MCPACK、RAR、TAR、TAR.GZ、TGZ、展開済みフォルダ、個別 PNG
 - ファイル選択、フォルダ選択、ドラッグ＆ドロップ
 - Java / Bedrock の自動判定と、判定不能時の手動選択
 - Wii U / Switch 1.0.17 / PS3 Latest / PS3 1.8 のエディション別基準アセットを自動読み込み（手動アップロード不要）
@@ -26,6 +26,19 @@ Java Edition / Bedrock Edition のテクスチャパックを、Minecraft: Wii U
 - 未対応・スキップ・リサイズ・警告を含む変換レポート
 - 日本語 / English UI（選択をブラウザに保存）
 - zip-slip 対策を含む入力・出力パス検証
+
+## 対応入力
+
+- ZIP
+- MCPACK（ZIP 互換）
+- RAR（RAR4 / RAR5）
+- TAR
+- TAR.GZ
+- TGZ
+- 展開済みフォルダ
+- 個別 PNG
+
+RAR / TAR の展開も含め、すべての入力はブラウザ内だけで処理され、外部 API やサーバーへ送信されません。パスワード付き・暗号化 RAR と分割 RAR は非対応です。`TAR.BZ2` / `TBZ2` / `TAR.XZ` / `TXZ` も入力対象外で、専用エラーとして表示します。
 
 ## Wii U 出力
 
@@ -164,6 +177,8 @@ https://ignseed.github.io/Legacy-Texture-Converter/
 - GUI/HUD 対応は確認済みの静的 HUD sprite に限定されます。menu layout、container、font、controller glyph、任意の FUI layout は変換しません。
 - GUI sheet は 256×256 の正方形整数倍（最大 4096×4096）のみを扱い、nearest-neighbor で対象 sprite の実寸へ変換します。
 - 非常に大きな item atlas がブラウザの安全な canvas 上限を超える場合は、明示的なエラーで停止します。
+- パスワード付き・暗号化 RAR と分割 RAR（`.part1.rar`、`.r00` など）は展開できません。
+- `.tar.bz2` / `.tbz2` / `.tar.xz` / `.txz` は対応していません。
 - 公開基準アセットには第三者のゲーム素材が含まれます。コードの GPL-3.0 ライセンスは、それらの素材に対する権利を付与しません。詳細は `THIRD_PARTY_NOTICES.md` を確認してください。
 - 基準アセットの再生成元には `LocalAssets/` または `.local-assets/` を使用できます。両方とも Git 管理・production build の対象外です。
 - 実機またはエミュレーターでの表示確認は、生成したパックごとに行ってください。

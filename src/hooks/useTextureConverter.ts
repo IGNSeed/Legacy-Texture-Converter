@@ -6,6 +6,7 @@ import {
   targetEditionAdapter,
   type TargetAdapterKey,
 } from '../core/editions/targetEditions';
+import { ArchiveReadError } from '../core/files/archiveErrors';
 import { readDroppedItems } from '../core/files/readDroppedItems';
 import { readInputFiles, type ReadInputResult } from '../core/files/readInputFiles';
 import { UnsafeArchivePathError } from '../core/files/normalizeArchivePath';
@@ -47,6 +48,7 @@ function initialBaselines(): Record<TargetAdapterKey, BaselineState> {
 
 function errorCode(error: unknown): string {
   if (error instanceof UnsafeArchivePathError) return 'unsafe-path';
+  if (error instanceof ArchiveReadError) return error.code;
   if (error instanceof Error) {
     if (error.message.startsWith('canvas-limit')) return 'canvas-limit';
     if (

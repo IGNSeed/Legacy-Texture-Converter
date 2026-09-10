@@ -10,7 +10,7 @@
     "or": "or",
     "files": "Choose files",
     "folder": "Choose folder",
-    "formats": "ZIP, MCPACK, folder, or PNG files",
+    "formats": "ZIP, MCPACK, RAR, TAR, TAR.GZ, TGZ, folder, or PNG files",
     "privacy": "Processing is performed locally. Your files are not uploaded.",
     "dragActive": "Release to read this pack"
   },
@@ -147,6 +147,12 @@
     "baseline-incomplete": "Wait for the published Wii U baseline to load, then try again.",
     "switch-baseline-incomplete": "Wait for the published Nintendo Switch Edition baseline to load, then try again.",
     "baseline-invalid": "The selected baseline contains an invalid image, Media archive, or unexpected resource layout.",
+    "archive-corrupt": "The archive is damaged or does not contain a valid archive structure.",
+    "archive-empty": "The archive does not contain any regular files.",
+    "archive-too-large": "The archive contains too many files or exceeds the safe browser extraction limit.",
+    "archive-unsupported": "This archive format or archive selection is not supported.",
+    "rar-password-protected": "Password-protected RAR archives are not supported.",
+    "rar-multi-volume": "Multi-volume RAR archives are not supported.",
     "unsafe-path": "The archive contains an unsafe path and was rejected.",
     "canvas-limit": "The requested atlas is too large for a safe browser canvas.",
     "generic": "The pack could not be processed. Check that the archive and PNG files are valid."
