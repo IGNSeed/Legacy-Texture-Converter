@@ -7,6 +7,7 @@ import type {
 import { isGuiTexturePath } from '../../gui-textures/selectGuiTextures';
 import { isBedrockCubemapTexturePath } from '../../sky/selectSkySource';
 import { normalizeBedrockTextureId } from './normalizeBedrockTextureId';
+import { readBedrockPackDescription } from './readBedrockPackDescription';
 
 const SPECIAL_IDS = new Set([
   'fire_0',
@@ -67,7 +68,10 @@ export async function parseBedrockPack(
   name: string,
   files: readonly VirtualFile[],
 ): Promise<ParsedPack> {
-  const flipbooks = await readFlipbookMetadata(files);
+  const [flipbooks, description] = await Promise.all([
+    readFlipbookMetadata(files),
+    readBedrockPackDescription(files),
+  ]);
   const textures: ParsedTexture[] = [];
 
   for (const file of files) {
@@ -87,5 +91,5 @@ export async function parseBedrockPack(
     });
   }
 
-  return { name, edition: 'bedrock', files: [...files], textures };
+  return { name, edition: 'bedrock', description, files: [...files], textures };
 }

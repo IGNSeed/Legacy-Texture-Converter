@@ -50,9 +50,11 @@ describe('complete Wii U conversion pipeline', () => {
     );
     vi.stubGlobal('createImageBitmap', bitmap);
     const baseInventory = new Blob(['base-inventory'], { type: 'image/png' });
+    const expectedDescription = '  §aWii U テストパック\nby Seed  ';
     const baseFiles = [
       ...completeWiiUBaseFiles(),
       { path: WIIU_PATHS.guiInventory, blob: baseInventory },
+      { path: WIIU_PATHS.description, blob: new Blob(['baseline-description']) },
     ];
     const loadedBaseline = await createWiiUBaseAssetSet('test', baseFiles);
     if (!loadedBaseline.assetSet) throw new Error('test baseline was not created');
@@ -100,6 +102,7 @@ describe('complete Wii U conversion pipeline', () => {
       {
         name: 'Example.zip',
         edition: 'java',
+        description: expectedDescription,
         files: [inputPackIcon],
         textures: [
           texture('assets/minecraft/textures/item/diamond_sword.png', 'diamond_sword', 'item', 64),
@@ -182,6 +185,9 @@ describe('complete Wii U conversion pipeline', () => {
     expect(paths).toContain('Common/res/TitleUpdate/res/textures/blocks/fire_0.png');
     expect(paths).toContain(WIIU_PATHS.guiInventory);
     expect(paths).toContain(WIIU_PATHS.guiPackIcon);
+    expect(
+      Array.from((await archive.file(WIIU_PATHS.description)?.async('uint8array')) ?? []),
+    ).toEqual(Array.from(new TextEncoder().encode(expectedDescription)));
     expect(await archive.file(WIIU_PATHS.guiInventory)?.async('uint8array')).toEqual(
       new Uint8Array(await inputInventory.blob.arrayBuffer()),
     );

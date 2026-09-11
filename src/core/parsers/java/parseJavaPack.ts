@@ -8,6 +8,7 @@ import { isGuiTexturePath } from '../../gui-textures/selectGuiTextures';
 import { isJavaInventoryTexturePath } from '../../gui-textures/selectJavaInventoryTexture';
 import { isJavaSkyTexturePath } from '../../sky/selectSkySource';
 import { normalizeJavaTextureId } from './normalizeJavaTextureId';
+import { readJavaPackDescription } from './readJavaPackDescription';
 
 const SPECIAL_IDS = new Set([
   'fire_0',
@@ -48,6 +49,7 @@ export async function parseJavaPack(
   name: string,
   files: readonly VirtualFile[],
 ): Promise<ParsedPack> {
+  const descriptionTask = readJavaPackDescription(files);
   const byPath = new Map(files.map((file) => [file.path.toLowerCase(), file]));
   const textures: ParsedTexture[] = [];
 
@@ -67,5 +69,11 @@ export async function parseJavaPack(
     });
   }
 
-  return { name, edition: 'java', files: [...files], textures };
+  return {
+    name,
+    edition: 'java',
+    description: await descriptionTask,
+    files: [...files],
+    textures,
+  };
 }

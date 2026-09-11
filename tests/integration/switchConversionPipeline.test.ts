@@ -2,7 +2,11 @@ import JSZip from 'jszip';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import { createSwitchBaseAssetSet } from '../../src/core/editions/switch/base-assets';
 import { convertSwitchPack } from '../../src/core/editions/switch/convertSwitchPack';
-import { SWITCH_ATMOSPHERE_PREFIX, SWITCH_TITLE_ID } from '../../src/core/editions/switch/paths';
+import {
+  SWITCH_ATMOSPHERE_PREFIX,
+  SWITCH_PATHS,
+  SWITCH_TITLE_ID,
+} from '../../src/core/editions/switch/paths';
 import { readZipPack } from '../../src/core/files/readZipPack';
 import { isArmorPowerTexturePath } from '../../src/core/packaging/outputFilePolicy';
 import { parsePack } from '../../src/core/parsers/parsePack';
@@ -57,8 +61,13 @@ describe.each<Exclude<SourceEdition, 'unknown'>>(['java', 'bedrock'])(
       if (!loadedBaseline.assetSet) throw new Error('test Switch baseline was not created');
 
       const inputArchive = new JSZip();
+      const expectedDescription =
+        edition === 'java' ? '§aJava Switch pack' : '-Latenci\nBedrock Switch pack';
       if (edition === 'java') {
-        inputArchive.file('pack.mcmeta', '{}');
+        inputArchive.file(
+          'pack.mcmeta',
+          JSON.stringify({ pack: { pack_format: 15, description: expectedDescription } }),
+        );
         inputArchive.file(
           'assets/minecraft/textures/items/diamond_sword.png',
           new Blob(['diamond_sword']),
@@ -96,7 +105,13 @@ describe.each<Exclude<SourceEdition, 'unknown'>>(['java', 'bedrock'])(
         inputArchive.file('pack.png', new Blob(['java-pack-icon']));
         inputArchive.file('assets/minecraft/textures/items/trident.png', new Blob(['trident']));
       } else {
-        inputArchive.file('manifest.json', '{}');
+        inputArchive.file(
+          'manifest.json',
+          JSON.stringify({
+            header: { name: 'Example', description: expectedDescription },
+            modules: [{ description: 'must not be exported', type: 'resources' }],
+          }),
+        );
         inputArchive.file('textures/items/diamond_sword.png', new Blob(['diamond_sword']));
         inputArchive.file('textures/blocks/stone.png', new Blob(['stone']));
         inputArchive.file('textures/models/armor/iron_1.png', new Blob(['iron']));
@@ -163,6 +178,9 @@ describe.each<Exclude<SourceEdition, 'unknown'>>(['java', 'bedrock'])(
       expect(paths).toContain(`${expectedRoot}Common/res/1_2_2/armor/iron_1.png`);
       expect(paths).toContain(`${expectedRoot}Common/res/1_2_2/armor/diamond_2.png`);
       expect(paths).toContain(`${expectedRoot}Common/res/TitleUpdate/res/particles.png`);
+      expect(await archive.file(`${expectedRoot}${SWITCH_PATHS.description}`)?.async('text')).toBe(
+        expectedDescription,
+      );
       expect(paths).not.toContain(`${expectedRoot}Common/Media/MediaNX.arc`);
       expect(paths).toContain(
         `${expectedRoot}Common/res/TitleUpdate/res/textures/blocks/waterMipMapLevel5.png`,

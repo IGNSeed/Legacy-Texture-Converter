@@ -20,6 +20,7 @@ Java Edition / Bedrock Edition のテクスチャパックを、Minecraft: Wii U
 - Java / Bedrock の `icons.png` と widget sheet を無加工で `Common/res/gui/` へコピー（PS3 は実ファイルどおり `gui.png`、Wii U / Switch は `widgets.png`）
 - Java の `assets/minecraft/textures/gui/container/inventory.png` を無加工で `Common/res/gui/inventory.png` へコピー
 - Java の `pack.png` または Bedrock の `pack_icon.png` を無加工で `Common/res/gui/pack_icon.png` へコピー
+- Java の `pack.mcmeta` または Bedrock の `manifest.json` から説明文を取得し、全対応ターゲットの `Common/res/description.txt` へ UTF-8 で出力
 - Java の 3×2 custom Sky、または Bedrock の overworld cubemap 6面を LCE `sky.png`（4032×2688）へ変換
 - Wii U / Switch の FUI、PS3 Latest の FUI、PS3 1.8 の CWS/SWF HUD を個別に再構築し、Media ARC へ再格納
 - Wii U は BASE + UPD を統合した `Common/res/...` 出力

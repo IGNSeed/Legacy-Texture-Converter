@@ -1,7 +1,10 @@
+import { CONSOLE_DESCRIPTION_PATH } from '../common/paths';
+
 export const SWITCH_TITLE_ID = '01006BD001E06000';
 export const SWITCH_ATMOSPHERE_PREFIX = `atmosphere/contents/${SWITCH_TITLE_ID}/romfs`;
 
 export const SWITCH_PATHS = {
+  description: CONSOLE_DESCRIPTION_PATH,
   media: 'Common/Media/MediaNX.arc',
   items: 'Common/res/TitleUpdate/res/items.png',
   terrain: 'Common/res/TitleUpdate/res/terrain.png',

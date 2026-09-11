@@ -24,6 +24,7 @@ export function convertWiiUPack(
       target: 'wiiu',
       mappings: wiiuMappings,
       paths: {
+        description: WIIU_PATHS.description,
         items: WIIU_PATHS.items,
         terrain: WIIU_PATHS.terrain,
         terrainMipmaps: WIIU_PATHS.terrainMipmaps,

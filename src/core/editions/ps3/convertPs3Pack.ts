@@ -28,6 +28,7 @@ export function convertPs3Pack(
       ps3Version: version,
       mappings: ps3Mappings(version),
       paths: {
+        description: PS3_PATHS.description,
         items: PS3_PATHS.items,
         terrain: PS3_PATHS.terrain,
         terrainMipmaps: PS3_PATHS.terrainMipmaps,

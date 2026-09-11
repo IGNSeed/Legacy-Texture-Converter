@@ -1,4 +1,7 @@
+import { CONSOLE_DESCRIPTION_PATH } from '../common/paths';
+
 export const WIIU_PATHS = {
+  description: CONSOLE_DESCRIPTION_PATH,
   media: 'Common/Media/MediaWiiU.arc',
   items: 'Common/res/TitleUpdate/res/items.png',
   terrain: 'Common/res/TitleUpdate/res/terrain.png',

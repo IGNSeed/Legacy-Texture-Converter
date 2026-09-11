@@ -29,8 +29,10 @@ import {
   resolveParticleResolution,
 } from '../../validation/resolution';
 import type { ConsoleBaseAssetSet } from './baseAssets';
+import { createPackDescriptionFile } from './createPackDescriptionFile';
 
 export interface ConsoleEditionPaths {
+  description: string;
   items: string;
   terrain: string;
   terrainMipmaps: readonly string[];
@@ -102,6 +104,8 @@ export async function convertConsolePack<TTarget extends TargetEdition>(
   const report = createConversionReport(pack, definition.target, definition.ps3Version);
   const processed = new Set<string>();
   const overrides: OutputFile[] = [];
+  const descriptionFile = createPackDescriptionFile(pack.description, paths.description);
+  if (descriptionFile) overrides.push(descriptionFile);
 
   progress(onProgress, 'reading', 5);
   const mediaPath = hudTargetMapping(definition.target, definition.ps3Version).mediaPath;

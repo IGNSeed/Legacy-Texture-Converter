@@ -24,6 +24,7 @@ export function convertSwitchPack(
       target: 'switch',
       mappings: switchMappings,
       paths: {
+        description: SWITCH_PATHS.description,
         items: SWITCH_PATHS.items,
         terrain: SWITCH_PATHS.terrain,
         terrainMipmaps: SWITCH_PATHS.terrainMipmaps,

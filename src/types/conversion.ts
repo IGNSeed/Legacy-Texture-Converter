@@ -30,6 +30,7 @@ export interface ParsedTexture {
 export interface ParsedPack {
   name: string;
   edition: Exclude<SourceEdition, 'unknown'>;
+  description?: string;
   files: VirtualFile[];
   textures: ParsedTexture[];
 }

@@ -94,11 +94,13 @@ describe('bundled PlayStation 3 baselines', () => {
         return Promise.resolve({ width: 16, height: 16, close: vi.fn() });
       });
       vi.stubGlobal('createImageBitmap', bitmap);
+      const expectedDescription = `§bPS3 ${version}\nDescription`;
 
       const result = await convertPs3Pack(
         {
           name: `PS3-${version}.zip`,
           edition: 'java',
+          description: expectedDescription,
           files: [],
           textures: inputFluids,
         },
@@ -134,6 +136,7 @@ describe('bundled PlayStation 3 baselines', () => {
       ).toBe(vanillaLava);
 
       const archive = await JSZip.loadAsync(result.zipBlob);
+      expect(await archive.file(PS3_PATHS.description)?.async('text')).toBe(expectedDescription);
       expect(
         await archive
           .file('Common/res/TitleUpdate/res/textures/blocks/water.png')
