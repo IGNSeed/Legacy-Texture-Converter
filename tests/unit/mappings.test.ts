@@ -60,10 +60,11 @@ describe('Wii U mappings', () => {
     ]);
   });
 
-  it('keeps animated fluids in dedicated files', () => {
-    expect(resolveSpecialMapping('water_still')?.destination).toBe(
-      'Common/res/TitleUpdate/res/textures/blocks/water.png',
-    );
+  it('preserves base fluids while retaining fire conversion', () => {
+    expect(resolveSpecialMapping('water_still')).toMatchObject({
+      destination: 'Common/res/TitleUpdate/res/textures/blocks/water.png',
+      inputPolicy: 'preserve-base',
+    });
     expect(resolveSpecialMapping('fire_layer_0')?.animationText).toMatch(/fire_0\.txt$/);
   });
 });

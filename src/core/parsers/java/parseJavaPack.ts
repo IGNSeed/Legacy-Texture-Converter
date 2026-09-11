@@ -5,6 +5,7 @@ import type {
   VirtualFile,
 } from '../../../types/conversion';
 import { isGuiTexturePath } from '../../gui-textures/selectGuiTextures';
+import { isJavaInventoryTexturePath } from '../../gui-textures/selectJavaInventoryTexture';
 import { isJavaSkyTexturePath } from '../../sky/selectSkySource';
 import { normalizeJavaTextureId } from './normalizeJavaTextureId';
 
@@ -27,7 +28,7 @@ const SPECIAL_IDS = new Set([
 
 export function classifyJavaTexture(path: string, id: string): TextureCategory {
   const normalized = path.toLowerCase().replaceAll('\\', '/');
-  if (isGuiTexturePath('java', path)) return 'gui';
+  if (isGuiTexturePath('java', path) || isJavaInventoryTexturePath(path)) return 'gui';
   if (isJavaSkyTexturePath(path)) return 'sky';
   if (SPECIAL_IDS.has(id)) return 'special';
   if (

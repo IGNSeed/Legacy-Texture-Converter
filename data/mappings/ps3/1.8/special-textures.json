@@ -6,6 +6,7 @@
       "id": "water",
       "sourceNames": ["water", "water_still"],
       "destination": "Common/res/TitleUpdate/res/textures/blocks/water.png",
+      "inputPolicy": "preserve-base",
       "animationText": "Common/res/TitleUpdate/res/textures/blocks/water.txt",
       "animationMode": "metadata",
       "mipmapLevels": 4,
@@ -16,6 +17,7 @@
       "id": "water_flow",
       "sourceNames": ["water_flow", "flowing_water"],
       "destination": "Common/res/TitleUpdate/res/textures/blocks/water_flow.png",
+      "inputPolicy": "preserve-base",
       "animationText": "Common/res/TitleUpdate/res/textures/blocks/water_flow.txt",
       "animationMode": "metadata"
     },
@@ -23,6 +25,7 @@
       "id": "lava",
       "sourceNames": ["lava", "lava_still"],
       "destination": "Common/res/TitleUpdate/res/textures/blocks/lava.png",
+      "inputPolicy": "preserve-base",
       "animationText": "Common/res/TitleUpdate/res/textures/blocks/lava.txt",
       "animationMode": "metadata"
     },
@@ -30,6 +33,7 @@
       "id": "lava_flow",
       "sourceNames": ["lava_flow", "flowing_lava"],
       "destination": "Common/res/TitleUpdate/res/textures/blocks/lava_flow.png",
+      "inputPolicy": "preserve-base",
       "animationText": "Common/res/TitleUpdate/res/textures/blocks/lava_flow.txt",
       "animationMode": "metadata"
     },

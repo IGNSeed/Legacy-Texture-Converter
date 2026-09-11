@@ -18,6 +18,16 @@ export async function convertSpecialTextures(
     const mapping = resolveMapping(texture.canonicalId);
     if (!mapping) continue;
     processed.add(texture.sourcePath);
+    if (mapping.inputPolicy === 'preserve-base') {
+      addReportEntry(report, {
+        sourcePath: texture.sourcePath,
+        canonicalId: mapping.id,
+        destination: mapping.destination,
+        status: 'skipped',
+        messageKey: 'messages.inputFluidIgnored',
+      });
+      continue;
+    }
     try {
       const { width, height } = await inspectImage(texture.blob);
       output.push({ path: mapping.destination, blob: texture.blob });

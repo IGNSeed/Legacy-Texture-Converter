@@ -30,6 +30,8 @@ export function convertSwitchPack(
         particles: SWITCH_PATHS.particles,
         guiIcons: SWITCH_PATHS.guiIcons,
         guiWidgets: SWITCH_PATHS.guiWidgets,
+        guiInventory: SWITCH_PATHS.guiInventory,
+        guiPackIcon: SWITCH_PATHS.guiPackIcon,
         sky: SWITCH_PATHS.sky,
       },
       createDownloadName: createSwitchDownloadName,

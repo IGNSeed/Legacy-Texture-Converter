@@ -11,6 +11,8 @@ import type {
 import { composeAtlas } from '../../atlas/composeAtlas';
 import { convertFileTextures } from '../../convert/convertFileTextures';
 import { convertSpecialTextures } from '../../convert/convertSpecialTextures';
+import { convertJavaInventoryTexture } from '../../gui-textures/convertJavaInventoryTexture';
+import { convertPackIcon } from '../../gui-textures/convertPackIcon';
 import { convertGuiTextures } from '../../gui-textures/convertGuiTextures';
 import { inspectImage } from '../../image/decodeImage';
 import { convertHudTextures } from '../../gui-hud/convertHudTextures';
@@ -35,6 +37,8 @@ export interface ConsoleEditionPaths {
   particles: string;
   guiIcons: string;
   guiWidgets: string;
+  guiInventory: string;
+  guiPackIcon: string;
   sky: string;
 }
 
@@ -263,6 +267,8 @@ export async function convertConsolePack<TTarget extends TargetEdition>(
       report,
       processed,
     ),
+    ...convertJavaInventoryTexture(pack, paths.guiInventory, report, processed),
+    ...convertPackIcon(pack, paths.guiPackIcon, report, processed),
     ...(await convertSkyTexture(pack, paths.sky, report, processed)),
   );
   progress(onProgress, 'files', 80);

@@ -11,6 +11,8 @@ export const PS3_PATHS = {
   particles: 'Common/res/TitleUpdate/res/particles.png',
   guiIcons: 'Common/res/gui/icons.png',
   guiWidgets: 'Common/res/gui/gui.png',
+  guiInventory: 'Common/res/gui/inventory.png',
+  guiPackIcon: 'Common/res/gui/pack_icon.png',
   sky: 'Common/res/misc/sky.png',
 } as const;
 

@@ -14,6 +14,8 @@ export const SWITCH_PATHS = {
   particles: 'Common/res/TitleUpdate/res/particles.png',
   guiIcons: 'Common/res/gui/icons.png',
   guiWidgets: 'Common/res/gui/widgets.png',
+  guiInventory: 'Common/res/gui/inventory.png',
+  guiPackIcon: 'Common/res/gui/pack_icon.png',
   sky: 'Common/res/misc/sky.png',
 } as const;
 

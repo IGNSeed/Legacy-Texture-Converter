@@ -15,9 +15,11 @@ Java Edition / Bedrock Edition のテクスチャパックを、Minecraft: Wii U
 - 16px / 32px block と、64px 以上から 32px への nearest-neighbor 縮小
 - 変換前ダイアログで 16px / 32px / 64px / 128px / 256px から選べる item atlas
 - 最終 `terrain.png` からの mipmap 再生成
-- armor、fire、water、lava、glint、particles の変換
+- armor、fire、glint、particles の変換（水・溶岩は入力から移植せず、Console Edition の標準アセットを維持）
 - Java / Bedrock の GUI sheet から crosshair、hotbar、health、armor、hunger、oxygen、experience HUD を変換
 - Java / Bedrock の `icons.png` と widget sheet を無加工で `Common/res/gui/` へコピー（PS3 は実ファイルどおり `gui.png`、Wii U / Switch は `widgets.png`）
+- Java の `assets/minecraft/textures/gui/container/inventory.png` を無加工で `Common/res/gui/inventory.png` へコピー
+- Java の `pack.png` または Bedrock の `pack_icon.png` を無加工で `Common/res/gui/pack_icon.png` へコピー
 - Java の 3×2 custom Sky、または Bedrock の overworld cubemap 6面を LCE `sky.png`（4032×2688）へ変換
 - Wii U / Switch の FUI、PS3 Latest の FUI、PS3 1.8 の CWS/SWF HUD を個別に再構築し、Media ARC へ再格納
 - Wii U は BASE + UPD を統合した `Common/res/...` 出力
@@ -61,7 +63,7 @@ Wii U 基準アセットは公開用 ZIP としてアプリに同梱され、ペ
 
 Java / Bedrock にのみ存在し、Wii U の対応先が確認できないテクスチャは、空き slot へ配置せず未対応として報告します。
 
-GUI の raw copy は HUD/FUI 変換と独立して実行され、入力 PNG のバイト列を変更しません。Java Sky は OptiFine / MCPatcher の overworld custom-sky path を優先して 3×2 sheet 全体をリサイズします。Bedrock Sky は同一ディレクトリの `cubemap_0.png`～`cubemap_5.png` を、次の確認済み配置で結合してから 4032×2688 へリサイズします。
+GUI の raw copy は HUD/FUI 変換と独立して実行され、入力 PNG のバイト列を変更しません。Java の `assets/minecraft/textures/gui/container/inventory.png` も同じく無加工で `Common/res/gui/inventory.png` へ配置します。Java Sky は OptiFine / MCPatcher の overworld custom-sky path を優先して 3×2 sheet 全体をリサイズします。Bedrock Sky は同一ディレクトリの `cubemap_0.png`～`cubemap_5.png` を、次の確認済み配置で結合してから 4032×2688 へリサイズします。
 
 ```text
 [cubemap_5][cubemap_4][cubemap_2]
@@ -85,9 +87,9 @@ atmosphere/
                └─ TitleUpdate/res/...
 ```
 
-Switch 1.0.17 の確認済み atlas は `items.png` が 256×272、`terrain.png` が 256×512、`particles.png` が 128×128 です。最終 terrain から 128×256 と 64×128 の mipmap を再生成します。armor、glint、fire、water、lava、portal、magma、prismarine、sea lantern、cauldron water、clock、compass も Switch 固有パスへ処理します。Switch に存在しない Aquatic 系の item / terrain / particle / armor は空き slot へ割り当てず、未対応としてレポートします。
+Switch 1.0.17 の確認済み atlas は `items.png` が 256×272、`terrain.png` が 256×512、`particles.png` が 128×128 です。最終 terrain から 128×256 と 64×128 の mipmap を再生成します。armor、glint、fire、portal、magma、prismarine、sea lantern、clock、compass は Switch 固有パスへ処理します。入力側の water、lava、cauldron water は移植せず、Switch の基準アセットを維持します。Switch に存在しない Aquatic 系の item / terrain / particle / armor は空き slot へ割り当てず、未対応としてレポートします。
 
-Java の `.mcmeta` と Bedrock の flipbook 定義から解釈できる frame 順・時間は Console Edition のテキスト定義へ変換します。固定順で動く特殊画像は Switch の既定定義を維持し、clock / compass はゲーム側の runtime 制御用 strip として出力します。
+Java の `.mcmeta` と Bedrock の flipbook 定義から解釈できる frame 順・時間は、変換対象の fire などについて Console Edition のテキスト定義へ変換します。水・溶岩のアニメーション定義は使用しません。固定順で動く特殊画像は Switch の既定定義を維持し、clock / compass はゲーム側の runtime 制御用 strip として出力します。
 
 調査根拠と Switch 固有差分は [`docs/switch-1.0.17.md`](docs/switch-1.0.17.md)、GUI/HUD の source rectangle・FUI descriptor・ARC/FUI 再構築仕様は [`docs/gui-hud-conversion.md`](docs/gui-hud-conversion.md) にまとめています。
 

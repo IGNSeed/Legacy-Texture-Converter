@@ -49,11 +49,20 @@ describe('pack edition detection', () => {
 
   it('classifies only recognized Java and Bedrock GUI/Sky paths', () => {
     expect(classifyJavaTexture('assets/minecraft/textures/gui/widgets.png', 'widgets')).toBe('gui');
+    expect(
+      classifyJavaTexture(
+        'Wrapped Pack\\Assets\\Minecraft\\Textures\\Gui\\Container\\Inventory.PNG',
+        'inventory',
+      ),
+    ).toBe('gui');
     expect(classifyJavaTexture('assets/minecraft/optifine/sky/world0/sky1.png', 'sky1')).toBe(
       'sky',
     );
     expect(classifyJavaTexture('assets/minecraft/textures/entity/gui.png', 'gui')).toBe('unknown');
     expect(classifyBedrockTexture('textures/gui/gui.png', 'gui')).toBe('gui');
+    expect(
+      classifyBedrockTexture('assets/minecraft/textures/gui/container/inventory.png', 'inventory'),
+    ).toBe('unknown');
     expect(
       classifyBedrockTexture('textures/environment/overworld_cubemap/cubemap_0.png', 'cubemap_0'),
     ).toBe('sky');

@@ -16,9 +16,9 @@ describe('derived Wii U files', () => {
     expect(WIIU_PATHS.terrainMip3).toBe('Common/res/TitleUpdate/res/terrainMipMapLevel3.png');
   });
 
-  it('creates fluid mipmap paths without BASE or UPD prefixes', () => {
-    expect(specialMipmapPath('Common/res/TitleUpdate/res/textures/blocks/water.png', 1)).toMatch(
-      /waterMipMapLevel2\.png$/,
+  it('creates special-texture mipmap paths without BASE or UPD prefixes', () => {
+    expect(specialMipmapPath('Common/res/TitleUpdate/res/textures/blocks/fire_0.png', 1)).toMatch(
+      /fire_0MipMapLevel2\.png$/,
     );
   });
 
@@ -40,7 +40,7 @@ describe('derived Switch files', () => {
     ]);
   });
 
-  it('preserves the Switch water mipmap minimum frame-strip dimensions', () => {
+  it('supports minimum frame-strip dimensions for special textures', () => {
     expect(mipmapDimensions(16, 512, 3, 4, 128)).toEqual({ width: 4, height: 128 });
     expect(mipmapDimensions(16, 512, 4, 4, 128)).toEqual({ width: 4, height: 128 });
   });

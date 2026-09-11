@@ -30,6 +30,8 @@ export function convertWiiUPack(
         particles: WIIU_PATHS.particles,
         guiIcons: WIIU_PATHS.guiIcons,
         guiWidgets: WIIU_PATHS.guiWidgets,
+        guiInventory: WIIU_PATHS.guiInventory,
+        guiPackIcon: WIIU_PATHS.guiPackIcon,
         sky: WIIU_PATHS.sky,
       },
       createDownloadName: createWiiUDownloadName,

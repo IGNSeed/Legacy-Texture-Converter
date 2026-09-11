@@ -37,6 +37,7 @@ export interface SpecialTextureMapping {
   id: string;
   sourceNames: string[];
   destination: string;
+  inputPolicy?: 'convert' | 'preserve-base';
   animationText?: string;
   mipmapLevels?: number;
   mipmapMinimumWidth?: number;

@@ -34,6 +34,8 @@ export function convertPs3Pack(
         particles: PS3_PATHS.particles,
         guiIcons: PS3_PATHS.guiIcons,
         guiWidgets: PS3_PATHS.guiWidgets,
+        guiInventory: PS3_PATHS.guiInventory,
+        guiPackIcon: PS3_PATHS.guiPackIcon,
         sky: PS3_PATHS.sky,
       },
       createDownloadName: (name) => createPs3DownloadName(name, version),
